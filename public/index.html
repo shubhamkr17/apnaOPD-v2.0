@@ -63,7 +63,7 @@
 						<ul>
 							<li class="active"><a href="index.html">Home</a></li>
 							<!-- <li><a href="product.html">Product</a></li> -->
-							<li><a href="#" id="patient_section">Patient</a></li>
+							<li><a href="profile_patient.html">Patient</a></li>
 							<li><a href="profile_doctor.html">Doctor</a></li>
 							<li><a href="profile_retailer.html">Retailer</a></li>
 							<!-- <li class="has-dropdown">
@@ -170,7 +170,7 @@
 			<div class="row">
 				<div class="col-md-4 text-center animate-box">
 					<div class="services">
-						<a href="book_appointment.html">
+						<a onclick="login()" href="#">
 						<span class="icon">
 							<i class="icon-calendar"></i>
 						</span>
@@ -183,7 +183,7 @@
 				</div>
 				<div class="col-md-4 text-center animate-box">
 					<div class="services">
-						<a href="order_medicine.html">
+						<a onclick="login()" href="#">
 						<span class="icon">
 							<i class="icon-shopping-cart"></i>
 						</span>
@@ -196,7 +196,7 @@
 				</div>
 				<div class="col-md-4 text-center animate-box">
 					<div class="services">
-						<a href="pathology.html">
+						<a onclick="login()" href="#">
 						<span class="icon">
 							<i class="icon-lab-flask"></i>
 						</span>
@@ -403,11 +403,9 @@
 
 	<script>
 
-		$("#patient_section").click(function() {
-			$('html,body').animate({
-				scrollTop: $("#fh5co-services").offset().top},
-				'slow');
-		});
+		function login() {
+			// google login 
+		}
 	
 	</script>
 
