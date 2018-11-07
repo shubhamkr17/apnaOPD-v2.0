@@ -11,7 +11,7 @@
 
   	<!-- Facebook and Twitter integration -->
 	<meta property="og:title" content=""/>
-	<meta property="og:image" content=""/>
+	<!-- <meta property="og:image" content=""/> -->
 	<meta property="og:url" content=""/>
 	<meta property="og:site_name" content=""/>
 	<meta property="og:description" content=""/>
@@ -102,7 +102,7 @@
 					<div class="col-md-10 nopadding animate-box">
 						<div id="form1" class="desc" style="margin-top:1em;">
 							<h3 class="text-center">Depart 1</h3>
-							<form action="">
+							<form action="show_doctors.html">
 								  <div class="form-group">
 								    <label for="inp1">input 1:</label>
 								    <input type="text" class="form-control" id="inp1">
@@ -133,7 +133,7 @@
 
                         <div id="form2" class="desc" style="margin-top:1em;">
 							<h3 class="text-center">Depart 2</h3>
-							<form action="">
+							<form action="show_doctors.html">
 								  <div class="form-group">
 								    <label for="inp1">input 1:</label>
 								    <input type="text" class="form-control" id="inp1">
@@ -165,7 +165,7 @@
                         
                         <div id="form3" class="desc" style="margin-top:1em;">
                         <h3 class="text-center">Depart 3</h3>
-							<form action="">
+							<form action="show_doctors.html">
 								  <div class="form-group">
 								    <label for="inp1">input 1:</label>
 								    <input type="text" class="form-control" id="inp1">
@@ -197,7 +197,7 @@
 
                         <div id="form4" class="desc" style="margin-top:1em;">
 							<h3 class="text-center">Depart 4</h3>
-							<form action="">
+							<form action="show_doctors.html">
 								  <div class="form-group">
 								    <label for="inp1">input 1:</label>
 								    <input type="text" class="form-control" id="inp1">
@@ -229,7 +229,7 @@
 
                         <div id="form5" class="desc" style="margin-top:1em;">
 							<h3 class="text-center">Depart 5</h3>
-							<form action="">
+							<form action="show_doctors.html">
 								  <div class="form-group">
 								    <label for="inp1">input 1:</label>
 								    <input type="text" class="form-control" id="inp1">
@@ -262,26 +262,26 @@
 
                         <div id="form6" class="desc" style="margin-top:1em;">
 							<h3 class="text-center">Depart 6</h3>
-							<form action="">
+							<form action="show_doctors.html">
 								  <div class="form-group">
 								    <label for="inp1">input 1:</label>
-								    <input type="text" class="form-control" id="inp1">
+								    <input type="text" class="form-control" id="inp1" name="inpt1">
 								  </div>
 								  <div class="form-group">
 								    <label for="inp1">input 1:</label>
-								    <input type="text" class="form-control" id="inp1">
+								    <input type="text" class="form-control" id="inp1" name="inpt2">
 								  </div>
 								  <div class="form-group">
 								    <label for="inp1">input 1:</label>
-								    <input type="text" class="form-control" id="inp1">
+								    <input type="text" class="form-control" id="inp1" name="inpt3">
 								  </div>
 								  <div class="form-group">
 								    <label for="inp1">input 1:</label>
-								    <input type="text" class="form-control" id="inp1">
+								    <input type="text" class="form-control" id="inp1" name="inpt4">
 								  </div>
 								  <div class="form-group">
 								    <label for="inp2">input 2:</label>
-								    <input type="text" class="form-control" id="inp2">
+								    <input type="text" class="form-control" id="inp2" name="inpt5">
 								  </div>
 								  <!-- <div class="checkbox">
 								    <label><input type="checkbox"> Remember me</label>
@@ -381,6 +381,39 @@
 
 	<script src="js/book_appointment.js"></script>
 
+	<script>
+		$(document).ready(function() {
 
+		    $('form').submit(function(event) {
+
+		        var formData = {
+		            'name'  : $('input[name=inpt1]').val(),
+		            'email' : $('input[name=inpt2]').val(),
+		            'data1' : $('input[name=inpt3]').val(),
+		            'data2' : $('input[name=inpt4]').val(),
+		            'data3' : $('input[name=inpt5]').val()
+		        };
+
+		        $.ajax({
+		            type        : 'POST', 
+		            url         : 'http://172.16.2.18:4000/api/casesheets/123456',
+		            data        : formData,
+		            dataType    : 'json',
+		            encode      : true
+		        })
+		        .done(function(data) {
+
+		            console.log(data);
+		            sessionStorage.setItem('cid', data._id);
+		            window.location.href = "show_doctors.html"; 
+
+		        });
+
+		        event.preventDefault();
+		    });
+
+		});
+
+	</script>
 	</body>
 </html>
