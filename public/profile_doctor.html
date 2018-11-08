@@ -46,6 +46,56 @@
 	<script src="js/respond.min.js"></script>
 	<![endif]-->
 
+
+	<style>
+		#visitorList::-webkit-scrollbar {
+		    width: 6px;
+		}
+
+		/* Track */
+		#visitorList::-webkit-scrollbar-track {
+		    box-shadow: inset 0 0 5px grey; 
+		    border-radius: 10px;
+		}
+		 
+		/* Handle */
+		#visitorList::-webkit-scrollbar-thumb {
+		    background: green; 
+		    border-radius: 10px;
+		}
+
+		/* Handle on hover */
+		#visitorList::-webkit-scrollbar-thumb:hover {
+		    background: #b30000; 
+		}
+
+		#visitor_body , #history_body {
+			border: 1px solid #ddd;
+			padding: 20px;
+			margin-bottom: 15px;
+		}
+
+		#historyList::-webkit-scrollbar {
+		    width: 6px;
+		}
+
+		/* Track */
+		#historyList::-webkit-scrollbar-track {
+		    box-shadow: inset 0 0 5px grey; 
+		    border-radius: 10px;
+		}
+		 
+		/* Handle */
+		#historyList::-webkit-scrollbar-thumb {
+		    background: green; 
+		    border-radius: 10px;
+		}
+
+		/* Handle on hover */
+		#historyList::-webkit-scrollbar-thumb:hover {
+		    background: #b30000; 
+		}
+	</style>
 	</head>
 	<body>
 		
@@ -87,17 +137,25 @@
 			</div>
 			<div class="row">
 				<div class="member">
-					<div class="col-md-3 nopadding animate-box">
-						<div class="author" style="height:200px;padding:0 10%;text-align: center">
-						<img src="images/user-1.jpg" alt="" style="width:200px;height:200px;">
+					<div class="col-md-1 nopadding animate-box">
+					</div>
+					<div class="col-md-10 nopadding animate-box" style="border: 1px solid #000;">
+						<div id="visitorList" class="desc" style="margin-top:1em;height: 600px;margin-top:0;padding:1em;width:100%; overflow-y: auto;">
+							<div id="visitor_body">
+							<div class="row">
+								<div class="col-md-9">
+									<h3>[[patient_name]]</h3>
+									<p>[[patient_age]]</p>
+									<p>[[time_slab]]</p>
+								</div>
+								<div class="col-md-3">
+									<a href="patient_detail.html"><button class="btn btn-primary">View details</button></a>
+								</div>
+							</div>
+							</div>
 						</div>
 					</div>
-					<div class="col-md-9 nopadding animate-box">
-						<div class="desc" style="margin-top:1em;">
-							<h3>John Doe</h3>
-							<p>Quos quia provident consequuntur culpa facere ratione maxime commodi voluptates id repellat velit eaque aspernatur expedita. Possimus itaque adipisci.</p>
-							<a href="patient_detail.html"><button class="btn btn-primary">View details</button></a>
-						</div>
+					<div class="col-md-1 nopadding animate-box">
 					</div>
 				</div>
 				
@@ -116,18 +174,25 @@
 			</div>
 			<div class="row">
 				<div class="member">
-					<div class="col-md-3 nopadding animate-box">
-						<div class="author" style="height:200px;padding:0 10%;text-align: center">
-						<img src="images/user-1.jpg" alt="" style="width:200px;height:200px;">
+					<div class="col-md-1 nopadding animate-box">
+					</div>
+					<div class="col-md-10 nopadding animate-box" style="border: 1px solid #000;">
+						<div id="historyList" class="desc" style="margin-top:1em;height: 600px;margin-top:0;padding:1em;width:100%; overflow-y: auto;">
+							<div id="history_body">
+							<div class="row">
+								<div class="col-md-9">
+									<h3>[[patient_name]]</h3>
+									<p>[[patient_age]]</p>
+									<p>[[time_slab]]</p>
+								</div>
+								<div class="col-md-3">
+									<a href="patient_detail.html"><button class="btn btn-primary">View details</button></a>
+								</div>
+							</div>
+							</div>
 						</div>
 					</div>
-					<div class="col-md-9 nopadding animate-box">
-						<div class="desc" style="margin-top:1em;">
-							<h3>John Doe</h3>
-							<p>Quos quia provident consequuntur culpa facere ratione maxime commodi voluptates id 
-								repellat velit eaque aspernatur expedita. Possimus itaque adipisci.</p>
-							<a href="doctor_history_patient_view.html"><button class="btn btn-primary">View details</button></a>
-						</div>
+					<div class="col-md-1 nopadding animate-box">
 					</div>
 				</div>
 				
@@ -230,5 +295,34 @@
 	<script src="js/main.js"></script>
 	<script src="js/login_module.js"></script>
 
+	<script src="js/jquery.miranda.min.js"></script>
+
+
+	<script>
+		$.ajax({
+		            type        : 'GET', 
+		            url         : 'http://192.168.43.193:3000/api/appointments/doctor/visiting/113519856592513328',
+		            //data        : e_presc,
+		            //dataType    : 'json',
+		            //encode      : true
+		        })
+		        .done(function(data) {
+		        	console.log(data);
+		        	$('#visitorList').mirandajs(data);
+		        	
+		        });
+		$.ajax({
+		            type        : 'GET', 
+		            url         : 'http://192.168.43.193:3000/api/appointments/doctor/history/113519856592513328',
+		            //data        : e_presc,
+		            //dataType    : 'json',
+		            //encode      : true
+		        })
+		        .done(function(data) {
+		        	console.log(data);
+		        	$('#historyList').mirandajs(data);
+		        	
+		        });
+	</script>
 	</body>
 </html>
