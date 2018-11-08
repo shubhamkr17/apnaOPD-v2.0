@@ -63,20 +63,10 @@
 						<ul>
 							<li><a href="index.html">Home</a></li>
 							<!-- <li><a href="product.html">Product</a></li> -->
-							<li><a href="profile_patient.html" >Patient</a></li>
-							<li class="active"><a href="profile_doctor.html">Doctor</a></li>
-							<li><a href="profile_retailer.html">Retailer</a></li>
-							<!-- <li class="has-dropdown">
-								<a href="blog.html">Blog</a>
-								<ul class="dropdown">
-									<li><a href="#">Web Design</a></li>
-									<li><a href="#">eCommerce</a></li>
-									<li><a href="#">Branding</a></li>
-									<li><a href="#">API</a></li>
-								</ul>
-							</li> -->
-							<!-- <li><a href="about.html">About</a></li> -->
-							<li class="btn-cta"><a href="#"><span>Login</span></a></li>
+							<li><a onclick="patient_login()" href="" >Patient</a></li>
+							<li class="active"><a onclick="doctor_login()" href="#">Doctor</a></li>
+							<li><a onclick="retailer_login()" href="#">Retailer</a></li>
+							<li class="btn-cta"><a onclick="login()" href="#"><span>Login</span></a></li>
 						</ul>
 					</div>
 				</div>
@@ -238,6 +228,7 @@
 	<script src="js/magnific-popup-options.js"></script>
 	<!-- Main -->
 	<script src="js/main.js"></script>
+	<script src="js/login_module.js"></script>
 
 	</body>
 </html>

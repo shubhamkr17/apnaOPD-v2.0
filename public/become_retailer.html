@@ -63,10 +63,10 @@
 						<ul>
 							<li><a href="index.html">Home</a></li>
 							<!-- <li><a href="product.html">Product</a></li> -->
-							<li><a href="profile_patient.html" >Patient</a></li>
-							<li><a href="profile_doctor.html">Doctor</a></li>
-							<li class="active"><a href="profile_retailer.html">Retailer</a></li>
-							<li class="btn-cta"><a href="#"><span>Login</span></a></li>
+							<li><a onclick="patient_login()" href="#" >Patient</a></li>
+							<li><a onclick="doctor_login()" href="#">Doctor</a></li>
+							<li class="active"><a onclick="retailer_login()" href="#">Retailer</a></li>
+							<li class="btn-cta"><a onclick="login()" href="#"><span>Login</span></a></li>
 						</ul>
 					</div>
 				</div>
@@ -78,31 +78,51 @@
 
 
 	<div id="fh5co-about">
-		<div class="container">
-			<div class="row animate-box">
-				<div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
-					<h2>Fill the details</h2>
-					<!-- <p>Dignissimos asperiores vitae velit veniam totam fuga molestias accusamus alias autem provident. Odit ab aliquam dolor eius.</p> -->
+			<div class="container">
+				<div class="row animate-box">
+					<div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
+						<h2>Provide details to become retailer</h2>
+						<!-- <p>Dignissimos asperiores vitae velit veniam totam fuga molestias accusamus alias autem provident. Odit ab aliquam dolor eius.</p> -->
+					</div>
 				</div>
-			</div>
-			<div class="row">
-				<div class="member">
-					<div class="col-md-1 nopadding animate-box">
-					</div>
-					<div class="col-md-10 nopadding animate-box">
-						<div class="desc" style="margin-top:1em;">
-							<h3>John Doe</h3>
-							<p>Quos quia provident consequuntur culpa facere ratione maxime commodi voluptates id 
-								repellat velit eaque aspernatur expedita. Possimus itaque adipisci.</p>
-							<a href="#"><button class="btn btn-primary" style="float:right">View details</button></a>
+				<div class="row">
+					<div class="member">
+						<div class="col-md-1 nopadding animate-box">
 						</div>
-					</div>
-					<div class="col-md-1 nopadding animate-box">
+						<div class="col-md-10 nopadding animate-box">
+							<div class="desc" style="margin-top:1em;">
+								<form>
+									<div class="form-group">
+									<label for="inp1">input 1:</label>
+									<input type="text" class="form-control" id="inp1">
+									</div>
+									<div class="form-group">
+									<label for="inp1">input 1:</label>
+									<input type="text" class="form-control" id="inp1">
+									</div>
+									<div class="form-group">
+									<label for="inp1">input 1:</label>
+									<input type="text" class="form-control" id="inp1">
+									</div>
+									<div class="form-group">
+									<label for="inp1">input 1:</label>
+									<input type="text" class="form-control" id="inp1">
+									</div>
+									<div class="form-group">
+									<label for="inp2">input 2:</label>
+									<input type="text" class="form-control" id="inp2">
+									</div>
+									<button type="submit" class="btn btn-default">Submit</button>
+								</form>
+	
+							</div>
+						</div>
+						<div class="col-md-1 nopadding animate-box">
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
 
     <footer id="fh5co-footer" role="contentinfo">
 		<div class="container">
@@ -122,7 +142,7 @@
 				<div class="col-md-4 col-md-push-1">
 					<h4>Contact Information</h4>
 					<ul class="fh5co-footer-links">
-						<li>Adityapur ,Jamshedpur <br>JH  INDIA 831012</li>
+						<li>Adityapur, Jamshedpur <br>JH  INDIA 831012</li>
 						<li><a href="tel://1234567920">+ 1235 2355 98</a></li>
 						<li><a href="mailto:info@yoursite.com">email : ApnaOPD</a></li>
 					</ul>
@@ -169,6 +189,7 @@
 	<script src="js/magnific-popup-options.js"></script>
 	<!-- Main -->
 	<script src="js/main.js"></script>
+	<script src="js/login_module.js"></script>
 
 	</body>
 </html>

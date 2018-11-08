@@ -1,8 +1,11 @@
-var isRetailer = true;
+var isRetailer = false;
 var isDoctor = false;
 function patient_login () {
     if(isLoggedIn())
+    {
+        sessionStorage.setItem('gid','123456');
         window.location.href="profile_patient.html";
+    }
     else
         login();
 }
