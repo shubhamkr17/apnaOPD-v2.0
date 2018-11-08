@@ -101,8 +101,25 @@
 					</div>
 					<div class="col-md-10 nopadding animate-box">
 						<div class="desc" style="margin-top:1em;">
-							<h3>John Doe</h3>
-							<p>Quos quia provident consequuntur culpa facere ratione maxime commodi voluptates id repellat velit eaque aspernatur expedita. Possimus itaque adipisci.</p>
+							<div class="form-group">
+							  <label for="sel1">Select e-prescription :</label>
+							  <select class="form-control" id="sel1">
+							    <option selected="selected" value="">select</option>
+							    <option>1</option>
+							    <option>2</option>
+							    <option>3</option>
+							    <option>4</option>
+							  </select>
+							  <button class="btn btn-primary"  id="sendPresc">Send</button>
+							</div>
+
+							<div class="form-group text-center">
+								<p style="font-size: 24px; font-weight: bold;"> OR </p>
+								<form id="formUpload" method="post" enctype="multipart/form-data">
+								<input class="form-control" type="file" name="prescription" id="uploadPresc">
+								<button type="submit" class="btn btn-primary" style="margin-top: 30px;">Upload</button>
+								</form>
+							</div>
 							
 						</div>
                     </div>
@@ -114,19 +131,6 @@
 			</div>
 		</div>
 	</div>
-
-	
-
-
-	
-    
-
-
-
-
-
-
-
 
     <footer id="fh5co-footer" role="contentinfo">
 		<div class="container">
@@ -194,5 +198,41 @@
 	<!-- Main -->
 	<script src="js/main.js"></script>
 
+
+	<script>
+		$("#sendPresc").click(function() {
+
+				$.ajax({
+		            type        : 'POST', 
+		            url         : 'http://172.16.2.18:4000/api/casesheets/123456',
+		            data        : e_presc,
+		            dataType    : 'json',
+		            encode      : true
+		        })
+		        .done(function(data) {
+
+		        });
+			});
+
+		$("form#formUpload").submit(function(e) {
+		    e.preventDefault();    
+		    var gid = sessionStorage.getItem('gid');
+		    var formData = new FormData(this);
+		    formData.append('gid', gid);
+		    $.ajax({
+		        url: "http://172.16.0.114:4000/api/uploadPrescription",
+		        type: 'POST',
+		        data: formData,
+		        success: function (data) {
+		            alert(data)
+		            window.location.href="profile_patient.html";
+		        },
+		        cache: false,
+		        contentType: false,
+		        processData: false
+		    });
+		});
+
+	</script>
 	</body>
 </html>
