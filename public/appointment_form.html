@@ -386,7 +386,7 @@
 		$(document).ready(function() {
 
 		    $('form').submit(function(event) {
-
+		    	var gid = sessionStorage.getItem('gid');
 		        var formData = {
 		            'name'  : $('input[name=inpt1]').val(),
 		            'email' : $('input[name=inpt2]').val(),
@@ -397,7 +397,7 @@
 
 		        $.ajax({
 		            type        : 'POST', 
-		            url         : 'http://172.16.2.18:4000/api/casesheets/123456',
+		            url         : 'http://172.16.0.147:3000/api/casesheets/'+gid,
 		            data        : formData,
 		            dataType    : 'json',
 		            encode      : true

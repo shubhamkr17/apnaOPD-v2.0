@@ -138,7 +138,8 @@
 								<h3>[[name]]</h3>
 								<p>[[addr]]</p>
 								<p>[[fee]]</p>
-								<button onclick="book_appointment()" class="btn btn-primary">Book</button>
+								<p id="doctor_id" hidden="true">[[gid]]</p>
+								<button onclick="book_appointment()" class="btn btn-primary" data-toggle="modal" data-target="#booking_info">Book</button>
 							</div>
                         </div>
                         
@@ -157,8 +158,28 @@
 	</div>
 
 
+	<!-- Booking confirmation modal -->
 
+	<div id="booking_info" class="modal fade" role="dialog">
+	  <div class="modal-dialog">
 
+	    <!-- Modal content-->
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal">&times;</button>
+	        <h4 class="modal-title">Appointment Confirmed</h4>
+	      </div>
+	      <div id="m_body" class="modal-body">
+	      	<p>Appointment Id : [[_id]]</p>
+	        <p>Time : [[time]]</p>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal" onclick="window.location.href='profile_patient.html';">Close</button>
+	      </div>
+	    </div>
+
+	  </div>
+	</div>
 
 
 
@@ -238,7 +259,7 @@
 
 		        $.ajax({
 		            type        : 'GET', 
-		            url         : 'http://172.16.2.18:4000/api/doctors/dept/'+dept
+		            url         : 'http://172.16.0.147:3000/api/doctors/filter?department=' + dept
 		            //data        : formData,
 		            //dataType    : 'json',
 		            //encode      : true
@@ -265,8 +286,26 @@
 		    });
 
 		function book_appointment() {
-			alert("Appointment booked!");
-			window.location.href = "index.html";
+			//alert("Appointment booked!");
+			var formData = {
+				casesheet_uid : sessionStorage.getItem('cid'),
+				patient_gid : sessionStorage.getItem('gid'),
+				doctor_gid : $("#doctor_id").text()
+			}
+
+			$.ajax({
+		            type        : 'POST', 
+		            url         : 'http://172.16.0.147:3000/api/appointments',
+		            data        : formData,
+		            dataType    : 'json',
+		            encode      : true
+		        })
+		        .done(function(data) {
+		        	console.log(data);
+ 					$("#m_body").mirandajs(data);
+
+		        });
+			//window.location.href = "profile_patient.html";
 		}
 	</script>
 	</body>
