@@ -1,10 +1,5 @@
-<<<<<<< HEAD
-var isRetailer = false;
-var isDoctor = false;
-=======
 var isRetailer = true;
 var isDoctor = true;
->>>>>>> b4cdd33812f508c97feccf6a96d2ab33ffdced6b
 function patient_login () {
     if(isLoggedIn())
     {
