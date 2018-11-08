@@ -1,5 +1,5 @@
 var isRetailer = true;
-var isDoctor = false;
+var isDoctor = true;
 function patient_login () {
     if(isLoggedIn())
         window.location.href="profile_patient.html";
@@ -32,6 +32,7 @@ function doctor_login () {
 
 
 function isLoggedIn() {
+    sessionStorage.setItem('gid', '123456');
     return true;
 }
 

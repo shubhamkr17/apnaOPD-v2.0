@@ -113,11 +113,16 @@
 							  <button class="btn btn-primary"  id="sendPresc">Send</button>
 							</div>
 
-							<div class="form-group text-center">
+							<div class="form-group">
 								<p style="font-size: 24px; font-weight: bold;"> OR </p>
 								<form id="formUpload" method="post" enctype="multipart/form-data">
 								<input class="form-control" type="file" name="prescription" id="uploadPresc">
-								<button type="submit" class="btn btn-primary" style="margin-top: 30px;">Upload</button>
+								<p style="margin-top: 10px;">Select Delivery Address:</p>
+								<div id="address_list" class="radio">
+								  <div><label><input type="radio" name="optradio" value="[[full_name]], [[house_no]], [[landmark]], [[city]], [[state]], [[pincode]], [[phone_number]]">[[city]], [[state]], [[pincode]]</label></div>
+								</div>
+								<div class="text-center">
+								<button type="submit" class="btn btn-primary" style="margin-top: 30px;">Upload</button></div>
 								</form>
 							</div>
 							
@@ -197,14 +202,28 @@
 	<script src="js/magnific-popup-options.js"></script>
 	<!-- Main -->
 	<script src="js/main.js"></script>
+	<script src="js/jquery.miranda.min.js"></script>
 
 
 	<script>
+
+		$.ajax({
+		            type        : 'GET', 
+		            url         : 'http://10.42.0.1:3000/api/users/address/1',
+		            // data        : e_presc,
+		            // dataType    : 'json',
+		            // encode      : true
+		        })
+		        .done(function(data) {
+		        	console.log(data)
+		        	$("#address_list").mirandajs(data);
+		        });
+
 		$("#sendPresc").click(function() {
 
 				$.ajax({
 		            type        : 'POST', 
-		            url         : 'http://172.16.2.18:4000/api/casesheets/123456',
+		            url         : 'http://10.42.0.1:3000/api/casesheets/123456',
 		            data        : e_presc,
 		            dataType    : 'json',
 		            encode      : true
@@ -217,10 +236,12 @@
 		$("form#formUpload").submit(function(e) {
 		    e.preventDefault();    
 		    var gid = sessionStorage.getItem('gid');
+		    var addr = $('#address_list input[type=radio]:checked').val();
 		    var formData = new FormData(this);
 		    formData.append('gid', gid);
+		    formData.append('address', addr);
 		    $.ajax({
-		        url: "http://172.16.0.114:4000/api/uploadPrescription",
+		        url: "http://10.42.0.1:3000/api/uploadPrescription",
 		        type: 'POST',
 		        data: formData,
 		        success: function (data) {

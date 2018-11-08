@@ -46,6 +46,57 @@
 	<script src="js/respond.min.js"></script>
 	<![endif]-->
 
+	<style>
+		#appointmentList::-webkit-scrollbar {
+		    width: 6px;
+		}
+
+		/* Track */
+		#appointmentList::-webkit-scrollbar-track {
+		    box-shadow: inset 0 0 5px grey; 
+		    border-radius: 10px;
+		}
+		 
+		/* Handle */
+		#appointmentList::-webkit-scrollbar-thumb {
+		    background: green; 
+		    border-radius: 10px;
+		}
+
+		/* Handle on hover */
+		#appointmentList::-webkit-scrollbar-thumb:hover {
+		    background: #b30000; 
+		}
+
+		#appointment_body, #order_body {
+			border: 1px solid #ddd;
+			padding: 20px;
+			margin-bottom: 15px;
+		}
+
+
+		#orderList::-webkit-scrollbar {
+		    width: 6px;
+		}
+
+		/* Track */
+		#orderList::-webkit-scrollbar-track {
+		    box-shadow: inset 0 0 5px grey; 
+		    border-radius: 10px;
+		}
+		 
+		/* Handle */
+		#orderList::-webkit-scrollbar-thumb {
+		    background: green; 
+		    border-radius: 10px;
+		}
+
+		/* Handle on hover */
+		#orderList::-webkit-scrollbar-thumb:hover {
+		    background: #b30000; 
+		}
+	</style>
+
 	</head>
 	<body>
 		
@@ -89,12 +140,20 @@
 				<div class="member">
 					<div class="col-md-1 nopadding animate-box">
 					</div>
-					<div class="col-md-10 nopadding animate-box">
-						<div class="desc" style="margin-top:1em;">
-							<h3>John Doe</h3>
-							<p>Quos quia provident consequuntur culpa facere ratione maxime commodi voluptates id 
-								repellat velit eaque aspernatur expedita. Possimus itaque adipisci.</p>
-							<a href="#"><button class="btn btn-primary" style="float:right">View details</button></a>
+					<div class="col-md-10 nopadding animate-box" style="border: 1px solid #000;">
+						<div id="appointmentList" class="desc" style="margin-top:1em;height: 600px;margin-top:0;padding:1em;width:100%; overflow-y: auto;">
+							<div id="appointment_body">
+							<div class="row">
+								<div class="col-md-9">
+									<h3>[[patient_name]]</h3>
+									<p>[[patient_age]]</p>
+									<p>[[time]]</p>
+								</div>
+								<div class="col-md-3">
+									<button class="btn btn-primary" onclick="appointmentDetail()" value="[[_id]]">View details</button>
+								</div>
+							</div>
+							</div>
 						</div>
 					</div>
 					<div class="col-md-1 nopadding animate-box">
@@ -118,17 +177,22 @@
 				<div class="member">
 					<div class="col-md-1 nopadding animate-box">
 					</div>
-					<div class="col-md-10 nopadding animate-box">
-						<div class="desc" style="margin-top:1em;">
-							<h3>John Doe</h3>
-							<p>Quos quia provident consequuntur culpa facere ratione maxime commodi voluptates id 
-								repellat velit eaque aspernatur expedita. Possimus itaque adipisci.</p>
-							<a href="#"><button class="btn btn-primary" style="float:left">View details</button></a>
-							<a href="view_offer.html"><button class="btn btn-primary" style="float:right">View offers</button></a>
+					<div class="col-md-10 nopadding animate-box" style="border: 1px solid #000;">
+						<div id="orderList" class="desc" style="margin-top:1em;height: 600px;margin-top:0;padding:2em;width:100%; overflow-y: auto;">
+							<div id="order_body">
+							<div class="row">
+								<h3>John Doe</h3>
+								<p>Quos quia provident consequuntur culpa facere ratione maxime commodi voluptates id 
+									repellat velit eaque aspernatur expedita. Possimus itaque adipisci.</p>
+								<a href="#"><button class="btn btn-primary" style="float:left">View details</button></a>
+								<a href="view_offer.html"><button class="btn btn-primary" style="float:right">View offers</button></a>
+							</div>
+							</div>
 						</div>
 					</div>
 					<div class="col-md-1 nopadding animate-box">
 					</div>
+					
 				</div>
 			</div>
 		</div>
@@ -255,6 +319,33 @@
 	<script src="js/magnific-popup-options.js"></script>
 	<!-- Main -->
 	<script src="js/main.js"></script>
+
+	<script src="js/jquery.miranda.min.js"></script>
+
+
+	<script>
+	console.log("outside");
+		var gid = sessionStorage.getItem('gid');
+		$.ajax({
+		            type        : 'GET', 
+		            url         : 'http://192.168.43.193:3000/api/appointments/patient/'+gid
+		            //data        : e_presc,
+		            //dataType    : 'json',
+		            //encode      : true
+		        })
+		        .done(function(data) {
+		        	console.log(data);
+		        	console.log("inside");
+		        	$("#appointmentList").mirandajs(data);
+		        });
+
+		function appointmentDetail() {
+
+			// var apid = $(this).val();
+			// console.log(apid);
+			//sessionStorage.setItem('apid', apid);
+		}
+	</script>
 
 	</body>
 </html>

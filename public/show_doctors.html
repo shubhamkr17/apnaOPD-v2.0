@@ -287,10 +287,12 @@
 
 		function book_appointment() {
 			//alert("Appointment booked!");
+
+			$(this.'#doctor_id').attr('id', 'selectedDoc');
 			var formData = {
 				casesheet_uid : sessionStorage.getItem('cid'),
 				patient_gid : sessionStorage.getItem('gid'),
-				doctor_gid : $("#doctor_id").text()
+				doctor_gid : $("#selectedDoc").text()
 			}
 
 			$.ajax({
