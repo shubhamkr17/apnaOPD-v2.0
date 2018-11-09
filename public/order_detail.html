@@ -45,40 +45,7 @@
 	<!--[if lt IE 9]>
 	<script src="js/respond.min.js"></script>
 	<![endif]-->
-	<style>
-		.doctorListItem {
-			border: 1px solid #eee;
-		    padding: 25px;
-		    margin-bottom: 20px;
-		}
 
-		#doctors {
-			height: 600px;
-			overflow-y: auto;
-		}
-
-		/* width */
-		#doctors::-webkit-scrollbar {
-		    width: 6px;
-		}
-
-		/* Track */
-		#doctors::-webkit-scrollbar-track {
-		    box-shadow: inset 0 0 5px grey; 
-		    border-radius: 10px;
-		}
-		 
-		/* Handle */
-		#doctors::-webkit-scrollbar-thumb {
-		    background: green; 
-		    border-radius: 10px;
-		}
-
-		/* Handle on hover */
-		#doctors::-webkit-scrollbar-thumb:hover {
-		    background: #b30000; 
-		}
-	</style>
 	</head>
 	<body>
 		
@@ -96,10 +63,9 @@
 						<ul>
 							<li><a href="index.html">Home</a></li>
 							<!-- <li><a href="product.html">Product</a></li> -->
-							<li><a onclick="patient_login()" href="#" >Patient</a></li>
-							<li class="active"><a onclick="doctor_login()" href="#">Doctor</a></li>
+							<li class="active"><a onclick="patient_login()" href="#" >Patient</a></li>
+							<li><a onclick="doctor_login()" href="#">Doctor</a></li>
 							<li><a onclick="retailer_login()" href="#">Retailer</a></li>
-							
 							<li class="btn-cta"><a onclick="login()" href="#"><span>Login</span></a></li>
 						</ul>
 					</div>
@@ -115,7 +81,7 @@
 		<div class="container">
 			<div class="row animate-box">
 				<div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
-					<h2>Doctors List</h2>
+					<h2>Order detail</h2>
 					<!-- <p>Dignissimos asperiores vitae velit veniam totam fuga molestias accusamus alias autem provident. Odit ab aliquam dolor eius.</p> -->
 				</div>
 			</div>
@@ -124,14 +90,11 @@
 					<div class="col-md-1 nopadding animate-box">
 					</div>
 					<div class="col-md-10 nopadding animate-box">
-						<div id="doctors"  class="desc" style="margin-top:1em;">
-							<div class="doctorListItem">
-								<h3>[[name]]</h3>
-								<p>[[addr]]</p>
-								<p>[[fee]]</p>
-								<!-- <p id="doctor_id" hidden="true"></p> -->
-								<button onclick="book_appointment(this.id)" id="[[gid]]" class="btn btn-primary" data-toggle="modal" data-target="#booking_info">Book</button>
-							</div>
+						<div class="desc" style="margin-top:1em;">
+							<h3>John Doe</h3>
+							<p>Quos quia provident consequuntur culpa facere ratione maxime commodi voluptates 
+                                id repellat velit eaque aspernatur expedita. Possimus itaque adipisci.</p>
+
                         </div>
                         
 
@@ -149,28 +112,8 @@
 	</div>
 
 
-	<!-- Booking confirmation modal -->
 
-	<div id="booking_info" class="modal fade" role="dialog">
-	  <div class="modal-dialog">
 
-	    <!-- Modal content-->
-	    <div class="modal-content">
-	      <div class="modal-header">
-	        <button type="button" class="close" data-dismiss="modal">&times;</button>
-	        <h4 class="modal-title">Appointment Confirmed</h4>
-	      </div>
-	      <div id="m_body" class="modal-body">
-	      	<p>Appointment Id : [[_id]]</p>
-	        <p>Time : [[time]]</p>
-	      </div>
-	      <div class="modal-footer">
-	        <button type="button" class="btn btn-default" data-dismiss="modal" onclick="window.location.href='profile_patient.html';">Close</button>
-	      </div>
-	    </div>
-
-	  </div>
-	</div>
 
 
 
@@ -241,68 +184,5 @@
 	<script src="js/main.js"></script>
 	<script src="js/login_module.js"></script>
 
-	<script src="js/jquery.miranda.min.js"></script>
-
-
-	<script>
-		var dept = sessionStorage.getItem('department');
-
-		$(document).ready(function() {
-
-		        $.ajax({
-		            type        : 'GET', 
-		            url         : 'http://192.168.43.193:3000/api/doctors/filter?department=' + dept
-		            //data        : formData,
-		            //dataType    : 'json',
-		            //encode      : true
-		        })
-		        .done(function(data) {
-		        	//var address = data.address;
-		        	for (i=0;i<data.length;i++){
-		            var address = data[i].address.city+" ," + data[i].address.state+ " ,"+data[i].address.pincode;
-		            data[i].addr=address;
-		        	}
-		            console.log(data);
-		            // $.each(data, function(index, element) {
-		            // 	$('.desc').append($('<h3>', {
-		            // 		text : element.address.state
-		            // 	}, '</h3>'));
-		            // });
-
-		            $("#doctors").mirandajs(data);
-		            // $("#doctors").mirandajs(address);
-
-		        });
-
-		        //event.preventDefault();
-		    });
-
-		function book_appointment(selected_docid) {
-			//alert("Appointment booked!");
-
-			//$(this.'#doctor_id').attr('id', 'selectedDoc');
-			var formData = {
-				casesheet_uid : sessionStorage.getItem('cid'),
-				patient_gid : sessionStorage.getItem('gid'),
-				doctor_gid : selected_docid,
-				time_slab : "1100110"
-			}
-			console.log(formData);
-
-			$.ajax({
-		            type        : 'POST', 
-		            url         : 'http://192.168.43.193:3000/api/appointments',
-		            data        : formData,
-		            dataType    : 'json',
-		            encode      : true
-		        })
-		        .done(function(data) {
-		        	console.log(data);
- 					$("#m_body").mirandajs(data);
-
-		        });
-			//window.location.href = "profile_patient.html";
-		}
-	</script>
 	</body>
 </html>

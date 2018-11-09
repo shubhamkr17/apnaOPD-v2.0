@@ -91,6 +91,26 @@
 					</div>
 					<div class="col-md-10 nopadding animate-box">
 						<div class="desc" style="margin-top:1em;">
+							<form id="formUpload" method="post" enctype="multipart/form-data">
+							<div class="form-group">
+								<label for="address_list">Select Delivery Address:</label>
+								<div id="address_list" class="form-group radio">
+									<div><label><input type="radio" name="optradio" value="[[_id]]">[[city]], [[state]], [[pincode]]</label></div>
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label for="filter">Look for retailers by your city name or pincode :</label>
+								<select class="form-control" id="filter">
+									<option selected="selected" value="0">By pincode</option>
+									<option value="1">By city</option>
+								</select>
+							</div>
+							<div class="form-group">
+								<label for="comment">Comment:</label>
+								<textarea class="form-control" rows="5" id="comment"></textarea>
+							</div>
+
 							<div class="form-group">
 							  <label for="sel1">Select e-prescription :</label>
 							  <select class="form-control" id="sel1">
@@ -100,22 +120,18 @@
 							    <option>3</option>
 							    <option>4</option>
 							  </select>
-							  <button class="btn btn-primary"  id="sendPresc">Send</button>
+							  <!-- <button class="btn btn-primary"  id="sendPresc">Send</button> -->
 							</div>
 
 							<div class="form-group">
 								<p style="font-size: 24px; font-weight: bold;"> OR </p>
-								<form id="formUpload" method="post" enctype="multipart/form-data">
 								<input class="form-control" type="file" name="prescription" id="uploadPresc">
-								<p style="margin-top: 10px;">Select Delivery Address:</p>
-								<div id="address_list" class="radio">
-								  <div><label><input type="radio" name="optradio" value="[[full_name]], [[house_no]], [[landmark]], [[city]], [[state]], [[pincode]], [[phone_number]]">[[city]], [[state]], [[pincode]]</label></div>
-								</div>
-								<div class="text-center">
-								<button type="submit" class="btn btn-primary" style="margin-top: 30px;">Upload</button></div>
-								</form>
 							</div>
 							
+							<div class="text-center">
+								<button type="submit" class="btn btn-primary" style="margin-top: 30px;">Upload</button>
+							</div>
+						</form>
 						</div>
                     </div>
                     <div class="col-md-1 nopadding animate-box">
@@ -197,53 +213,98 @@
 
 
 	<script>
-
+		var addressList;
+		
 		$.ajax({
 		            type        : 'GET', 
-		            url         : 'http://10.42.0.1:3000/api/users/address/1',
+		            url         : 'http://192.168.43.193:3000/api/users/address/12345',
 		            // data        : e_presc,
 		            // dataType    : 'json',
 		            // encode      : true
 		        })
 		        .done(function(data) {
-		        	console.log(data)
+					console.log(data);
+					addressList = data;
 		        	$("#address_list").mirandajs(data);
 		        });
 
-		$("#sendPresc").click(function() {
-
-				$.ajax({
-		            type        : 'POST', 
-		            url         : 'http://10.42.0.1:3000/api/casesheets/123456',
-		            data        : e_presc,
-		            dataType    : 'json',
-		            encode      : true
-		        })
-		        .done(function(data) {
-
-		        });
-			});
-
+		
+		
+		var pres_link;
+		var epresc_id;
+		var comments;
+		var selected_address ;
+		
 		$("form#formUpload").submit(function(e) {
 		    e.preventDefault();    
-		    var gid = sessionStorage.getItem('gid');
-		    var addr = $('#address_list input[type=radio]:checked').val();
+		    var gid = sessionStorage.getItem('patient_gid');
+			
+
 		    var formData = new FormData(this);
 		    formData.append('gid', gid);
-		    formData.append('address', addr);
+		    //formData.append('address', addr);
 		    $.ajax({
-		        url: "http://10.42.0.1:3000/api/uploadPrescription",
+		        url: "http://192.168.43.193:3000/api/uploadPrescription",
 		        type: 'POST',
 		        data: formData,
 		        success: function (data) {
-		            alert(data)
-		            window.location.href="profile_patient.html";
+					//alert(data);
+					pres_link = data;
+					place_order();
+		            //window.location.href="profile_patient.html";
 		        },
 		        cache: false,
 		        contentType: false,
 		        processData: false
-		    });
+			});
+			
 		});
+
+		function place_order()
+		{
+			var selected_address_id = $('input[name=optradio]:checked').val();
+			//console.log('selected address id',selected_address_id);
+			addressList.forEach(element  => {
+				if(element._id == selected_address_id)
+				{
+					selected_address = element;
+				}
+			}); 
+			console.log('selected address',selected_address);
+			
+			var filter = $('#filter').val();
+			console.log(filter);
+
+			comments = $('#comment').val();
+			console.log(comments);
+
+			
+			var orderData = [{
+				patient_gid : sessionStorage.getItem('patient_gid'),
+				profile_image : sessionStorage.getItem('user_image_url'),
+				photo_prescription_link : pres_link,
+				eprescription_id : epresc_id,
+				comment : comments,
+				address : selected_address
+			}]
+			//orderObj.push(orderData);
+
+			console.log(orderData);
+
+			$.ajax({
+		            type        : 'POST', 
+					url         : 'http://192.168.43.193:3000/api/orders/'+filter,
+					contentType : 'application/json',
+					data        : JSON.stringify(orderData),
+		            dataType    : 'json',
+		            encode      : true
+		        })
+		        .done(function(data) {
+					
+					console.log("response",data);
+		        });
+
+		}
 
 	</script>
 	</body>

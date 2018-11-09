@@ -116,7 +116,7 @@
 							<!-- <li><a href="product.html">Product</a></li> -->
 							<li  class="active"><a onclick="patient_login()" href="#" >Patient</a></li>
 							<li><a onclick="doctor_login()" href="#">Doctor</a></li>
-							<li><a onclick="retailer_login()" href="">Retailer</a></li>
+							<li><a onclick="retailer_login()" href="#">Retailer</a></li>
 							<li class="btn-cta"><a onclick="login()" href="#"><span>Login</span></a></li>
 						</ul>
 					</div>
@@ -178,14 +178,16 @@
 					<div class="col-md-1 nopadding animate-box">
 					</div>
 					<div class="col-md-10 nopadding animate-box" style="border: 1px solid #000;">
-						<div id="orderList" class="desc" style="margin-top:1em;height: 600px;margin-top:0;padding:2em;width:100%; overflow-y: auto;">
+						<div id="orderList" class="desc" style="margin-top:1em;height: 600px;margin-top:0;padding:1em;width:100%; overflow-y: auto;">
 							<div id="order_body">
 							<div class="row">
-								<h3>John Doe</h3>
-								<p>Quos quia provident consequuntur culpa facere ratione maxime commodi voluptates id 
-									repellat velit eaque aspernatur expedita. Possimus itaque adipisci.</p>
-								<a href="#"><button class="btn btn-primary" style="float:left">View details</button></a>
-								<a href="view_offer.html"><button class="btn btn-primary" style="float:right">View offers</button></a>
+								<div class="col-md-12">
+									<h3>Order id : [[_id]]</h3>
+									<p>Time of order : [[time]]</p>
+									<p>Order Status : <span id="[[_id]]">[[status]]</span> </p>
+									<button class="btn btn-primary" onclick="orderDetail(this.id)" id="[[_id]]">View details</button>
+									<button class="btn btn-primary" onclick="offerDetail(this.id)" id="[[_id]]">View offers</button>
+								</div>
 							</div>
 							</div>
 						</div>
@@ -330,8 +332,8 @@
 
 
 	<script>
-	console.log("outside");
-		var gid = sessionStorage.getItem('gid');
+	//console.log("outside");
+		var gid = sessionStorage.getItem('patient_gid');
 		$.ajax({
 		            type        : 'GET', 
 		            url         : 'http://192.168.43.193:3000/api/appointments/patient/'+gid
@@ -341,14 +343,92 @@
 		        })
 		        .done(function(data) {
 		        	console.log(data);
-		        	console.log("inside");
+		        	//console.log("inside");
 		        	$("#appointmentList").mirandajs(data);
-		        });
+				});
 
 		function appointmentDetail(selected_apid) {
 			sessionStorage.setItem('apid', selected_apid);
 			window.location.href="appointment_detail.html"
 		}
+		var orders;		
+		$.ajax({
+			type        : 'GET', 
+			url         : 'http://192.168.43.193:3000/api/orders/patient/'+gid
+			//data        : e_presc,
+			//dataType    : 'json',
+			//encode      : true
+		})
+		.done(function(data) {
+			console.log('orders',data);
+			orders = data;
+			//console.log("inside");
+			$("#orderList").mirandajs(data);
+			
+			display_status();
+			
+		});
+
+		function orderDetail(selected_oid) {
+			sessionStorage.setItem('order_id', selected_oid);
+			window.location.href="order_detail.html";
+		}
+		function offerDetail(selected_oid) {
+			sessionStorage.setItem('order_id', selected_oid);
+			window.location.href="offer_detail.html";
+		}
+
+		function display_status (){
+
+			orders.forEach(element => {
+				var orderId = "#"+element._id;
+				var get_status = $(orderId).text();
+				console.log(get_status);
+				if(get_status == 0)
+				{
+					$(orderId).text("under process");
+					$(orderId).css("background-color", "red");
+				}
+				else if(get_status == 1)
+				{
+					$(orderId).text("order confirmed");
+					$(orderId).css("background-color", "green");
+				}
+				else if(get_status == 2)
+				{
+					$(orderId).text("packaged");
+					$(orderId).css("background-color", "yellow");
+				}
+				else if(get_status == 3)
+				{
+					$(orderId).text("out for delivery");
+					$(orderId).css("background-color", "blue");
+				}
+			});
+
+			// var check_status = $(".order_status").text();
+			// console.log("status",check_status);
+			// for(i=0;i<check_status.length;i++)
+			// {
+			// 	console.log('out',check_status[i]);
+			// 	if(parseInt(check_status[i])==0)
+			// 	{
+			// 		$(".order_status").text("Under process");
+			// 	}
+			// 	else if(parseInt(check_status[i])==1)
+			// 	{
+			// 		console.log('in',check_status[i]);
+			// 		$(".order_status").text("order confirmed");
+			// 	}
+				
+			// }
+			
+
+		}
+
+
+
+		
 	</script>
 
 	</body>
