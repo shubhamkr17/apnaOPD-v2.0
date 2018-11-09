@@ -186,6 +186,24 @@
 	<!-- Main -->
 	<script src="js/main.js"></script>
 	<script src="js/login_module.js"></script>
+	<script src="js/jquery.miranda.min.js"></script>
+
+	<script>
+		var show_pid = sessionStorage.getItem('show_pid');
+
+		$.ajax({
+		            type        : 'GET', 
+		            url         : 'http://192.168.43.193:3000/api/casesheets/'+show_pid,
+		            //data        : e_presc,
+		            //dataType    : 'json',
+		            //encode      : true
+		        })
+		        .done(function(data) {
+		        	console.log(data);
+		        	//$('#visitorList').mirandajs(data);
+		        	
+		        });
+	</script>
 
 	</body>
 </html>

@@ -377,7 +377,7 @@
 		$(document).ready(function() {
 
 		    $('form').submit(function(event) {
-		    	var gid = sessionStorage.getItem('gid');
+		    	var gid = sessionStorage.getItem('patient_gid');
 		        var formData = {
 		            'name'  : $('input[name=inpt1]').val(),
 		            'email' : $('input[name=inpt2]').val(),

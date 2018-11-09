@@ -149,7 +149,7 @@
 									<p>[[time_slab]]</p>
 								</div>
 								<div class="col-md-3">
-									<a href="patient_detail.html"><button class="btn btn-primary">View details</button></a>
+									<a href="patient_detail.html"><button class="btn btn-primary" onclick="showPatient(this.id)" id="[[casesheet_uid]]">View details</button></a>
 								</div>
 							</div>
 							</div>
@@ -186,7 +186,7 @@
 									<p>[[time_slab]]</p>
 								</div>
 								<div class="col-md-3">
-									<a href="patient_detail.html"><button class="btn btn-primary">View details</button></a>
+									<a href="#"><button class="btn btn-primary">View details</button></a>
 								</div>
 							</div>
 							</div>
@@ -299,9 +299,11 @@
 
 
 	<script>
+
+	var docid = sessionStorage.getItem('doctor_gid');
 		$.ajax({
 		            type        : 'GET', 
-		            url         : 'http://192.168.43.193:3000/api/appointments/doctor/visiting/113519856592513328',
+		            url         : 'http://192.168.43.193:3000/api/appointments/doctor/visiting/'+docid,
 		            //data        : e_presc,
 		            //dataType    : 'json',
 		            //encode      : true
@@ -311,6 +313,12 @@
 		        	$('#visitorList').mirandajs(data);
 		        	
 		        });
+
+		function showPatient(pid) {
+			sessionStorage.setItem('show_pid', pid);
+			window.location.href = "patient_detail.html";
+		}
+
 		$.ajax({
 		            type        : 'GET', 
 		            url         : 'http://192.168.43.193:3000/api/appointments/doctor/history/113519856592513328',

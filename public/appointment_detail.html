@@ -90,10 +90,17 @@
 					<div class="col-md-1 nopadding animate-box">
 					</div>
 					<div class="col-md-10 nopadding animate-box">
-						<div class="desc" style="margin-top:1em;">
-							<h3>John Doe</h3>
-							<p>Quos quia provident consequuntur culpa facere ratione maxime commodi voluptates 
-                                id repellat velit eaque aspernatur expedita. Possimus itaque adipisci.</p>
+						<div id="appointment_detail" class="desc" style="margin-top:1em;">
+							<div>
+								<ul>
+									<li>[[_id]]</li>
+​									<li>[[casesheet_uid]]</li>
+​									<li>[[doctor_gid]]</li>
+​									<li>[[patient_gid]]</li>
+									<li>[[status]]</li>
+									<li>[[time]]</li>
+								</ul>
+							</div>
 
                         </div>
                         
@@ -183,6 +190,27 @@
 	<!-- Main -->
 	<script src="js/main.js"></script>
 	<script src="js/login_module.js"></script>
+
+	<script src="js/jquery.miranda.min.js"></script>
+
+	<script>
+		
+	var show_apid = sessionStorage.getItem('apid');
+
+	$.ajax({
+            type        : 'GET', 
+            url         : 'http://192.168.43.193:3000/api/appointments/'+show_apid
+            //data        : e_presc,
+            //dataType    : 'json',
+            //encode      : true
+        })
+        .done(function(data) {
+        	console.log(data);
+        	//console.log("inside");
+        	$("#appointment_detail").mirandajs(data);
+	});
+
+	</script>
 
 	</body>
 </html>

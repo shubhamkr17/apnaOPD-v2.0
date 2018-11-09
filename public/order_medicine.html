@@ -251,7 +251,6 @@
 					//alert(data);
 					pres_link = data;
 					place_order();
-		            //window.location.href="profile_patient.html";
 		        },
 		        cache: false,
 		        contentType: false,
@@ -302,6 +301,7 @@
 		        .done(function(data) {
 					
 					console.log("response",data);
+					window.location.href="profile_patient.html";
 		        });
 
 		}

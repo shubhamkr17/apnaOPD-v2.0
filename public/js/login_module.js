@@ -25,11 +25,11 @@ function retailer_login () {
         login();
 }
 function doctor_login () {
-    if(isLoggedIn(gid))
+    if(gid=isLoggedIn())
     {
         if(isDoctor==true)
         {
-            sessionStorage.setItem('doctor_gid',gid);
+            sessionStorage.setItem('doctor_gid',"113519856592513328");
             window.location.href="profile_doctor.html";
         }
         else
