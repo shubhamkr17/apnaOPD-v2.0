@@ -45,6 +45,15 @@
 	<!--[if lt IE 9]>
 	<script src="js/respond.min.js"></script>
 	<![endif]-->
+	<style>
+		.table_row {
+			padding: 4px;
+			border: 1px solid #eee;
+			margin-bottom: 40px;
+		}
+	
+	
+	</style>
 
 	</head>
 	<body>
@@ -93,13 +102,31 @@
 						<div id="appointment_detail" class="desc" style="margin-top:1em;">
 							<div>
 								<ul>
-									<li>[[_id]]</li>
+									<!-- <li>[[_id]]</li> -->
 ​									<li>[[casesheet_uid]]</li>
-​									<li>[[doctor_gid]]</li>
-​									<li>[[patient_gid]]</li>
-									<li>[[status]]</li>
-									<li>[[time]]</li>
 								</ul>
+								<table>
+									<tr class="table_row">
+										<td>Doctor name : </td>
+										<td id="doctor_name"></td>
+									</tr>
+									<tr class="table_row">
+										<td>Doctor's email : </td>
+										<td id="doctor_email"></td>
+									</tr>
+									<tr class="table_row">
+										<td>Status : </td>
+										<td id="ap_status"></td>
+									</tr>
+									<tr class="table_row">
+										<td>Time Slab : </td>
+										<td id="ap_time"></td>
+									</tr>
+									<tr class="table_row">
+										<td>Booking Time : </td>
+										<td id="book_time"></td>
+									</tr>
+								</table>
 							</div>
 
                         </div>
@@ -194,21 +221,48 @@
 	<script src="js/jquery.miranda.min.js"></script>
 
 	<script>
+		var doc_id;
+		var case_id;
+		var ap_status;
+		var book_time;
+		var ap_time;
 		
 	var show_apid = sessionStorage.getItem('apid');
 
 	$.ajax({
             type        : 'GET', 
-            url         : 'http://192.168.43.193:3000/api/appointments/'+show_apid
-            //data        : e_presc,
-            //dataType    : 'json',
-            //encode      : true
+            url         : 'http://10.42.0.1:3000/api/appointments/'+show_apid
         })
         .done(function(data) {
         	console.log(data);
         	//console.log("inside");
+			doc_id = data.doctor_gid;
+			case_id = data.casesheet_uid;
+			ap_status = data.status;
+			book_time = data.time;
+			ap_time = data.time_slab;
         	$("#appointment_detail").mirandajs(data);
+			show_detail();
 	});
+
+	function show_detail()
+	{
+		$.get("http://10.42.0.1:3000/api/doctors/"+doc_id,function(data){
+			$("#doctor_name").text(data.name);
+			$("#doctor_email").text(data.email);
+			
+			//console.log(data);
+		});
+		$("#ap_status").text(ap_status);
+		$("#ap_time").text(ap_time);
+		$("#book_time").text(book_time);
+
+		$.get("http://10.42.0.1:3000/api/casesheets/"+case_id,function(data){
+			console.log(data);
+		});
+	}
+
+
 
 	</script>
 

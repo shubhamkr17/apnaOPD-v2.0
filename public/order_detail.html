@@ -93,7 +93,9 @@
 						<div class="desc" style="margin-top:1em;">
 							<h3>John Doe</h3>
 							<p>Quos quia provident consequuntur culpa facere ratione maxime commodi voluptates 
-                                id repellat velit eaque aspernatur expedita. Possimus itaque adipisci.</p>
+								id repellat velit eaque aspernatur expedita. Possimus itaque adipisci.</p>
+								
+							<img id="prescription_image" class="img-responsive"/>
 
                         </div>
                         
@@ -183,6 +185,20 @@
 	<!-- Main -->
 	<script src="js/main.js"></script>
 	<script src="js/login_module.js"></script>
+
+	<script>
+
+		var order_id = sessionStorage.getItem('order_id');
+		console.log("order_id",order_id);
+
+		$.get("http://10.42.0.1:3000/api/orders/"+order_id,function(data){
+			console.log(data);
+
+			$('#prescription_image').attr("src","http://10.42.0.1:3000/"+data.photo_prescription_link);
+
+		});
+	
+	</script>
 
 	</body>
 </html>

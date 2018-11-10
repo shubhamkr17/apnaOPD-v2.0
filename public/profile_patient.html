@@ -182,7 +182,7 @@
 							<div id="order_body">
 							<div class="row">
 								<div class="col-md-12">
-									<h3>Order id : [[_id]]</h3>
+									<!-- <h3>Order id : [[_id]]</h3> -->
 									<p>Time of order : [[time]]</p>
 									<p>Order Status : <span id="[[_id]]" style="padding: 8px; color: black; display: inline;">[[status]]</span> </p>
 									<button class="btn btn-primary" onclick="orderDetail(this.id)" id="[[_id]]">View details</button>
@@ -336,7 +336,7 @@
 		var gid = sessionStorage.getItem('patient_gid');
 		$.ajax({
 		            type        : 'GET', 
-		            url         : 'http://192.168.43.193:3000/api/appointments/patient/'+gid
+		            url         : 'http://10.42.0.1:3000/api/appointments/patient/'+gid
 		            //data        : e_presc,
 		            //dataType    : 'json',
 		            //encode      : true
@@ -354,7 +354,7 @@
 		var orders;		
 		$.ajax({
 			type        : 'GET', 
-			url         : 'http://192.168.43.193:3000/api/orders/patient/'+gid
+			url         : 'http://10.42.0.1:3000/api/orders/patient/'+gid
 			//data        : e_presc,
 			//dataType    : 'json',
 			//encode      : true
