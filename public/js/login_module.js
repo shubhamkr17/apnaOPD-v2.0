@@ -44,7 +44,7 @@ function doctor_login () {
 function isLoggedIn() {
     //sessionStorage.setItem('gid', '12345');
     //gid from google 
-    var gid = "12345";
+    var gid = "1";
     sessionStorage.setItem('user_image_url',"/files/prescriptions/1/index.jpeg");
     return gid;
 }

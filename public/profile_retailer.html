@@ -46,6 +46,56 @@
 	<script src="js/respond.min.js"></script>
 	<![endif]-->
 
+	<style>
+		#demandList::-webkit-scrollbar {
+		    width: 6px;
+		}
+
+		/* Track */
+		#demandList::-webkit-scrollbar-track {
+		    box-shadow: inset 0 0 5px grey; 
+		    border-radius: 10px;
+		}
+		 
+		/* Handle */
+		#demandList::-webkit-scrollbar-thumb {
+		    background: green; 
+		    border-radius: 10px;
+		}
+
+		/* Handle on hover */
+		#demandList::-webkit-scrollbar-thumb:hover {
+		    background: #b30000; 
+		}
+
+		#demand_body , #accepted_body {
+			border: 1px solid #ddd;
+			padding: 20px;
+			margin-bottom: 15px;
+		}
+
+		#acceptedList::-webkit-scrollbar {
+		    width: 6px;
+		}
+
+		/* Track */
+		#acceptedList::-webkit-scrollbar-track {
+		    box-shadow: inset 0 0 5px grey; 
+		    border-radius: 10px;
+		}
+		 
+		/* Handle */
+		#acceptedList::-webkit-scrollbar-thumb {
+		    background: green; 
+		    border-radius: 10px;
+		}
+
+		/* Handle on hover */
+		#acceptedList::-webkit-scrollbar-thumb:hover {
+		    background: #b30000; 
+		}
+	</style>
+
 	</head>
 	<body>
 		
@@ -89,14 +139,22 @@
 					<div class="member">
 						<div class="col-md-1 nopadding animate-box">
 						</div>
-						<div class="col-md-10 nopadding animate-box">
-							<div class="desc" style="margin-top:1em;">
-								<h3>John Doe</h3>
-								<p>Quos quia provident consequuntur culpa facere ratione maxime commodi voluptates id 
-									repellat velit eaque aspernatur expedita. Possimus itaque adipisci.</p>
-								<a href="retailer_order_detail.html"><button class="btn btn-primary" style="float:right">View details</button></a>
+						<div class="col-md-10 nopadding animate-box" style="border: 1px solid #000;">
+						<div id="demandList" class="desc" style="margin-top:1em;height: 600px;margin-top:0;padding:1em;width:100%; overflow-y: auto;">
+							<div id="demand_body">
+							<div class="row">
+								<div class="col-md-9">
+									<h3>[[full_address]]</h3>
+									<p>[[comment]]</p>
+									<p>[[time]]</p>
+								</div>
+								<div style="float: none;" class="col-md-3">
+									<a href="#"><button class="btn btn-primary" id="[[_id]]" onclick="demandDetail(this.id)">View details</button></a>
+								</div>
+							</div>
 							</div>
 						</div>
+					</div>
 						<div class="col-md-1 nopadding animate-box">
 						</div>
 					</div>
@@ -121,14 +179,22 @@
 					<div class="member">
 						<div class="col-md-1 nopadding animate-box">
 						</div>
-						<div class="col-md-10 nopadding animate-box">
-							<div class="desc" style="margin-top:1em;">
-								<h3>John Doe</h3>
-								<p>Quos quia provident consequuntur culpa facere ratione maxime commodi voluptates id 
-									repellat velit eaque aspernatur expedita. Possimus itaque adipisci.</p>
-								<a href="retailer_accepted_order.html"><button class="btn btn-primary"style="float:right">View details</button></a>	
+						<div class="col-md-10 nopadding animate-box" style="border: 1px solid #000;">
+						<div id="acceptedList" class="desc" style="margin-top:1em;height: 600px;margin-top:0;padding:1em;width:100%; overflow-y: auto;">
+							<div id="accepted_body">
+							<div class="row">
+								<div class="col-md-9">
+									<h3>[[]]</h3>
+									<p>[[]]</p>
+									<p>[[]]</p>
+								</div>
+								<div class="col-md-3">
+									<a href="#"><button class="btn btn-primary">View details</button></a>
+								</div>
+							</div>
 							</div>
 						</div>
+					</div>
 						<div class="col-md-1 nopadding animate-box">
 						</div>
 					</div>
@@ -156,12 +222,20 @@
 				<div class="member">
 					<div class="col-md-1 nopadding animate-box">
 					</div>
-					<div class="col-md-10 nopadding animate-box">
-						<div class="desc" style="margin-top:1em;">
-							<h3>John Doe</h3>
-							<p>Quos quia provident consequuntur culpa facere ratione maxime commodi voluptates id 
-								repellat velit eaque aspernatur expedita. Possimus itaque adipisci.</p>
-							<a href="retailer_delivered_order.html"><button class="btn btn-primary" style="float:right">View details</button></a>
+					<div class="col-md-10 nopadding animate-box" style="border: 1px solid #000;">
+						<div id="deliveredList" class="desc" style="margin-top:1em;height: 600px;margin-top:0;padding:1em;width:100%; overflow-y: auto;">
+							<div id="delivered_body">
+							<div class="row">
+								<div class="col-md-9">
+									<h3>[[patient_name]]</h3>
+									<p>[[patient_age]]</p>
+									<p>[[time_slab]]</p>
+								</div>
+								<div class="col-md-3">
+									<a href="#"><button class="btn btn-primary">View details</button></a>
+								</div>
+							</div>
+							</div>
 						</div>
 					</div>
 					<div class="col-md-1 nopadding animate-box">
@@ -249,5 +323,57 @@
 	<script src="js/main.js"></script>
 	<script src="js/login_module.js"></script>
 
+	<script src="js/jquery.miranda.min.js"></script>
+
+
+	<script>
+		// get demands
+		var retailer_gid = sessionStorage.getItem('retailer_gid');
+		$.ajax({
+
+		        type        : 'GET', 
+		        url         : 'http://10.42.0.1:3000/api/retailers/orders/'+retailer_gid,
+		        //data        : e_presc,
+		        //dataType    : 'json',
+		        //encode      : true
+		    })
+		    .done(function(data) {
+		    	// console.log(data);
+		    	for (var i = 0; i < data.length; i++) {
+		    		//console.log(data[i].address.pincode);
+		    		var full_address = data[i].address.full_name + "," + data[i].address.house_no + "," + data[i].address.landmark + "," + data[i].address.city + "," + data[i].address.state + "," + data[i].address.pincode;
+		    		data[i]['full_address'] = full_address;
+				}
+				//console.log('changed',data);
+		    	$('#demandList').mirandajs(data);
+		    	
+		});
+
+		function demandDetail(selected_demandid) {
+			sessionStorage.setItem('demand_id', selected_demandid);
+			window.location.href = "retailer_order_detail.html";
+		}
+
+
+		// get offers accepted by user
+
+		$.ajax({
+
+		        type        : 'GET', 
+		        url         : 'http://10.42.0.1:3000/api/orders/retailer/'+retailer_gid,
+		        //data        : e_presc,
+		        //dataType    : 'json',
+		        //encode      : true
+		    })
+		    .done(function(data) {
+		    	console.log(data);
+		    	//$('#demandList').mirandajs(data);	
+		});
+
+
+
+
+		// get delivered orders
+	</script>
 	</body>
 </html>

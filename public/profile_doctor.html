@@ -299,39 +299,41 @@
 	<script src="js/enc_dec_time.js"></script>
 
 
-	<script>
+<script>
 
-	var docid = sessionStorage.getItem('doctor_gid');
-		$.ajax({
-		            type        : 'GET', 
-		            url         : 'http://192.168.43.193:3000/api/appointments/doctor/visiting/'+docid,
-		            //data        : e_presc,
-		            //dataType    : 'json',
-		            //encode      : true
-		        })
-		        .done(function(data) {
-		        	console.log(data);
-		        	$('#visitorList').mirandajs(data);
-		        	
-		        });
+var docid = sessionStorage.getItem('doctor_gid');
+$.ajax({
 
-		function showPatient(pid) {
-			sessionStorage.setItem('show_pid', pid);
-			window.location.href = "patient_detail.html";
-		}
+        type        : 'GET', 
+        url         : 'http://192.168.43.193:3000/api/appointments/doctor/visiting/'+docid,
+        //data        : e_presc,
+        //dataType    : 'json',
+        //encode      : true
+    })
+    .done(function(data) {
+    	console.log(data);
+    	$('#visitorList').mirandajs(data);
+    	
+});
 
-		$.ajax({
-		            type        : 'GET', 
-		            url         : 'http://192.168.43.193:3000/api/appointments/doctor/history/113519856592513328',
-		            //data        : e_presc,
-		            //dataType    : 'json',
-		            //encode      : true
-		        })
-		        .done(function(data) {
-		        	console.log(data);
-		        	$('#historyList').mirandajs(data);
-		        	
-		        });
-	</script>
-	</body>
+function showPatient(pid) {
+	sessionStorage.setItem('show_pid', pid);
+	window.location.href = "patient_detail.html";
+}
+
+$.ajax({
+    type        : 'GET', 
+    url         : 'http://192.168.43.193:3000/api/appointments/doctor/history/113519856592513328',
+    //data        : e_presc,
+    //dataType    : 'json',
+    //encode      : true
+})
+.done(function(data) {
+	console.log(data);
+	$('#historyList').mirandajs(data);
+	
+});
+
+</script>
+</body>
 </html>
