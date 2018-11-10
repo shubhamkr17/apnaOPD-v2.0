@@ -217,7 +217,7 @@
 		
 		$.ajax({
 		            type        : 'GET', 
-		            url         : 'http://192.168.43.193:3000/api/users/address/12345',
+		            url         : 'http://10.42.0.1:3000/api/users/address/1',
 		            // data        : e_presc,
 		            // dataType    : 'json',
 		            // encode      : true
@@ -244,7 +244,7 @@
 		    formData.append('gid', gid);
 		    //formData.append('address', addr);
 		    $.ajax({
-		        url: "http://192.168.43.193:3000/api/uploadPrescription",
+		        url: "http://10.42.0.1:3000/api/uploadPrescription",
 		        type: 'POST',
 		        data: formData,
 		        success: function (data) {
@@ -292,7 +292,7 @@
 
 			$.ajax({
 		            type        : 'POST', 
-					url         : 'http://192.168.43.193:3000/api/orders/'+filter,
+					url         : 'http://10.42.0.1:3000/api/orders/'+filter,
 					contentType : 'application/json',
 					data        : JSON.stringify(orderData),
 		            dataType    : 'json',
