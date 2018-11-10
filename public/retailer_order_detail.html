@@ -41,10 +41,18 @@
 
 	<!-- Modernizr JS -->
 	<script src="js/modernizr-2.6.2.min.js"></script>
+
+	<script type="text/javascript" src="http://code.jquery.com/jquery-compat-git.js"></script>
 	<!-- FOR IE9 below -->
 	<!--[if lt IE 9]>
 	<script src="js/respond.min.js"></script>
 	<![endif]-->
+
+	<style>
+		.col-md-3, .col-md-2, .col-md-1 {
+			padding: 2px 2px;
+		}
+	</style>
 
 	</head>
 	<body>
@@ -88,15 +96,36 @@
 			<div class="row">
 				<div class="member">
 					<div class="member">
-						<div class="col-md-2 nopadding animate-box">
+						<div class="col-md-1 nopadding animate-box">
 						</div>
-						<div class="col-md-8 nopadding animate-box">
-							<div class="desc" style="margin-top:1em;">
-								<h3>John Doe</h3>
-								<p>Quos quia provident consequuntur culpa facere ratione maxime commodi voluptates id repellat velit eaque aspernatur expedita. Possimus itaque adipisci.</p>
+						<div class="col-md-10 nopadding animate-box" style="border: 1px solid #000;">
+						<div id="demandDetailList" class="desc" style="margin-top:1em; margin-top:0;padding:1em; width:100%;">
+							<div class="row">
+								<div class="col-md-12">
+									<img class="img-responsive" src="http://10.42.0.1:3000[[photo_prescription_link]]">
+								</div>
+							</div>
+							<div class="row" style="border: 1px solid #ccc;padding: 10px; margin: 30px;">
+								<div class="col-md-1"></div>
+								<div class="col-md-3">
+									<img src="[[imageUrl]]">
+								</div>
+								<div class="col-md-8">
+									<p>[[name]]</p>
+								</div>
+							</div>
+							<div class="row text-center">
+								<div class="col-md-6">
+									<button id="accept" class="btn btn-primary">Accept</button>
+								</div>
+								<div class="col-md-6">
+									<a href="#"><button class="btn btn-primary">Decline</button></a>
+								</div>
 							</div>
 						</div>
-						<div class="col-md-2 nopadding animate-box">
+						</div>
+					</div>
+						<div class="col-md-1 nopadding animate-box">
 						</div>
 					</div>
 				</div>
@@ -106,6 +135,28 @@
 		</div>
 	</div>
 
+
+	<!-- Quotation Box -->
+
+	<div id="quotationBox" class="container" style="display: none;">
+		<div class="text-center" style="margin-top: 30px;"><p class="lead">Fill Quotation Details :</p></div>
+
+
+		<div class="multi-field-wrapper">
+            <div class="multi-fields">
+                <div class="multi-field" style="margin-bottom: 15px;">
+                	<input class="form-control" type="text" name="drug_name" style="display: inline; width: 30%;">
+                	<input class="form-control" type="text" name="price" style="display: inline; width: 15%;">
+                	<input class="form-control" type="text" name="offer_price" style="display: inline; width: 15%;">
+                	<input class="form-control" type="text" name="dosage" style="display: inline; width: 15%;">
+                	<input class="form-control" type="text" name="duration" style="display: inline; width: 15%;">
+                	<button class="remove-field" type="button" style="margin-top: 4px; width: 5%;">-</button>
+                </div>
+            </div>
+            <button type="button" class="add-field">+</button>
+        </div>
+
+	</div>
 
 
     <footer id="fh5co-footer" role="contentinfo">
@@ -175,5 +226,59 @@
 	<script src="js/main.js"></script>
 	<script src="js/login_module.js"></script>
 
+	<script src="js/jquery.miranda.min.js"></script>
+
+
+	<script>
+
+		var did = sessionStorage.getItem('demand_id');
+
+
+		$.ajax({
+
+		        type        : 'GET', 
+		        url         : 'http://10.42.0.1:3000/api/orders/'+did,
+		    })
+		    .done(function(data) {
+		    	console.log(data);
+		    	$('#demandDetailList').mirandajs(data);
+		    	$.ajax({
+
+		        type        : 'GET', 
+		        url         : 'http://10.42.0.1:3000/api/users/'+data.patient_gid,
+		    })
+		    .done(function(data) {
+		    	console.log(data);
+		    	$('#demandDetailList').mirandajs(data);
+		    });
+		    	
+		});
+		 $(document).ready(function(){
+		    $("#accept").click(function(){
+		        $("#quotationBox").slideDown("slow");
+		    });
+		});
+
+
+
+		 function addField()
+		 {
+
+		 }
+	</script>
+	<script>
+		$(function() {
+            $('.multi-field-wrapper').each(function() {
+                var $wrapper = $('.multi-fields', this);
+                $(".add-field", $(this)).click(function(e) {
+                    $('.multi-field:first-child', $wrapper).clone(true).appendTo($wrapper).find('input[name=drug_name]').val('').focus();
+                });
+                $('.multi-field .remove-field', $wrapper).click(function() {
+                    if ($('.multi-field', $wrapper).length > 1)
+                        $(this).parent('.multi-field').remove();
+                });
+            });
+        });
+	</script>
 	</body>
 </html>
