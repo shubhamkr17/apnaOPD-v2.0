@@ -146,7 +146,7 @@
 								<div class="col-md-9">
 									<h3>[[patient_name]]</h3>
 									<p>[[patient_age]]</p>
-									<p>[[time_slab]]</p>
+									<p>[[visitingTime]]</p>
 								</div>
 								<div class="col-md-3">
 									<a href="patient_detail.html"><button class="btn btn-primary" onclick="showPatient(this.id)" id="[[casesheet_uid]]">View details</button></a>
@@ -183,7 +183,7 @@
 								<div class="col-md-9">
 									<h3>[[patient_name]]</h3>
 									<p>[[patient_age]]</p>
-									<p>[[time_slab]]</p>
+									<p>[[visitingTime]]</p>
 								</div>
 								<div class="col-md-3">
 									<a href="#"><button class="btn btn-primary">View details</button></a>
@@ -305,13 +305,16 @@ var docid = sessionStorage.getItem('doctor_gid');
 $.ajax({
 
         type        : 'GET', 
-        url         : 'http://192.168.43.193:3000/api/appointments/doctor/visiting/'+docid,
-        //data        : e_presc,
-        //dataType    : 'json',
-        //encode      : true
+        url         : 'http://192.168.43.193:3000/api/appointments/doctor/visiting/'+docid
     })
     .done(function(data) {
     	console.log(data);
+		for(i=0;i<data.length;i++)
+		{
+			
+			data[i].visitingTime = get_time(data[i].time_slab);
+			console.log(i,data[i]);
+		}
     	$('#visitorList').mirandajs(data);
     	
 });
@@ -323,7 +326,7 @@ function showPatient(pid) {
 
 $.ajax({
     type        : 'GET', 
-    url         : 'http://192.168.43.193:3000/api/appointments/doctor/history/113519856592513328',
+    url         : 'http://192.168.43.193:3000/api/appointments/doctor/history/'+docid
     //data        : e_presc,
     //dataType    : 'json',
     //encode      : true

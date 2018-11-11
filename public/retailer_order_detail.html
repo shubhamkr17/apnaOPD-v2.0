@@ -102,7 +102,7 @@
 						<div id="demandDetailList" class="desc" style="margin-top:1em; margin-top:0;padding:1em; width:100%;">
 							<div class="row">
 								<div class="col-md-12">
-									<img class="img-responsive" src="http://10.42.0.1:3000[[photo_prescription_link]]">
+									<img class="img-responsive" src="http://192.168.43.193:3000[[photo_prescription_link]]">
 								</div>
 							</div>
 							<div class="row" style="border: 1px solid #ccc;padding: 10px; margin: 30px;">
@@ -119,7 +119,7 @@
 									<button id="accept" class="btn btn-primary" onclick="showQuotationForm()">Accept</button>
 								</div>
 								<div class="col-md-6">
-									<a href="#"><button class="btn btn-primary">Decline</button></a>
+									<button class="btn btn-primary" onclick="deleteOffer()">Decline</button>
 								</div>
 							</div>
 						</div>
@@ -242,6 +242,7 @@
 		    }
 
 		var did = sessionStorage.getItem('demand_id');
+		var ret_gid = sessionStorage.getItem('retailer_gid');
 
 		function confirmQuotation() {
 			var nameList = $('.multi-field input[name=drug_name]');
@@ -296,7 +297,23 @@
 		        .done(function(data) {
 
 		            console.log(data);
-		            //window.location.href = "show_doctors.html"; 
+					alert("Your offer has been sent to the user");
+		            window.location.href = "profile_retailer.html"; 
+
+		        });
+		}
+
+		//delete offer
+		function deleteOffer(){
+			$.ajax({
+		            type        : 'DELETE', 
+		            url         : 'http://192.168.43.193:3000/api/retailers/orders/'+ret_gid+"/"+did
+		        })
+		        .done(function(data) {
+
+		            console.log(data);
+					alert("Order declined !");
+		            window.location.href = "profile_retailer.html"; 
 
 		        });
 		}
@@ -309,15 +326,15 @@
 		    .done(function(data) {
 		    	console.log(data);
 		    	$('#demandDetailList').mirandajs(data);
-		    	$.ajax({
+				$.ajax({
 
-		        type        : 'GET', 
-		        url         : 'http://192.168.43.193:3000/api/users/'+data.patient_gid,
-		    })
-		    .done(function(data) {
-		    	console.log(data);
-		    	$('#demandDetailList').mirandajs(data);
-		    });
+				type        : 'GET', 
+				url         : 'http://192.168.43.193:3000/api/users/'+data.patient_gid,
+				})
+				.done(function(data) {
+					console.log(data);
+					$('#demandDetailList').mirandajs(data);
+				});
 		    	
 		});
 
@@ -354,6 +371,10 @@
         	console.log(top, dc);
         	$("#total_charge").text(parseFloat(top) + parseFloat(dc));
         });
+
+
+
+		
 
 	</script>
 	</body>

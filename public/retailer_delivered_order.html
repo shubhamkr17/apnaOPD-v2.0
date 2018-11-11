@@ -174,5 +174,20 @@
 	<script src="js/main.js"></script>
 	<script src="js/login_module.js"></script>
 
+	<script>
+			var delivered_order_id = sessionStorage.getItem('delivered_order_id');
+			var retailer_gid = sessionStorage.getItem('retailer_gid');
+			$.ajax({
+	
+				type        : 'GET', 
+				url         : 'http://192.168.43.193:3000/api/orders/'+delivered_order_id
+				})
+				.done(function(data) {
+					console.log(data);
+				});
+	
+		
+		</script>
+
 	</body>
 </html>

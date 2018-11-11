@@ -189,7 +189,7 @@
 									<p>[[]]</p>
 								</div>
 								<div class="col-md-3">
-									<a href="#"><button class="btn btn-primary">View details</button></a>
+									<button class="btn btn-primary" id="[[_id]]" onclick="acceptedOrderDetail(this.id)">View details</button>
 								</div>
 							</div>
 							</div>
@@ -232,7 +232,7 @@
 									<p>[[time_slab]]</p>
 								</div>
 								<div class="col-md-3">
-									<a href="#"><button class="btn btn-primary">View details</button></a>
+									<button class="btn btn-primary" id=[[_id]] onclick="deliveredOrderDetail(this.id)">View details</button>
 								</div>
 							</div>
 							</div>
@@ -351,26 +351,45 @@
 			window.location.href = "retailer_order_detail.html";
 		}
 
+		function deliveredOrderDetail(delivered_order_id) {
+			sessionStorage.setItem('delivered_order_id',delivered_order_id);
+			window.location.href = "retailer_delivered_order.html";
+		}
+
+		function acceptedOrderDetail(accepted_order_id) {
+			sessionStorage.setItem('accepted_order_id',accepted_order_id);
+			window.location.href = "retailer_accepted_order.html";
+		}
+
 
 		// get offers accepted by user
 
 		$.ajax({
 
 		        type        : 'GET', 
-		        url         : 'http://192.168.43.193:3000/api/orders/retailer/'+retailer_gid,
+		        url         : 'http://192.168.43.193:3000/api/orders/retailer/'+retailer_gid
 		        //data        : e_presc,
 		        //dataType    : 'json',
 		        //encode      : true
 		    })
 		    .done(function(data) {
-		    	console.log(data);
-		    	//$('#demandList').mirandajs(data);	
+		    	console.log("accepted offers",data);
+		    	$('#acceptedList').mirandajs(data);	
 		});
 
 
 
 
 		// get delivered orders
+		$.ajax({
+
+				type        : 'GET', 
+				url         : 'http://192.168.43.193:3000/api/retailers/history/'+retailer_gid
+				})
+				.done(function(data) {
+					console.log("Delivered orders",data);
+					$('#deliveredList').mirandajs(data);
+				});
 	</script>
 	</body>
 </html>
