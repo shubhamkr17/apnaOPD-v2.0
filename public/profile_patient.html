@@ -95,6 +95,21 @@
 		#orderList::-webkit-scrollbar-thumb:hover {
 		    background: #b30000; 
 		}
+
+		.nav-tabs li {
+			width: 25%;
+			text-align: center;
+			font-size: 20px;
+			font-weight: bold;
+		}
+
+		.nav-tabs li.active a {
+			color: #00960c;
+		}
+
+		.nav-tabs li a {
+			color: #000;
+		}
 	</style>
 
 	</head>
@@ -127,84 +142,18 @@
 	</nav>
 
 
+<!-- tabs -->
+<div class="container-fluid">
+<ul class="nav nav-tabs">
+    <li class="active"><a data-toggle="tab" href="#services">Services</a></li>
+    <li><a data-toggle="tab" href="#appointments">My Appointments</a></li>
+    <li><a data-toggle="tab" href="#orders">My Orders</a></li>
+    <li><a data-toggle="tab" href="#profile">Profile</a></li>
+  </ul>
 
-	<div id="fh5co-about">
-		<div class="container">
-			<div class="row animate-box">
-				<div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
-					<h2>Appointments</h2>
-					<!-- <p>Dignissimos asperiores vitae velit veniam totam fuga molestias accusamus alias autem provident. Odit ab aliquam dolor eius.</p> -->
-				</div>
-			</div>
-			<div class="row">
-				<div class="member">
-					<div class="col-md-1 nopadding animate-box">
-					</div>
-					<div class="col-md-10 nopadding animate-box" style="border: 1px solid #000;">
-						<div id="appointmentList" class="desc" style="margin-top:1em;height: 600px;margin-top:0;padding:1em;width:100%; overflow-y: auto;">
-							<div id="appointment_body">
-							<div class="row">
-								<div class="col-md-9">
-									<h3>[[patient_name]]</h3>
-									<p>[[patient_age]]</p>
-									<p>[[time]]</p>
-								</div>
-								<div class="col-md-3">
-									<button class="btn btn-primary" onclick="appointmentDetail(this.id)" id="[[_id]]">View details</button>
-								</div>
-							</div>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-1 nopadding animate-box">
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	
-
-	<div id="fh5co-about">
-		<div class="container">
-			<div class="row animate-box">
-				<div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
-					<h2>Orders</h2>
-					<!-- <p>Dignissimos asperiores vitae velit veniam totam fuga molestias accusamus alias autem provident. Odit ab aliquam dolor eius.</p> -->
-				</div>
-			</div>
-			<div class="row">
-				<div class="member">
-					<div class="col-md-1 nopadding animate-box">
-					</div>
-					<div class="col-md-10 nopadding animate-box" style="border: 1px solid #000;">
-						<div id="orderList" class="desc" style="margin-top:1em;height: 600px;margin-top:0;padding:1em;width:100%; overflow-y: auto;">
-							<div id="order_body">
-							<div class="row">
-								<div class="col-md-12">
-									<!-- <h3>Order id : [[_id]]</h3> -->
-									<p>Time of order : [[time]]</p>
-									<p>Order Status : <span id="[[_id]]" style="padding: 8px; color: black; display: inline;">[[status]]</span> </p>
-									<button class="btn btn-primary" onclick="orderDetail(this.id)" id="[[_id]]">View details</button>
-									<button class="btn btn-primary" onclick="offerDetail(this.id)" id="[[_id]]">View offers</button>
-								</div>
-							</div>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-1 nopadding animate-box">
-					</div>
-					
-				</div>
-			</div>
-		</div>
-	</div>
-
-
-	
-
-
-	<div id="fh5co-services">
+  <div class="tab-content">
+    <div id="services" class="tab-pane fade in active">
+      <div id="fh5co-services">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-4 text-center animate-box">
@@ -252,9 +201,86 @@
 			</div>
 		</div>
 	</div>
+    </div>
+    <div id="appointments" class="tab-pane fade">
+      <div id="fh5co-about">
+		<div class="container">
+			<div class="row animate-box">
+				<div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
+					<h2>Appointments</h2>
+					<!-- <p>Dignissimos asperiores vitae velit veniam totam fuga molestias accusamus alias autem provident. Odit ab aliquam dolor eius.</p> -->
+				</div>
+			</div>
+			<div class="row">
+				<div class="member">
+					<div class="col-md-1 nopadding animate-box">
+					</div>
+					<div class="col-md-10 nopadding animate-box" style="border: 1px solid #000;">
+						<div id="appointmentList" class="desc" style="margin-top:1em;height: 600px;margin-top:0;padding:1em;width:100%; overflow-y: auto;">
+							<div id="appointment_body">
+							<div class="row">
+								<div class="col-md-9">
+									<h3>[[patient_name]]</h3>
+									<p>[[patient_age]]</p>
+									<p>[[time]]</p>
+								</div>
+								<div class="col-md-3">
+									<button class="btn btn-primary" onclick="appointmentDetail(this.id)" id="[[_id]]">View details</button>
+								</div>
+							</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-1 nopadding animate-box">
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+    </div>
+    <div id="orders" class="tab-pane fade">
+      <div id="fh5co-about">
+		<div class="container">
+			<div class="row animate-box">
+				<div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
+					<h2>Orders</h2>
+					<!-- <p>Dignissimos asperiores vitae velit veniam totam fuga molestias accusamus alias autem provident. Odit ab aliquam dolor eius.</p> -->
+				</div>
+			</div>
+			<div class="row">
+				<div class="member">
+					<div class="col-md-1 nopadding animate-box">
+					</div>
+					<div class="col-md-10 nopadding animate-box" style="border: 1px solid #000;">
+						<div id="orderList" class="desc" style="margin-top:1em;height: 600px;margin-top:0;padding:1em;width:100%; overflow-y: auto;">
+							<div id="order_body">
+							<div class="row">
+								<div class="col-md-12">
+									<!-- <h3>Order id : [[_id]]</h3> -->
+									<p>Time of order : [[time]]</p>
+									<p>Order Status : <span id="[[_id]]" style="padding: 8px; color: black; display: inline;">[[status]]</span> </p>
+									<button class="btn btn-primary" onclick="orderDetail(this.id)" id="[[_id]]">View details</button>
+									<button class="btn btn-primary" onclick="offerDetail(this.id)" id="[[_id]]">View offers</button>
+								</div>
+							</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-1 nopadding animate-box">
+					</div>
+					
+				</div>
+			</div>
+		</div>
+	</div>
+    </div>
+    <div id="profile" class="tab-pane fade">
+      <h3>Menu 3</h3>
+      <p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+    </div>
+  </div>
 
-
-
+</div>
 
 
 
