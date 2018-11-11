@@ -332,10 +332,7 @@
 		$.ajax({
 
 		        type        : 'GET', 
-		        url         : 'http://10.42.0.1:3000/api/retailers/orders/'+retailer_gid,
-		        //data        : e_presc,
-		        //dataType    : 'json',
-		        //encode      : true
+		        url         : 'http://192.168.43.193:3000/api/retailers/orders/'+retailer_gid
 		    })
 		    .done(function(data) {
 		    	// console.log(data);
@@ -360,7 +357,7 @@
 		$.ajax({
 
 		        type        : 'GET', 
-		        url         : 'http://10.42.0.1:3000/api/orders/retailer/'+retailer_gid,
+		        url         : 'http://192.168.43.193:3000/api/orders/retailer/'+retailer_gid,
 		        //data        : e_presc,
 		        //dataType    : 'json',
 		        //encode      : true

@@ -116,7 +116,7 @@
 							</div>
 							<div class="row text-center">
 								<div class="col-md-6">
-									<button id="accept" class="btn btn-primary">Accept</button>
+									<button id="accept" class="btn btn-primary" onclick="showQuotationForm()">Accept</button>
 								</div>
 								<div class="col-md-6">
 									<a href="#"><button class="btn btn-primary">Decline</button></a>
@@ -138,7 +138,7 @@
 
 	<!-- Quotation Box -->
 
-	<div id="quotationBox" class="container" style="">
+	<div id="quotationBox" class="container" style="display: none;">
 		<div class="text-center" style="margin-top: 30px;"><p class="lead">Fill Quotation Details :</p></div>
 
 
@@ -154,6 +154,12 @@
                 </div>
             </div>
             <button type="button" class="add-field">+</button>
+            <p>Total Offer Price : <span class="form-control" id="total_offer_price" style="display: inline;">0.0</span></p>
+            <label>Delivery Charge :&nbsp;</label><input class="form-control" type="text" id="delivery_charge" name="delivery_charge" style="display: inline; width: 30%; margin-bottom: 5px">
+            <br>
+            <label>Delivery Time &nbsp;&nbsp;:&nbsp;</label><input class="form-control" type="text" id="delivery_time" name="delivery_time" style="display: inline; width: 30%; margin-bottom: 30px;">
+            <p>Total Charge &nbsp;&nbsp;&nbsp;&nbsp;: <span class="form-control" id="total_charge" style="display: inline;">0.0</span></p>
+            <button type="button" class="btn btn-lg btn-primary pull-right" onclick="confirmQuotation()">Send</button>
         </div>
 
 	</div>
@@ -231,13 +237,74 @@
 
 	<script>
 
+		    function showQuotationForm(){
+		        $("#quotationBox").slideDown("slow");
+		    }
+
 		var did = sessionStorage.getItem('demand_id');
 
+		function confirmQuotation() {
+			var nameList = $('.multi-field input[name=drug_name]');
+			var priceList = $('.multi-field input[name=price]');
+			var offerPriceList = $('.multi-field input[name=offer_price]');
+			var dosageList = $('.multi-field input[name=dosage]');
+			var durationList = $('.multi-field input[name=duration]');
+			// console.log(drugList);
+			var drugArray = [],price=0;
+			for(var i = 0; i < nameList.length; i++) {
+				price+= parseFloat(offerPriceList[i].value);
+				var obj = {
+					'medicine' : nameList[i].value,
+					'price' : priceList[i].value,
+					'offered_price' : offerPriceList[i].value,
+					'dosage_per' : dosageList[i].value,
+					'dosage_day' : durationList[i].value
+				};
+				drugArray.push(obj);
+			}
+			// console.log(drugArray);
+			var dc,dt;
+				$(function() {   
+	                dc = $('#delivery_charge');  
+	                dt = $('#delivery_time');
+	                //console.log(dc.val(), dt.val()); 
+	                if (dc.val() == '' || dt.val() == '') {  
+	                    alert('please enter delivery charge and delivery time');  
+	                } 
+	        });
+
+	        var offer = {
+	        	retailer_gid : sessionStorage.getItem('retailer_gid'),
+	        	quotation : drugArray,
+	        	total_price : $("#total_offer_price").text(),
+	        	quotation_link : '/files/quotations/1/index.jpg',
+	        	delivery_time : dt.val(),
+	        	delivery_charge : dc.val()
+	        }
+	        var offers = {
+	        	offers : offer
+	        }
+	        console.log(offers);
+	        $.ajax({
+		            type        : 'PUT', 
+		            url         : 'http://192.168.43.193:3000/api/orders/'+did,
+		            contentType : "application/json",
+		            data        : JSON.stringify(offers),
+		            dataType    : 'json',
+		            encode      : true
+		        })
+		        .done(function(data) {
+
+		            console.log(data);
+		            //window.location.href = "show_doctors.html"; 
+
+		        });
+		}
 
 		$.ajax({
 
 		        type        : 'GET', 
-		        url         : 'http://10.42.0.1:3000/api/orders/'+did,
+		        url         : 'http://192.168.43.193:3000/api/orders/'+did,
 		    })
 		    .done(function(data) {
 		    	console.log(data);
@@ -245,7 +312,7 @@
 		    	$.ajax({
 
 		        type        : 'GET', 
-		        url         : 'http://10.42.0.1:3000/api/users/'+data.patient_gid,
+		        url         : 'http://192.168.43.193:3000/api/users/'+data.patient_gid,
 		    })
 		    .done(function(data) {
 		    	console.log(data);
@@ -253,19 +320,26 @@
 		    });
 		    	
 		});
-		 $(document).ready(function(){
-		    $("#accept").click(function(){
-		        $("#quotationBox").slideDown("slow");
-		    });
-		});
 
 	</script>
 	<script>
+		var current_total_offer_price;
 		$(function() {
             $('.multi-field-wrapper').each(function() {
                 var $wrapper = $('.multi-fields', this);
                 $(".add-field", $(this)).click(function(e) {
-                    $('.multi-field:first-child', $wrapper).clone(true).appendTo($wrapper).find('input[name=drug_name]').val('').focus();
+                    $('.multi-field:first-child', $wrapper).clone(true).appendTo($wrapper).find('input').val('');
+                    var show_price = $('.multi-field input[name=offer_price]');
+                    current_total_offer_price=0;
+                    for(var i=0;i<show_price.length;i++) {
+                    	if(show_price[i].value!='')
+                    	{
+                    	current_total_offer_price += parseFloat(show_price[i].value);
+
+                    	$("#total_offer_price").text(current_total_offer_price);
+                    	}
+                    }
+
                 });
                 $('.multi-field .remove-field', $wrapper).click(function() {
                     if ($('.multi-field', $wrapper).length > 1)
@@ -273,6 +347,14 @@
                 });
             });
         });
+
+        $("#delivery_charge").focusout(function() {
+        	var top = $("#total_offer_price").text();
+        	var dc = $("#delivery_charge").val();
+        	console.log(top, dc);
+        	$("#total_charge").text(parseFloat(top) + parseFloat(dc));
+        });
+
 	</script>
 	</body>
 </html>

@@ -186,7 +186,7 @@
 
 	<script>
 		var order_id = sessionStorage.getItem('order_id');
-		$.get("http://10.42.0.1:3000/api/orders/offer/"+order_id,function(data){
+		$.get("http://192.168.43.193:3000/api/orders/offer/"+order_id,function(data){
 			console.log("offers",data);
 		});
 	

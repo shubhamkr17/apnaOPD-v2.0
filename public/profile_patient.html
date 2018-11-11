@@ -336,7 +336,7 @@
 		var gid = sessionStorage.getItem('patient_gid');
 		$.ajax({
 		            type        : 'GET', 
-		            url         : 'http://10.42.0.1:3000/api/appointments/patient/'+gid
+		            url         : 'http://192.168.43.193:3000/api/appointments/patient/'+gid
 		            //data        : e_presc,
 		            //dataType    : 'json',
 		            //encode      : true
@@ -354,7 +354,7 @@
 		var orders;		
 		$.ajax({
 			type        : 'GET', 
-			url         : 'http://10.42.0.1:3000/api/orders/patient/'+gid
+			url         : 'http://192.168.43.193:3000/api/orders/patient/'+gid
 			//data        : e_presc,
 			//dataType    : 'json',
 			//encode      : true

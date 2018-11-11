@@ -3,7 +3,7 @@ var isDoctor = true;
 function patient_login () {
     if(gid=isLoggedIn())
     {
-        sessionStorage.setItem('patient_gid',gid);
+        sessionStorage.setItem('patient_gid',"113519856592556213328");
         window.location.href="profile_patient.html";
     }
     else
