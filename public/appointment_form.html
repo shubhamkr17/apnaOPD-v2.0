@@ -92,59 +92,130 @@
 					</div>
 					<div class="col-md-10 nopadding animate-box">
 						<div id="form1" class="desc" style="margin-top:1em;">
-							<h3 class="text-center">Depart 1</h3>
-							<form action="show_doctors.html">
+							<h3 class="text-center">Cardio</h3>
+							<form id="Form1">
 								  <div class="form-group">
-								    <label for="inp1">input 1:</label>
-								    <input type="text" class="form-control" id="inp1">
+								    <label for="inp1">Title</label>
+								    <input type="text" class="form-control" id="inp1" name="title">
 								  </div>
 								  <div class="form-group">
-								    <label for="inp1">input 1:</label>
-								    <input type="text" class="form-control" id="inp1">
+								    <label for="inp1">Name</label>
+								    <input type="text" class="form-control" id="inp2" name="name">
 								  </div>
 								  <div class="form-group">
-								    <label for="inp1">input 1:</label>
-								    <input type="text" class="form-control" id="inp1">
+								    <label for="inp1">Age</label>
+								    <input type="text" class="form-control" id="inp1" name="age">
 								  </div>
 								  <div class="form-group">
-								    <label for="inp1">input 1:</label>
-								    <input type="text" class="form-control" id="inp1">
+								    <label for="inp1">Pulse</label>
+								    <input type="text" class="form-control" id="inp1" name="pulse">
 								  </div>
-								  <div class="form-group">
-								    <label for="inp2">input 2:</label>
-								    <input type="text" class="form-control" id="inp2">
-								  </div>
+								   <div class="form-group">
+									  <label for="sel1">Rhythm</label>
+									  <select class="form-control" id="sel1">
+									    <option>Fast</option>
+									    <option>Slow</option>
+									    <option>Normal</option>
+									  </select>
+									</div> 
+									 <div class="form-group">
+									  <label for="sel1">Neck Veins:</label>
+									  <select class="form-control" id="sel1">
+									    <option>Normal</option>
+									    <option>Engorged</option>
+									  </select>
+									</div>
+									 <div class="form-group">
+									  <label for="sel1">Chest Pain:</label>
+									  <select class="form-control" id="sel1">
+									    <option>No</option>
+									    <option>Slight</option>
+									    <option>Pilsating</option>
+									  </select>
+									</div>
+									 <div class="form-group">
+									  <label for="sel1">Respiration:</label>
+									  <select class="form-control" id="sel1">
+									    <option>Normal</option>
+									    <option>Deep Breath</option>
+									    <option>Difficulty/Fast</option>
+									  </select>
+									</div>
+									 <div class="form-group">
+									  <label for="sel1">Bleeding:</label>
+									  <select class="form-control" id="sel1">
+									    <option>Nose</option>
+									    <option>Mouth</option>
+									    <option>No</option>
+									  </select>
+									</div>
+									 <div class="form-group">
+									  <label for="sel1">Condition:</label>
+									  <select class="form-control" id="sel1">
+									    <option>Normal</option>
+									    <option>Faint</option>
+									    <option>Weakness</option>
+									  </select>
+									</div> 
+								   <div class="form-group">
+									  <label for="comment">Comment:</label>
+									  <textarea class="form-control" rows="5" id="comment"></textarea>
+									</div> 
 								  <!-- <div class="checkbox">
 								    <label><input type="checkbox"> Remember me</label>
 								  </div> -->
-								  <button type="submit" class="btn btn-default">Submit</button>
+								  <button class="btn btn-default" onclick="form1submit()">Submit</button>
 							</form>
 
                         </div>
 
                         <div id="form2" class="desc" style="margin-top:1em;">
-							<h3 class="text-center">Depart 2</h3>
+							<h3 class="text-center">Eye</h3>
 							<form action="show_doctors.html">
 								  <div class="form-group">
-								    <label for="inp1">input 1:</label>
+								    <label for="inp1">Title</label>
 								    <input type="text" class="form-control" id="inp1">
 								  </div>
 								  <div class="form-group">
-								    <label for="inp1">input 1:</label>
+								    <label for="inp1">Name</label>
 								    <input type="text" class="form-control" id="inp1">
 								  </div>
 								  <div class="form-group">
-								    <label for="inp1">input 1:</label>
+								    <label for="inp1">Age</label>
 								    <input type="text" class="form-control" id="inp1">
 								  </div>
-								  <div class="form-group">
-								    <label for="inp1">input 1:</label>
-								    <input type="text" class="form-control" id="inp1">
-								  </div>
-								  <div class="form-group">
-								    <label for="inp2">input 2:</label>
-								    <input type="text" class="form-control" id="inp2">
-								  </div>
+									 <div class="form-group">
+									  <label for="sel1">Condition:</label>
+									  <select class="form-control" id="sel1">
+									    <option>Pain</option>
+									    <option>Burning</option>
+									    <option>Itching</option>
+									    <option>Water Discharge</option>
+									    <option>Normal</option>
+									  </select>
+									</div> 
+									<div class="form-group">
+									  <label for="sel1">Other:</label>
+									  <select class="form-control" id="sel1">
+									    <option>Redness</option>
+									    <option>Injury</option>
+									    <option>Swelling</option>
+									  </select>
+									</div> 
+									<div class="form-group">
+									  <label for="sel1">Miscellaneous:</label>
+									  <select class="form-control" id="sel1">
+									    <option>Blindness</option>
+									    <option>Loss of Peripheral Vision</option>
+									    <option>Dark Spot in Vision</option>
+									    <option>Water Discharge</option>
+									    <option>Normal</option>
+									  </select>
+									</div> 
+								   <div class="form-group">
+									  <label for="comment">Comment:</label>
+									  <textarea class="form-control" rows="5" id="comment"></textarea>
+									</div> 
 								  <!-- <div class="checkbox">
 								    <label><input type="checkbox"> Remember me</label>
 								  </div> -->
@@ -155,28 +226,51 @@
 
                         
                         <div id="form3" class="desc" style="margin-top:1em;">
-                        <h3 class="text-center">Depart 3</h3>
+                        <h3 class="text-center">Ear</h3>
 							<form action="show_doctors.html">
 								  <div class="form-group">
-								    <label for="inp1">input 1:</label>
+								    <label for="inp1">Title</label>
 								    <input type="text" class="form-control" id="inp1">
 								  </div>
 								  <div class="form-group">
-								    <label for="inp1">input 1:</label>
+								    <label for="inp1">Name</label>
 								    <input type="text" class="form-control" id="inp1">
 								  </div>
 								  <div class="form-group">
-								    <label for="inp1">input 1:</label>
+								    <label for="inp1">Age</label>
 								    <input type="text" class="form-control" id="inp1">
 								  </div>
-								  <div class="form-group">
-								    <label for="inp1">input 1:</label>
-								    <input type="text" class="form-control" id="inp1">
-								  </div>
-								  <div class="form-group">
-								    <label for="inp2">input 2:</label>
-								    <input type="text" class="form-control" id="inp2">
-								  </div>
+									 <div class="form-group">
+									  <label for="sel1">Condition:</label>
+									  <select class="form-control" id="sel1">
+									    <option>Pain</option>
+									    <option>Pus Formation</option>
+									    <option>Itching</option>
+									    <option>Water Discharge</option>
+									    <option>Normal</option>
+									  </select>
+									</div> 
+									<div class="form-group">
+									  <label for="sel1">Other:</label>
+									  <select class="form-control" id="sel1">
+									    <option>Buzzing Sounds</option>
+									    <option>Dizziness</option>
+									    <option>Injury</option>
+									    <option>Normal</option>
+									  </select>
+									</div> 
+									<div class="form-group">
+									  <label for="sel1">Miscellaneous:</label>
+									  <select class="form-control" id="sel1">
+									    <option>Hearing loss</option>
+									    <option>Abnormal Walking</option>
+									    <option>Normal</option>
+									  </select>
+									</div> 
+								   <div class="form-group">
+									  <label for="comment">Comment:</label>
+									  <textarea class="form-control" rows="5" id="comment"></textarea>
+									</div> 
 								  <!-- <div class="checkbox">
 								    <label><input type="checkbox"> Remember me</label>
 								  </div> -->
@@ -187,28 +281,69 @@
 
 
                         <div id="form4" class="desc" style="margin-top:1em;">
-							<h3 class="text-center">Depart 4</h3>
+							<h3 class="text-center">Genito</h3>
 							<form action="show_doctors.html">
 								  <div class="form-group">
-								    <label for="inp1">input 1:</label>
+								    <label for="inp1">Title</label>
 								    <input type="text" class="form-control" id="inp1">
 								  </div>
 								  <div class="form-group">
-								    <label for="inp1">input 1:</label>
+								    <label for="inp1">Name</label>
 								    <input type="text" class="form-control" id="inp1">
 								  </div>
 								  <div class="form-group">
-								    <label for="inp1">input 1:</label>
+								    <label for="inp1">Age</label>
 								    <input type="text" class="form-control" id="inp1">
 								  </div>
-								  <div class="form-group">
-								    <label for="inp1">input 1:</label>
-								    <input type="text" class="form-control" id="inp1">
-								  </div>
-								  <div class="form-group">
-								    <label for="inp2">input 2:</label>
-								    <input type="text" class="form-control" id="inp2">
-								  </div>
+									 <div class="form-group">
+									  <label for="sel1">Condition:</label>
+									  <select class="form-control" id="sel1">
+									    <option>Conscious</option>
+									    <option>Sub Conscious</option>
+									    <option>Normal</option>
+									  </select>
+									</div> 
+									<div class="form-group">
+									  <label for="sel1">Behavioral Abnormality:</label>
+									  <select class="form-control" id="sel1">
+									    <option>Speech Deject</option>
+									    <option>Anxiety</option>
+									    <option>Depression</option>
+									  </select>
+									</div> 
+									<div class="form-group">
+									  <label for="sel1">Sensational Abnormality:</label>
+									  <select class="form-control" id="sel1">
+									    <option>Abnormal Smell</option>
+									    <option>Visual Abnormality</option>
+									    <option>Deviation of Angle of Mouth</option>
+									    <option>Loss of Taste</option>
+									    <option>Deafness</option>
+									    <option>Hoarseness of Voice</option>
+									    <option>Normal</option>
+									  </select>
+									</div>
+									<div class="form-group">
+									  <label for="sel1">Other:</label>
+									  <select class="form-control" id="sel1">
+									    <option>Weakness</option>
+									    <option>Pain in Muscle</option>
+									    <option>Swelling of Muscle</option>
+									    <option>Headache</option>
+									    <option>In co-ordination</option>
+									  </select>
+									</div>
+									<div class="form-group">
+									  <label for="sel1">Miscellaneous:</label>
+									  <select class="form-control" id="sel1">
+									    <option>Fever</option>
+									    <option>Pain in Neck</option>
+									  </select>
+									</div>
+								   <div class="form-group">
+									  <label for="comment">Comment:</label>
+									  <textarea class="form-control" rows="5" id="comment"></textarea>
+									</div> 
 								  <!-- <div class="checkbox">
 								    <label><input type="checkbox"> Remember me</label>
 								  </div> -->
@@ -219,28 +354,100 @@
 
 
                         <div id="form5" class="desc" style="margin-top:1em;">
-							<h3 class="text-center">Depart 5</h3>
+							<h3 class="text-center">Neuro</h3>
 							<form action="show_doctors.html">
 								  <div class="form-group">
-								    <label for="inp1">input 1:</label>
+								    <label for="inp1">Title</label>
 								    <input type="text" class="form-control" id="inp1">
 								  </div>
 								  <div class="form-group">
-								    <label for="inp1">input 1:</label>
+								    <label for="inp1">Name</label>
 								    <input type="text" class="form-control" id="inp1">
 								  </div>
 								  <div class="form-group">
-								    <label for="inp1">input 1:</label>
+								    <label for="inp1">Age</label>
 								    <input type="text" class="form-control" id="inp1">
 								  </div>
 								  <div class="form-group">
-								    <label for="inp1">input 1:</label>
+								    <label for="inp1">Your Current Problem</label>
 								    <input type="text" class="form-control" id="inp1">
 								  </div>
-								  <div class="form-group">
-								    <label for="inp2">input 2:</label>
-								    <input type="text" class="form-control" id="inp2">
+								   <div class="form-group">
+									  <label for="sel1">Habit</label>
+									  <select class="form-control" id="sel1">
+									    <option>Tobacco Chewing</option>
+									    <option>Alcoholic</option>
+									    <option>Nail Biting</option>
+									    <option>Late Night Sleep</option>
+									    <option>Fast Food Eaters</option>
+									    <option>Smoking</option>
+									  </select>
+									</div> 
+									 <div class="form-group">
+									  <label for="sel1">Habitat:</label>
+									  <select class="form-control" id="sel1">
+									    <option>Hot</option>
+									    <option>Cold</option>
+									    <option>Humid</option>
+									    <option>Dusty</option>
+									    <option>Polluted</option>
+									  </select>
+									</div>
+									<div class="form-group">
+								    <label for="inp1">Accident and type:</label>
+								    <input type="text" class="form-control" id="inp1">
 								  </div>
+									 <div class="form-group">
+									  <label for="sel1">Emotional Status:</label>
+									  <select class="form-control" id="sel1">
+									    <option>Happy</option>
+									    <option>Normal</option>
+									    <option>Excited</option>
+									    <option>Depressed</option>
+									  </select>
+									</div>
+									<div class="form-group">
+								    <label for="inp1">Fever:</label>
+								    <input type="text" class="form-control" id="inp1">
+								  </div>
+									 <div class="form-group">
+									  <label for="sel1">Pain:</label>
+									  <select class="form-control" id="sel1">
+									    <option>Mild</option>
+									    <option>Moderate</option>
+									    <option>Severe</option>
+									    <option>Burning</option>
+									    <option>Pulsating</option>
+									  </select>
+									</div>
+									 <div class="form-group">
+									  <label for="sel1">Site of Problem:</label>
+									  <select class="form-control" id="sel1">
+									    <option>Front Head</option>
+									    <option>Back Head</option>
+									    <option>Left Shoulder</option>
+									    <option>Left Hand Upper</option>
+									    <option>Left Hand Lower</option>
+									    <option>Right Hand Upper</option>
+									    <option>Right Hand Lower</option>
+									    <option>Left Chest</option>
+									    <option>Right Chest</option>
+									    <option>Left Back Chest</option>
+									    <option>Right Back Chest</option>
+									  </select>
+									</div>
+									 <div class="form-group">
+									  <label for="sel1">Vomiting:</label>
+									  <select class="form-control" id="sel1">
+									    <option>Yes</option>
+									    <option>No</option>
+									    <option>Nausea</option>
+									  </select>
+									</div> 
+								   <div class="form-group">
+									  <label for="comment">Comment:</label>
+									  <textarea class="form-control" rows="5" id="comment"></textarea>
+									</div> 
 								  <!-- <div class="checkbox">
 								    <label><input type="checkbox"> Remember me</label>
 								  </div> -->
@@ -373,38 +580,40 @@
 
 	<script src="js/book_appointment.js"></script>
 
+	<script src="js/submit_casesheet.js"></script>
+
 	<script>
-		$(document).ready(function() {
+		// $(document).ready(function() {
 
-		    $('form').submit(function(event) {
-		    	var gid = sessionStorage.getItem('patient_gid');
-		        var formData = {
-		            'name'  : $('input[name=inpt1]').val(),
-		            'email' : $('input[name=inpt2]').val(),
-		            'data1' : $('input[name=inpt3]').val(),
-		            'data2' : $('input[name=inpt4]').val(),
-		            'data3' : $('input[name=inpt5]').val()
-		        };
+		//     $('form').submit(function(event) {
+		//     	var gid = sessionStorage.getItem('patient_gid');
+		//         var formData = {
+		//             'name'  : $('input[name=inpt1]').val(),
+		//             'email' : $('input[name=inpt2]').val(),
+		//             'data1' : $('input[name=inpt3]').val(),
+		//             'data2' : $('input[name=inpt4]').val(),
+		//             'data3' : $('input[name=inpt5]').val()
+		//         };
 
-		        $.ajax({
-		            type        : 'POST', 
-		            url         : 'http://192.168.43.193:3000/api/casesheets/'+gid,
-		            data        : formData,
-		            dataType    : 'json',
-		            encode      : true
-		        })
-		        .done(function(data) {
+		//         $.ajax({
+		//             type        : 'POST', 
+		//             url         : 'http://192.168.43.193:3000/api/casesheets/'+gid,
+		//             data        : formData,
+		//             dataType    : 'json',
+		//             encode      : true
+		//         })
+		//         .done(function(data) {
 
-		            console.log(data);
-		            sessionStorage.setItem('cid', data._id);
-		            window.location.href = "show_doctors.html"; 
+		//             console.log(data);
+		//             sessionStorage.setItem('cid', data._id);
+		//             window.location.href = "show_doctors.html"; 
 
-		        });
+		//         });
 
-		        event.preventDefault();
-		    });
+		//         event.preventDefault();
+		//     });
 
-		});
+		// });
 
 	</script>
 	</body>
