@@ -90,10 +90,26 @@
 					<div class="col-md-1 nopadding animate-box">
 					</div>
 					<div class="col-md-10 nopadding animate-box">
-						<div class="desc" style="margin-top:1em;">
-							<h3>John Doe</h3>
-							<p>Quos quia provident consequuntur culpa facere ratione maxime commodi voluptates 
-                                id repellat velit eaque aspernatur expedita. Possimus itaque adipisci.</p>
+						<div id="retailerList" class="desc" style="margin-top:1em;">
+							<div class="row" style="border: 1px solid #efefef; background: #efefef; padding: 40px;">
+								<div class="col-md-4">
+									<img src="[[]]">
+								</div>
+								<div class="col-md-8">
+									<h4>[[retailer_name]]</h4>
+									<p>[[retailer_address]]</p>
+									<p><span>[[total_price]]+Delivery Charges</span></p>
+									<p><span>[[delivery_time]]</span></p>
+									<div class="row">
+										<div class="col-md-6">
+											<button class="btn btn-primary">Accept</button>
+										</div>
+										<div class="col-md-6">
+											<button class="btn btn-primary">Decline</button>
+										</div>
+									</div>
+								</div>
+							</div>
 
                         </div>
                         
@@ -183,11 +199,25 @@
 	<!-- Main -->
 	<script src="js/main.js"></script>
 	<script src="js/login_module.js"></script>
+	<script src="js/jquery.miranda.min.js"></script>
 
 	<script>
 		var order_id = sessionStorage.getItem('order_id');
 		$.get("http://192.168.43.193:3000/api/orders/offer/"+order_id,function(data){
 			console.log("offers",data);
+			
+			for(let i=0;i<data.length;i++)
+			{
+				retailer_gid = data[i].retailer_gid;
+				$.get("http://192.168.43.193:3000/api/retailers/"+retailer_gid, function(response){
+					console.log("response",response);
+					data[i].retailer_name = response.name;
+					data[i].retailer_address = response.address.city + (response.address.state==undefined?" ":response.address.state) + response.address.pincode;
+					data[i].retailimage = "/files/prescriptions/1/index.jpg";
+					$("#retailerList").mirandajs(data);
+				});
+			}
+			console.log('changed', data);
 		});
 	
 	</script>
