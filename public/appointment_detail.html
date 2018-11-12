@@ -51,7 +51,10 @@
 			border: 1px solid #eee;
 			margin-bottom: 40px;
 		}
-	
+		
+		.table tbody tr td {
+			line-height: 2.5;
+		}
 	
 	</style>
 
@@ -105,47 +108,286 @@
 									<!-- <li>[[_id]]</li> -->
 ​									<li>[[casesheet_uid]]</li>
 								</ul>
-								<table>
-									<tr class="table_row">
-										<td>Doctor name : </td>
-										<td id="doctor_name"></td>
-									</tr>
-									<tr class="table_row">
-										<td>Doctor's email : </td>
-										<td id="doctor_email"></td>
-									</tr>
-									<tr class="table_row">
-										<td>Status : </td>
-										<td id="ap_status"></td>
-									</tr>
-									<tr class="table_row">
-										<td>Time Slab : </td>
-										<td id="ap_time"></td>
-									</tr>
-									<tr class="table_row">
-										<td>Booking Time : </td>
-										<td id="book_time"></td>
-									</tr>
+								<table class="table table-striped">
+									<tbody>
+										<tr class="table_row">
+											<td>Doctor name : </td>
+											<td id="doctor_name"></td>
+										</tr>
+										<tr class="table_row">
+											<td>Doctor's email : </td>
+											<td id="doctor_email"></td>
+										</tr>
+										<tr class="table_row">
+											<td>Status : </td>
+											<td id="ap_status"></td>
+										</tr>
+										<tr class="table_row">
+											<td>Time Slab : </td>
+											<td id="ap_time"></td>
+										</tr>
+										<tr class="table_row">
+											<td>Booking Time : </td>
+											<td id="book_time"></td>
+										</tr>
+									</tbody>
 								</table>
 							</div>
 
                         </div>
-                        
+						
+						<div id="casesheet" style="margin-top: 8em;">
+							<h3 class="text-center lead">Casesheet</h3>
+							<table id="dept1" class="table table-hover" style="display: none;">
+								<tbody>
+								  <tr>
+									<td>Title</td>
+									<td>[[title]]</td>
+								  </tr>
+								  <tr>
+									<td>Name</td>
+									<td>[[full_name]]</td>
+								  </tr>
+								  <tr>
+									<td>Age</td>
+									<td>[[age]]</td>
+								  </tr>
+								  <tr>
+									<td>Pulse</td>
+									<td>[[pulse]]</td>
+								  </tr>
+								  <tr>
+									<td>Rhythm</td>
+									<td>[[rhythm]]</td>
+								  </tr>
+								  <tr>
+									<td>Neck Veins</td>
+									<td>[[neck_veins]]</td>
+								  </tr>
+								  <tr>
+									<td>Chest Pain</td>
+									<td>[[chest_pain]]</td>
+								  </tr>
+								  <tr>
+									<td>Respiration</td>
+									<td>[[respiration]]</td>
+								  </tr>
+								  <tr>
+									<td>Bleeding</td>
+									<td>[[bleeding]]</td>
+								  </tr>
+								  <tr>
+									<td>Condition</td>
+									<td>[[condition]]</td>
+								  </tr>
+								  <tr>
+									<td>Comment</td>
+									<td>[[comment]]</td>
+								  </tr>
+								</tbody>
+							  </table>
 
-                        
-                    </div>
+							  <table id="dept2" class="table table-hover" style="display: none;">
+								<tbody>
+								  <tr>
+									<td>Title</td>
+									<td>[[title]]</td>
+								  </tr>
+								  <tr>
+									<td>Name</td>
+									<td>[[full_name]]</td>
+								  </tr>
+								  <tr>
+									<td>Age</td>
+									<td>[[age]]</td>
+								  </tr>
+								  <tr>
+									<td>Condition</td>
+									<td>[[condition]]</td>
+								  </tr>
+								  <tr>
+									<td>Other</td>
+									<td>[[other]]</td>
+								  </tr>
+								  <tr>
+									<td>Miscellaneous</td>
+									<td>[[miscellaneous]]</td>
+								  </tr>
+								  <tr>
+									<td>Comment</td>
+									<td>[[comment]]</td>
+								  </tr>
+								</tbody>
+							  </table>
+
+
+							  <table id="dept3" class="table table-hover" style="display: none;">
+								<tbody>
+								  <tr>
+									<td>Title</td>
+									<td>[[title]]</td>
+								  </tr>
+								  <tr>
+									<td>Name</td>
+									<td>[[full_name]]</td>
+								  </tr>
+								  <tr>
+									<td>Age</td>
+									<td>[[age]]</td>
+								  </tr>
+								  <tr>
+									<td>Condition</td>
+									<td>[[condition]]</td>
+								  </tr>
+								  <tr>
+									<td>Other</td>
+									<td>[[other]]</td>
+								  </tr>
+								  <tr>
+									<td>Miscellaneous</td>
+									<td>[[miscellaneous]]</td>
+								  </tr>
+								 
+								  <tr>
+									<td>Comment</td>
+									<td>[[comment]]</td>
+								  </tr>
+								</tbody>
+
+							  </table>
+
+							  <table id="dept4" class="table table-hover" style="display: none;">
+								<tbody>
+								  <tr>
+									<td>Title</td>
+									<td>[[title]]</td>
+								  </tr>
+								  <tr>
+									<td>Name</td>
+									<td>[[full_name]]</td>
+								  </tr>
+								  <tr>
+									<td>Age</td>
+									<td>[[age]]</td>
+								  </tr>
+								  <tr>
+									<td>Condition</td>
+									<td>[[condition]]</td>
+								  </tr>
+								  <tr>
+									<td>Behavioral Abnormality</td>
+									<td>[[behavioral_abnormality]]</td>
+								  </tr>
+								  <tr>
+									<td>Sensational Abnormality</td>
+									<td>[[sensational_abnormality]]</td>
+								  </tr>
+								  <tr>
+									<td>Other</td>
+									<td>[[other]]</td>
+								  </tr>
+								  <tr>
+									<td>Miscellaneous</td>
+									<td>[[miscellaneous]]</td>
+								  </tr>
+								 
+								  <tr>
+									<td>Comment</td>
+									<td>[[comment]]</td>
+								  </tr>
+								</tbody>
+							  </table>
+
+							  <table id="dept5" class="table table-hover" style="display: none;">
+								<tbody>
+								  <tr>
+									<td>Title</td>
+									<td>[[title]]</td>
+								  </tr>
+								  <tr>
+									<td>Name</td>
+									<td>[[full_name]]</td>
+								  </tr>
+								  <tr>
+									<td>Age</td>
+									<td>[[age]]</td>
+								  </tr>
+								  <tr>
+									<td>Current Problem</td>
+									<td>[[current_problem]]</td>
+								  </tr>
+								  <tr>
+									<td>Habit</td>
+									<td>[[habit]]</td>
+								  </tr>
+								  <tr>
+									<td>Habitat</td>
+									<td>[[habitat]]</td>
+								  </tr>
+								  <tr>
+									<td>Accident and Type</td>
+									<td>[[accident_and_type]]</td>
+								  </tr>
+								  <tr>
+									<td>Emotional Status</td>
+									<td>[[emotional_status]]</td>
+								  </tr>
+								  <tr>
+									<td>Fever</td>
+									<td>[[fever]]</td>
+								  </tr>
+								  <tr>
+									<td>Pain</td>
+									<td>[[pain]]</td>
+								  </tr>
+								  <tr>
+									<td>Site of Problem</td>
+									<td>[[site_of_problem]]</td>
+								  </tr>
+								  <tr>
+									<td>Vomiting</td>
+									<td>[[vomiting]]</td>
+								  </tr>
+								  <tr>
+									<td>Comment</td>
+									<td>[[comment]]</td>
+								  </tr>
+								</tbody>
+							  </table>
+
+							  <table id="dept6" class="table table-hover" style="display: none;">
+								<tbody>
+								  <tr>
+									<td>Title</td>
+									<td>[[title]]</td>
+								  </tr>
+								  <tr>
+									<td>Name</td>
+									<td>[[full_name]]</td>
+								  </tr>
+								  <tr>
+									<td>Age</td>
+									<td>[[age]]</td>
+								  </tr>
+								  <tr>
+									<td>Comment</td>
+									<td>[[comment]]</td>
+								  </tr>
+								</tbody>
+							  </table>
+						</div>
+
+					</div>    
+                
                     <div class="col-md-1 nopadding animate-box">
                     </div>
                     
 				</div>
-                
-                
-				
-			</div>
+		
+            
+			</div>  <!-- row ends here -->
 		</div>
 	</div>
-
-
 
 
 
@@ -217,6 +459,7 @@
 	<!-- Main -->
 	<script src="js/main.js"></script>
 	<script src="js/login_module.js"></script>
+	<script src="js/enc_dec_time.js"></script>
 
 	<script src="js/jquery.miranda.min.js"></script>
 
@@ -226,12 +469,12 @@
 		var ap_status;
 		var book_time;
 		var ap_time;
-		
+		var doc_dept;
 	var show_apid = sessionStorage.getItem('apid');
 
 	$.ajax({
             type        : 'GET', 
-            url         : 'http://10.42.0.1:3000/api/appointments/'+show_apid
+            url         : 'http://192.168.43.193:3000/api/appointments/'+show_apid
         })
         .done(function(data) {
         	console.log(data);
@@ -247,21 +490,44 @@
 
 	function show_detail()
 	{
-		$.get("http://10.42.0.1:3000/api/doctors/"+doc_id,function(data){
+		$.get("http://192.168.43.193:3000/api/doctors/"+doc_id,function(data){
 			$("#doctor_name").text(data.name);
 			$("#doctor_email").text(data.email);
-			
-			//console.log(data);
+			doc_dept = data.department;
+			//console.log(doc_dept);
+			showCasesheet();
 		});
+		
 		$("#ap_status").text(ap_status);
-		$("#ap_time").text(ap_time);
+		$("#ap_time").text(get_time(ap_time));
 		$("#book_time").text(book_time);
 
-		$.get("http://10.42.0.1:3000/api/casesheets/"+case_id,function(data){
-			console.log(data);
+		$.get("http://192.168.43.193:3000/api/casesheets/"+case_id,function(data){
+		console.log("casesheet",data);
+			
 		});
 	}
 
+	function showCasesheet() {
+		if(doc_dept == "7") {
+			$("#dept1").show();
+		}
+		else if(doc_dept == "2") {
+			$("#dept2").show();
+		}
+		else if(doc_dept == "3") {
+			$("#dept3").show();
+		}
+		else if(doc_dept == "4") {
+			$("#dept4").show();
+		}
+		else if(doc_dept == "5") {
+			$("#dept5").show();
+		}
+		else if(doc_dept == "6") {
+			$("#dept6").show();
+		}
+	}
 
 
 	</script>

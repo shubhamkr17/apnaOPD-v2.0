@@ -1,9 +1,10 @@
 var str = "1420004";
 var day = ['','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'];
 var span = ['','Morning','Afternoon','Evening','Night'];
-var slot = "";
+var slot;
 function get_time(str)
 {
+    slot = "";
     slot+=day[parseInt(str[0])] + ", ";
     slot+=span[parseInt(str[1])]+ ", ";
 
@@ -24,13 +25,18 @@ function get_time(str)
     else
     if(parseInt(str[1])==4)
     {
-        slot+= parseInt(str[2])-1+":00 AM,";
+        if(str[2]==1)
+        {
+            slot+= "12:00 AM,";
+        }
+        else{
+            slot+= parseInt(str[2])-1+":00 AM,";
+        }
     }
 
 
     slot+=" S.NO : "+parseInt(str[5]+str[6]);
 
-    console.log("slot",slot);
+    //console.log("slot",slot);
+    return slot;
 }
-
-get_time(str);
