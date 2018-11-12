@@ -25,7 +25,13 @@ function get_time(str)
     else
     if(parseInt(str[1])==4)
     {
-        slot+= parseInt(str[2])-1+":00 AM,";
+        if(str[2]==1)
+        {
+            slot+= "12:00 AM,";
+        }
+        else{
+            slot+= parseInt(str[2])-1+":00 AM,";
+        }
     }
 
 
@@ -34,5 +40,3 @@ function get_time(str)
     //console.log("slot",slot);
     return slot;
 }
-
-//get_time(str);

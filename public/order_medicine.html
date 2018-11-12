@@ -85,12 +85,12 @@
 					<!-- <p>Dignissimos asperiores vitae velit veniam totam fuga molestias accusamus alias autem provident. Odit ab aliquam dolor eius.</p> -->
 				</div>
 			</div>
-			<div class="row">
-				<div class="member">
+			<div class="row" style="border: 1px solid #eee; background: #eee;">
+				<div class="member" style="margin-bottom : 80px; margin-top: 80px;">
 					<div class="col-md-1 nopadding animate-box">
 					</div>
-					<div class="col-md-10 nopadding animate-box">
-						<div class="desc" style="margin-top:1em;">
+					<div class="col-md-10 nopadding animate-box" style="background : white; margin-top: 3em;">
+						<div class="desc" style="margin-top:3em; margin-bottom: 3em">
 							<form id="formUpload" method="post" enctype="multipart/form-data">
 							<div class="form-group">
 								<label for="address_list">Select Delivery Address:</label>
@@ -217,7 +217,7 @@
 		
 		$.ajax({
 		            type        : 'GET', 
-		            url         : 'http://10.42.0.1:3000/api/users/address/1',
+		            url         : 'http://192.168.43.193:3000/api/users/address/1',
 		            // data        : e_presc,
 		            // dataType    : 'json',
 		            // encode      : true
@@ -244,7 +244,7 @@
 		    formData.append('gid', gid);
 		    //formData.append('address', addr);
 		    $.ajax({
-		        url: "http://10.42.0.1:3000/api/uploadPrescription",
+		        url: "http://192.168.43.193:3000/api/uploadPrescription",
 		        type: 'POST',
 		        data: formData,
 		        success: function (data) {
@@ -292,7 +292,7 @@
 
 			$.ajax({
 		            type        : 'POST', 
-					url         : 'http://10.42.0.1:3000/api/orders/'+filter,
+					url         : 'http://192.168.43.193:3000/api/orders/'+filter,
 					contentType : 'application/json',
 					data        : JSON.stringify(orderData),
 		            dataType    : 'json',

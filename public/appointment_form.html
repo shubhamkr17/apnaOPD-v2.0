@@ -86,12 +86,12 @@
 					<!-- <p>Dignissimos asperiores vitae velit veniam totam fuga molestias accusamus alias autem provident. Odit ab aliquam dolor eius.</p> -->
 				</div>
 			</div>
-			<div class="row">
-				<div class="member">
+			<div class="row" style="border: 1px solid #eee; background: #eee;">
+				<div class="member"  style="margin-bottom : 80px; margin-top: 80px;">
 					<div class="col-md-1 nopadding animate-box">
 					</div>
-					<div class="col-md-10 nopadding animate-box">
-						<div id="form1" class="desc" style="margin-top:1em;">
+					<div class="col-md-10 nopadding animate-box" style="background : white; margin-top: 3em;">
+						<div id="form1" class="desc" style="margin-top:3em; margin-bottom: 3em">
 							<h3 class="text-center">Cardio</h3>
 							<form id="Form1">
 								  <div class="form-group">
@@ -112,109 +112,109 @@
 								  </div>
 								   <div class="form-group">
 									  <label for="sel1">Rhythm</label>
-									  <select class="form-control" id="sel1">
-									    <option>Fast</option>
-									    <option>Slow</option>
-									    <option>Normal</option>
+									  <select name="rhythm_cardio" class="form-control" id="sel1">
+									    <option value="1">Fast</option>
+									    <option value="2">Slow</option>
+									    <option value="3">Normal</option>
 									  </select>
 									</div> 
 									 <div class="form-group">
 									  <label for="sel1">Neck Veins:</label>
-									  <select class="form-control" id="sel1">
-									    <option>Normal</option>
-									    <option>Engorged</option>
+									  <select name="neck_veins" class="form-control" id="sel1">
+									    <option value="1">Normal</option>
+									    <option value="2">Engorged</option>
 									  </select>
 									</div>
 									 <div class="form-group">
 									  <label for="sel1">Chest Pain:</label>
-									  <select class="form-control" id="sel1">
-									    <option>No</option>
-									    <option>Slight</option>
-									    <option>Pilsating</option>
+									  <select name="chest_pain" class="form-control" id="sel1">
+									    <option value="1">No</option>
+									    <option value="2">Slight</option>
+									    <option value="3">Pulsating</option>
 									  </select>
 									</div>
 									 <div class="form-group">
 									  <label for="sel1">Respiration:</label>
-									  <select class="form-control" id="sel1">
-									    <option>Normal</option>
-									    <option>Deep Breath</option>
-									    <option>Difficulty/Fast</option>
+									  <select name="respiration" class="form-control" id="sel1">
+									    <option value="1">Normal</option>
+									    <option value="2">Deep Breath</option>
+									    <option value="3">Difficulty/Fast</option>
 									  </select>
 									</div>
 									 <div class="form-group">
 									  <label for="sel1">Bleeding:</label>
-									  <select class="form-control" id="sel1">
-									    <option>Nose</option>
-									    <option>Mouth</option>
-									    <option>No</option>
+									  <select name="bleeding" class="form-control" id="sel1">
+									    <option value="1">Nose</option>
+									    <option value="2">Mouth</option>
+									    <option value="3">No</option>
 									  </select>
 									</div>
 									 <div class="form-group">
 									  <label for="sel1">Condition:</label>
-									  <select class="form-control" id="sel1">
-									    <option>Normal</option>
-									    <option>Faint</option>
-									    <option>Weakness</option>
+									  <select name="condition" class="form-control" id="sel1">
+									    <option value="1">Normal</option>
+									    <option value="2">Faint</option>
+									    <option value="3">Weakness</option>
 									  </select>
 									</div> 
 								   <div class="form-group">
 									  <label for="comment">Comment:</label>
-									  <textarea class="form-control" rows="5" id="comment"></textarea>
+									  <textarea name="comment" class="form-control" rows="5" id="comment"></textarea>
 									</div> 
 								  <!-- <div class="checkbox">
 								    <label><input type="checkbox"> Remember me</label>
 								  </div> -->
-								  <button class="btn btn-default" onclick="form1submit()">Submit</button>
+								  <button class="btn btn-default" type="submit" value="submit">Submit</button>
 							</form>
 
                         </div>
 
                         <div id="form2" class="desc" style="margin-top:1em;">
 							<h3 class="text-center">Eye</h3>
-							<form action="show_doctors.html">
+							<form id="Form2">
 								  <div class="form-group">
 								    <label for="inp1">Title</label>
-								    <input type="text" class="form-control" id="inp1">
+								    <input type="text" class="form-control" name="title">
 								  </div>
 								  <div class="form-group">
 								    <label for="inp1">Name</label>
-								    <input type="text" class="form-control" id="inp1">
+								    <input type="text" class="form-control" name="name">
 								  </div>
 								  <div class="form-group">
 								    <label for="inp1">Age</label>
-								    <input type="text" class="form-control" id="inp1">
+								    <input type="text" class="form-control" name="age">
 								  </div>
 									 <div class="form-group">
 									  <label for="sel1">Condition:</label>
-									  <select class="form-control" id="sel1">
-									    <option>Pain</option>
-									    <option>Burning</option>
-									    <option>Itching</option>
-									    <option>Water Discharge</option>
-									    <option>Normal</option>
+									  <select class="form-control" name="condition">
+									    <option value="1">Pain</option>
+									    <option value="2">Burning</option>
+									    <option value="3">Itching</option>
+									    <option value="4">Water Discharge</option>
+									    <option value="5">Normal</option>
 									  </select>
 									</div> 
 									<div class="form-group">
 									  <label for="sel1">Other:</label>
-									  <select class="form-control" id="sel1">
-									    <option>Redness</option>
-									    <option>Injury</option>
-									    <option>Swelling</option>
+									  <select class="form-control" name="other">
+									    <option value="1">Redness</option>
+									    <option value="2">Injury</option>
+									    <option value="3">Swelling</option>
 									  </select>
 									</div> 
 									<div class="form-group">
 									  <label for="sel1">Miscellaneous:</label>
-									  <select class="form-control" id="sel1">
-									    <option>Blindness</option>
-									    <option>Loss of Peripheral Vision</option>
-									    <option>Dark Spot in Vision</option>
-									    <option>Water Discharge</option>
-									    <option>Normal</option>
+									  <select class="form-control" name="miscellaneous">
+									    <option value="1">Blindness</option>
+									    <option value="2">Loss of Peripheral Vision</option>
+									    <option value="3">Dark Spot in Vision</option>
+									    <option value="4">Water Discharge</option>
+									    <option value="5">Normal</option>
 									  </select>
 									</div> 
 								   <div class="form-group">
 									  <label for="comment">Comment:</label>
-									  <textarea class="form-control" rows="5" id="comment"></textarea>
+									  <textarea class="form-control" rows="5" name="comment"></textarea>
 									</div> 
 								  <!-- <div class="checkbox">
 								    <label><input type="checkbox"> Remember me</label>
@@ -227,49 +227,49 @@
                         
                         <div id="form3" class="desc" style="margin-top:1em;">
                         <h3 class="text-center">Ear</h3>
-							<form action="show_doctors.html">
-								  <div class="form-group">
-								    <label for="inp1">Title</label>
-								    <input type="text" class="form-control" id="inp1">
-								  </div>
-								  <div class="form-group">
-								    <label for="inp1">Name</label>
-								    <input type="text" class="form-control" id="inp1">
-								  </div>
-								  <div class="form-group">
-								    <label for="inp1">Age</label>
-								    <input type="text" class="form-control" id="inp1">
-								  </div>
+							<form id="Form3">
+								<div class="form-group">
+									<label for="inp1">Title</label>
+									<input type="text" class="form-control" name="title">
+								</div>
+								<div class="form-group">
+									<label for="inp1">Name</label>
+									<input type="text" class="form-control" name="name">
+								</div>
+								<div class="form-group">
+									<label for="inp1">Age</label>
+									<input type="text" class="form-control" name="age">
+								</div>
 									 <div class="form-group">
 									  <label for="sel1">Condition:</label>
-									  <select class="form-control" id="sel1">
-									    <option>Pain</option>
-									    <option>Pus Formation</option>
-									    <option>Itching</option>
-									    <option>Water Discharge</option>
-									    <option>Normal</option>
+									  <select class="form-control" name="condition">
+									    <option value="1">Pain</option>
+									    <option value="2">Pus Formation</option>
+									    <option value="3">Itching</option>
+									    <option value="4">Water Discharge</option>
+									    <option value="5">Normal</option>
 									  </select>
 									</div> 
 									<div class="form-group">
 									  <label for="sel1">Other:</label>
-									  <select class="form-control" id="sel1">
-									    <option>Buzzing Sounds</option>
-									    <option>Dizziness</option>
-									    <option>Injury</option>
-									    <option>Normal</option>
+									  <select class="form-control" name="other">
+									    <option value="1">Buzzing Sounds</option>
+									    <option value="2">Dizziness</option>
+									    <option value="3">Injury</option>
+									    <option value="4">Normal</option>
 									  </select>
 									</div> 
 									<div class="form-group">
 									  <label for="sel1">Miscellaneous:</label>
-									  <select class="form-control" id="sel1">
-									    <option>Hearing loss</option>
-									    <option>Abnormal Walking</option>
-									    <option>Normal</option>
+									  <select class="form-control" name="miscellaneous">
+									    <option value="1">Hearing loss</option>
+									    <option value="2">Abnormal Walking</option>
+									    <option value="3">Normal</option>
 									  </select>
 									</div> 
 								   <div class="form-group">
 									  <label for="comment">Comment:</label>
-									  <textarea class="form-control" rows="5" id="comment"></textarea>
+									  <textarea class="form-control" rows="5" name="comment"></textarea>
 									</div> 
 								  <!-- <div class="checkbox">
 								    <label><input type="checkbox"> Remember me</label>
@@ -282,67 +282,67 @@
 
                         <div id="form4" class="desc" style="margin-top:1em;">
 							<h3 class="text-center">Genito</h3>
-							<form action="show_doctors.html">
-								  <div class="form-group">
-								    <label for="inp1">Title</label>
-								    <input type="text" class="form-control" id="inp1">
-								  </div>
-								  <div class="form-group">
-								    <label for="inp1">Name</label>
-								    <input type="text" class="form-control" id="inp1">
-								  </div>
-								  <div class="form-group">
-								    <label for="inp1">Age</label>
-								    <input type="text" class="form-control" id="inp1">
-								  </div>
+							<form id="Form4">
+								<div class="form-group">
+									<label for="inp1">Title</label>
+									<input type="text" class="form-control" name="title">
+								</div>
+								<div class="form-group">
+									<label for="inp1">Name</label>
+									<input type="text" class="form-control" name="name">
+								</div>
+								<div class="form-group">
+									<label for="inp1">Age</label>
+									<input type="text" class="form-control" name="age">
+								</div>
 									 <div class="form-group">
 									  <label for="sel1">Condition:</label>
-									  <select class="form-control" id="sel1">
-									    <option>Conscious</option>
-									    <option>Sub Conscious</option>
-									    <option>Normal</option>
+									  <select class="form-control" name="condition">
+									    <option value="1">Conscious</option>
+									    <option value="2">Sub Conscious</option>
+									    <option value="3">Normal</option>
 									  </select>
 									</div> 
 									<div class="form-group">
 									  <label for="sel1">Behavioral Abnormality:</label>
-									  <select class="form-control" id="sel1">
-									    <option>Speech Deject</option>
-									    <option>Anxiety</option>
-									    <option>Depression</option>
+									  <select class="form-control" name="behavioral_abnormality">
+									    <option value="1">Speech Deject</option>
+									    <option value="2">Anxiety</option>
+									    <option value="3">Depression</option>
 									  </select>
 									</div> 
 									<div class="form-group">
 									  <label for="sel1">Sensational Abnormality:</label>
-									  <select class="form-control" id="sel1">
-									    <option>Abnormal Smell</option>
-									    <option>Visual Abnormality</option>
-									    <option>Deviation of Angle of Mouth</option>
-									    <option>Loss of Taste</option>
-									    <option>Deafness</option>
-									    <option>Hoarseness of Voice</option>
-									    <option>Normal</option>
+									  <select class="form-control" name="sensational_abnormality">
+									    <option value="1">Abnormal Smell</option>
+									    <option value="2">Visual Abnormality</option>
+									    <option value="3">Deviation of Angle of Mouth</option>
+									    <option value="4">Loss of Taste</option>
+									    <option value="5">Deafness</option>
+									    <option value="6">Hoarseness of Voice</option>
+									    <option value="7">Normal</option>
 									  </select>
 									</div>
 									<div class="form-group">
 									  <label for="sel1">Other:</label>
-									  <select class="form-control" id="sel1">
-									    <option>Weakness</option>
-									    <option>Pain in Muscle</option>
-									    <option>Swelling of Muscle</option>
-									    <option>Headache</option>
-									    <option>In co-ordination</option>
+									  <select class="form-control" name="other">
+									    <option value="1">Weakness</option>
+									    <option value="2">Pain in Muscle</option>
+									    <option value="3">Swelling of Muscle</option>
+									    <option value="4">Headache</option>
+									    <option value="5">In co-ordination</option>
 									  </select>
 									</div>
 									<div class="form-group">
 									  <label for="sel1">Miscellaneous:</label>
-									  <select class="form-control" id="sel1">
-									    <option>Fever</option>
-									    <option>Pain in Neck</option>
+									  <select class="form-control" name="miscellaneous">
+									    <option value="1">Fever</option>
+									    <option value="2">Pain in Neck</option>
 									  </select>
 									</div>
 								   <div class="form-group">
 									  <label for="comment">Comment:</label>
-									  <textarea class="form-control" rows="5" id="comment"></textarea>
+									  <textarea class="form-control" rows="5" name="comment"></textarea>
 									</div> 
 								  <!-- <div class="checkbox">
 								    <label><input type="checkbox"> Remember me</label>
@@ -355,98 +355,98 @@
 
                         <div id="form5" class="desc" style="margin-top:1em;">
 							<h3 class="text-center">Neuro</h3>
-							<form action="show_doctors.html">
-								  <div class="form-group">
-								    <label for="inp1">Title</label>
-								    <input type="text" class="form-control" id="inp1">
-								  </div>
-								  <div class="form-group">
-								    <label for="inp1">Name</label>
-								    <input type="text" class="form-control" id="inp1">
-								  </div>
-								  <div class="form-group">
-								    <label for="inp1">Age</label>
-								    <input type="text" class="form-control" id="inp1">
-								  </div>
+							<form id="Form5">
+								<div class="form-group">
+									<label for="inp1">Title</label>
+									<input type="text" class="form-control" name="title">
+								</div>
+								<div class="form-group">
+									<label for="inp1">Name</label>
+									<input type="text" class="form-control" name="name">
+								</div>
+								<div class="form-group">
+									<label for="inp1">Age</label>
+									<input type="text" class="form-control" name="age">
+								</div>
 								  <div class="form-group">
 								    <label for="inp1">Your Current Problem</label>
-								    <input type="text" class="form-control" id="inp1">
+								    <input type="text" class="form-control" name="current_problem">
 								  </div>
 								   <div class="form-group">
 									  <label for="sel1">Habit</label>
-									  <select class="form-control" id="sel1">
-									    <option>Tobacco Chewing</option>
-									    <option>Alcoholic</option>
-									    <option>Nail Biting</option>
-									    <option>Late Night Sleep</option>
-									    <option>Fast Food Eaters</option>
-									    <option>Smoking</option>
+									  <select class="form-control" name="habit">
+									    <option value="1">Tobacco Chewing</option>
+									    <option value="2">Alcoholic</option>
+									    <option value="3">Nail Biting</option>
+									    <option value="4">Late Night Sleep</option>
+									    <option value="5">Fast Food Eaters</option>
+									    <option value="6">Smoking</option>
 									  </select>
 									</div> 
 									 <div class="form-group">
 									  <label for="sel1">Habitat:</label>
-									  <select class="form-control" id="sel1">
-									    <option>Hot</option>
-									    <option>Cold</option>
-									    <option>Humid</option>
-									    <option>Dusty</option>
-									    <option>Polluted</option>
+									  <select class="form-control" name="habitat">
+									    <option value="1">Hot</option>
+									    <option value="2">Cold</option>
+									    <option value="3">Humid</option>
+									    <option value="4">Dusty</option>
+									    <option value="5">Polluted</option>
 									  </select>
 									</div>
 									<div class="form-group">
 								    <label for="inp1">Accident and type:</label>
-								    <input type="text" class="form-control" id="inp1">
+								    <input type="text" class="form-control" name="accident_and_type">
 								  </div>
 									 <div class="form-group">
 									  <label for="sel1">Emotional Status:</label>
-									  <select class="form-control" id="sel1">
-									    <option>Happy</option>
-									    <option>Normal</option>
-									    <option>Excited</option>
-									    <option>Depressed</option>
+									  <select class="form-control" name="emotional_status">
+									    <option value="1">Happy</option>
+									    <option value="2">Normal</option>
+									    <option value="3">Excited</option>
+									    <option value="4">Depressed</option>
 									  </select>
 									</div>
 									<div class="form-group">
 								    <label for="inp1">Fever:</label>
-								    <input type="text" class="form-control" id="inp1">
+								    <input type="text" class="form-control" name="fever">
 								  </div>
 									 <div class="form-group">
 									  <label for="sel1">Pain:</label>
-									  <select class="form-control" id="sel1">
-									    <option>Mild</option>
-									    <option>Moderate</option>
-									    <option>Severe</option>
-									    <option>Burning</option>
-									    <option>Pulsating</option>
+									  <select class="form-control" name="pain">
+									    <option value="1">Mild</option>
+									    <option value="2">Moderate</option>
+									    <option value="3">Severe</option>
+									    <option value="4">Burning</option>
+									    <option value="5">Pulsating</option>
 									  </select>
 									</div>
 									 <div class="form-group">
 									  <label for="sel1">Site of Problem:</label>
-									  <select class="form-control" id="sel1">
-									    <option>Front Head</option>
-									    <option>Back Head</option>
-									    <option>Left Shoulder</option>
-									    <option>Left Hand Upper</option>
-									    <option>Left Hand Lower</option>
-									    <option>Right Hand Upper</option>
-									    <option>Right Hand Lower</option>
-									    <option>Left Chest</option>
-									    <option>Right Chest</option>
-									    <option>Left Back Chest</option>
-									    <option>Right Back Chest</option>
+									  <select class="form-control" name="site_of_problem">
+									    <option value="1">Front Head</option>
+									    <option value="2">Back Head</option>
+									    <option value="3">Left Shoulder</option>
+									    <option value="4">Left Hand Upper</option>
+									    <option value="5">Left Hand Lower</option>
+									    <option value="6">Right Hand Upper</option>
+									    <option value="7">Right Hand Lower</option>
+									    <option value="8">Left Chest</option>
+									    <option value="9">Right Chest</option>
+									    <option value="10">Left Back Chest</option>
+									    <option value="11">Right Back Chest</option>
 									  </select>
 									</div>
 									 <div class="form-group">
 									  <label for="sel1">Vomiting:</label>
-									  <select class="form-control" id="sel1">
-									    <option>Yes</option>
-									    <option>No</option>
-									    <option>Nausea</option>
+									  <select class="form-control" name="vomiting">
+									    <option value="1">Yes</option>
+									    <option value="2">No</option>
+									    <option value="3">Nausea</option>
 									  </select>
 									</div> 
 								   <div class="form-group">
 									  <label for="comment">Comment:</label>
-									  <textarea class="form-control" rows="5" id="comment"></textarea>
+									  <textarea class="form-control" rows="5" name="comment"></textarea>
 									</div> 
 								  <!-- <div class="checkbox">
 								    <label><input type="checkbox"> Remember me</label>
@@ -460,27 +460,23 @@
 
                         <div id="form6" class="desc" style="margin-top:1em;">
 							<h3 class="text-center">Depart 6</h3>
-							<form action="show_doctors.html">
+							<form id="Form6">
+								<div class="form-group">
+								<label for="inp1">Title</label>
+								<input type="text" class="form-control" name="title">
+							</div>
+							<div class="form-group">
+								<label for="inp1">Name</label>
+								<input type="text" class="form-control" name="name">
+							</div>
+							<div class="form-group">
+								<label for="inp1">Age</label>
+								<input type="text" class="form-control" name="age">
+							</div>
 								  <div class="form-group">
-								    <label for="inp1">input 1:</label>
-								    <input type="text" class="form-control" id="inp1" name="inpt1">
-								  </div>
-								  <div class="form-group">
-								    <label for="inp1">input 1:</label>
-								    <input type="text" class="form-control" id="inp1" name="inpt2">
-								  </div>
-								  <div class="form-group">
-								    <label for="inp1">input 1:</label>
-								    <input type="text" class="form-control" id="inp1" name="inpt3">
-								  </div>
-								  <div class="form-group">
-								    <label for="inp1">input 1:</label>
-								    <input type="text" class="form-control" id="inp1" name="inpt4">
-								  </div>
-								  <div class="form-group">
-								    <label for="inp2">input 2:</label>
-								    <input type="text" class="form-control" id="inp2" name="inpt5">
-								  </div>
+									  <label for="comment">Comment:</label>
+									  <textarea class="form-control" rows="5" name="comment"></textarea>
+									</div>
 								  <!-- <div class="checkbox">
 								    <label><input type="checkbox"> Remember me</label>
 								  </div> -->
