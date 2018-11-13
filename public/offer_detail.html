@@ -87,37 +87,18 @@
 			</div>
 			<div class="row">
 				<div class="member">
-					<div class="col-md-1 nopadding animate-box">
-					</div>
-					<div class="col-md-10 nopadding animate-box">
+					<!-- <div class="col-md-1 nopadding animate-box">
+					</div> -->
+					<div class="col-md-12 nopadding animate-box">
 						<div id="retailerList" class="desc" style="margin-top:1em;">
-							<div class="row" style="border: 1px solid #efefef; background: #efefef; padding: 40px;">
-								<div class="col-md-4">
-									<img src="[[]]">
-								</div>
-								<div class="col-md-8">
-									<h4>[[retailer_name]]</h4>
-									<p>[[retailer_address]]</p>
-									<p><span>[[total_price]]+Delivery Charges</span></p>
-									<p><span>[[delivery_time]]</span></p>
-									<div class="row">
-										<div class="col-md-6">
-											<button class="btn btn-primary">Accept</button>
-										</div>
-										<div class="col-md-6">
-											<button class="btn btn-primary">Decline</button>
-										</div>
-									</div>
-								</div>
-							</div>
-
+							
                         </div>
                         
 
                         
                     </div>
-                    <div class="col-md-1 nopadding animate-box">
-                    </div>
+                    <!-- <div class="col-md-1 nopadding animate-box">
+                    </div> -->
                     
 				</div>
                 
@@ -203,22 +184,55 @@
 
 	<script>
 		var order_id = sessionStorage.getItem('order_id');
+		var patient_id = sessionStorage.getItem('patient_gid');
 		$.get("http://192.168.43.193:3000/api/orders/offer/"+order_id,function(data){
 			console.log("offers",data);
+			
 			
 			for(let i=0;i<data.length;i++)
 			{
 				retailer_gid = data[i].retailer_gid;
 				$.get("http://192.168.43.193:3000/api/retailers/"+retailer_gid, function(response){
 					console.log("response",response);
-					data[i].retailer_name = response.name;
-					data[i].retailer_address = response.address.city + (response.address.state==undefined?" ":response.address.state) + response.address.pincode;
-					data[i].retailimage = "/files/prescriptions/1/index.jpg";
-					$("#retailerList").mirandajs(data);
+					var template = "<div class='row' style='border: 1px solid #efefef; background: #efefef; padding: 40px; margin-bottom:30px;'>" +
+								"<div class='col-md-4'>" +
+									"<img class='img-responsive' src="+ "http://192.168.43.193:3000" +"/files/prescriptions/1/index.jpeg" + ">" +
+								"</div>" +
+								"<div class='col-md-8'>" +
+									"<h4>" + response.name + "</h4>" +
+									"<p>" + response.address.city + "</p>" +
+									"<p><span>" + data[i].total_price + " + Delivery Charges" + "</span></p>" +
+									"<p><span>" + data[i].delivery_time + "</span></p>" +
+									"<div class='row'>" +
+										"<div class='col-md-6'>" +
+											"<button class='btn btn-primary' onclick='acceptOffer(this.id)' id=" + data[i]._id + ">Accept</button>" +
+										"</div>" +
+									"</div>" +
+								"</div>" +
+							"</div>" ;
+					$("#retailerList").append(template);
 				});
 			}
-			console.log('changed', data);
 		});
+
+		function acceptOffer(accepted_id) {
+			console.log('accepted id', accepted_id);
+
+			$.ajax({
+		            type        : 'PUT', 
+		            url         : "http://192.168.43.193:3000/api/orders/" + order_id + "/" + patient_id + "/" + accepted_id,
+		            // data        : formData,
+		            // dataType    : 'json',
+		            // encode      : true
+		        })
+		        .done(function(data) {
+					console.log("order accepted", data);
+					alert("Your order has been confirmed!");
+					window.location.href = "profile_patient.html";
+		        });
+		}
+
+
 	
 	</script>
 
