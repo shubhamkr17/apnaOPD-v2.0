@@ -155,7 +155,7 @@
 										</div> 
 									</div>
 									<div class="col-md-4">
-										<button class="btn btn-primary" style="margin-top : 35px;" onclick="getTimeSlab(this.id)" id="[[_id]]">Get Time Slab</button>
+										<button class="btn btn-primary" style="margin-top : 35px;" onclick="getTimeSlab(this.id)" id="[[gid]]">Get Time Slab</button>
 									</div>
 								</div>
 
@@ -367,6 +367,8 @@
 		$("input[type=radio]").attr("disabled", true);
 		var dept = sessionStorage.getItem('department');
 
+		var case_uid = sessionStorage.getItem('cid');
+
 		$('#booking_info').modal({ show : false });
 
 		        $.ajax({
@@ -401,7 +403,8 @@
 		function getTimeSlab(id) {
 			$.get("http://192.168.43.193:3000/api/doctors/"+id, function(res) {
 				//get doctor's time slab
-				var slab = ["3110000","3120000","3130000","3210000"];
+				var slab =res.time_slab;
+				console.log("slab",slab);
 				var day = $("#day option:selected").text();
 				var period = $("#period option:selected").text();
 				console.log(period);
@@ -477,17 +480,31 @@
 			});
 			
 		}
+		var patient_age;
+		var patient_name;
+
+		$.get("http://192.168.43.193:3000/api/casesheets/"+case_uid,function(res){
+			patient_name = res.full_name;
+			patient_age = res.age;
+		});
 		
 
 		function book_appointment(selected_docid) {
 			//alert("Appointment booked!");
 
+			var day = $("#day :selected").val();
+			var period = $("#period :selected").val();
+			var sel_radio = $("input[type=radio]:checked").val();
+			console.log(day,period,sel_radio);
+			var selected_time_slot = day+period+sel_radio+"0000";
 			//$(this.'#doctor_id').attr('id', 'selectedDoc');
 			var formData = {
-				casesheet_uid : sessionStorage.getItem('cid'),
+				patient_name : patient_name,
+				patient_age : patient_age,
+				casesheet_uid : case_uid,
 				patient_gid : sessionStorage.getItem('patient_gid'),
 				doctor_gid : selected_docid,
-				time_slab : "1100110"
+				time_slab : selected_time_slot
 			}
 
 			var selected_radio = $("input[name=select]:checked").val();

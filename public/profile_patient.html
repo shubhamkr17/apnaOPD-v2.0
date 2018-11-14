@@ -524,7 +524,16 @@
 		        })
 		        .done(function(data) {
 		        	console.log(data);
-		        	//console.log("inside");
+					//console.log("inside");
+					// for(i=0;i<data.length;i++) {
+					// 	var cid = data[i].casesheet_uid;
+					// 	$.get("http://192.168.43.193:3000/api/casesheets/"+cid, function(res) {
+					// 		console.log("casesheet", res);
+					// 		data[i].patient_name = res.full_name;
+					// 		data[i].patient_age = res.age;
+					// 	});
+					// }
+
 		        	$("#appointmentList").mirandajs(data);
 				});
 

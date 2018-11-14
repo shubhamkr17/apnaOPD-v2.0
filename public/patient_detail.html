@@ -488,15 +488,16 @@
 	<script>
 		var show_pid = sessionStorage.getItem('show_pid');
 		var doctor_gid = sessionStorage.getItem('doctor_gid');
-		var dept=4;
-		var doc_name="Suraj Khanna";
-		var casesheet_uid = "123456";
+		var dept;
+		var doc_name;
+		var casesheet_uid;
 		$.get("http://192.168.43.193:3000/api/doctors/" + doctor_gid, function(res){
-			// dept = res.department;
-			// doc_name = res.name;
-			console.log(dept);
+			dept = res.department;
+			doc_name = res.name;
+			console.log("doctor", res);
+			$("#dept"+dept).show();
 		});
-		$("#dept"+dept).show();
+		
 		$.ajax({
 		            type        : 'GET', 
 		            url         : 'http://192.168.43.193:3000/api/casesheets/'+show_pid,
@@ -507,7 +508,7 @@
 		        .done(function(data) {
 					console.log(data);
 					//casesheet_uid = data._id;
-					//$("#dept"+dept).show();
+					//$("#dept"+data.department).show();
 		        	//$('#visitorList').mirandajs(data);
 		        	
 				});

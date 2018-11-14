@@ -105,7 +105,7 @@
 							<div>
 								<ul>
 									<!-- <li>[[_id]]</li> -->
-​									<li>[[casesheet_uid]]</li>
+<!-- ​									<li>[[casesheet_uid]]</li> -->
 								</ul>
 								<table class="table table-striped">
 									<tbody>
@@ -161,11 +161,11 @@
 								  </tr>
 								  <tr>
 									<td>Neck Veins</td>
-									<td>[[neck_veins]]</td>
+									<td>[[neckveins]]</td>
 								  </tr>
 								  <tr>
 									<td>Chest Pain</td>
-									<td>[[chest_pain]]</td>
+									<td>[[chestpain]]</td>
 								  </tr>
 								  <tr>
 									<td>Respiration</td>
@@ -177,7 +177,7 @@
 								  </tr>
 								  <tr>
 									<td>Condition</td>
-									<td>[[condition]]</td>
+									<td>[[cardio_condition]]</td>
 								  </tr>
 								  <tr>
 									<td>Comment</td>
@@ -202,15 +202,15 @@
 								  </tr>
 								  <tr>
 									<td>Condition</td>
-									<td>[[condition]]</td>
+									<td>[[eye_condition]]</td>
 								  </tr>
 								  <tr>
 									<td>Other</td>
-									<td>[[other]]</td>
+									<td>[[eye_other]]</td>
 								  </tr>
 								  <tr>
 									<td>Miscellaneous</td>
-									<td>[[miscellaneous]]</td>
+									<td>[[eye_misc]]</td>
 								  </tr>
 								  <tr>
 									<td>Comment</td>
@@ -236,15 +236,15 @@
 								  </tr>
 								  <tr>
 									<td>Condition</td>
-									<td>[[condition]]</td>
+									<td>[[ear_condition]]</td>
 								  </tr>
 								  <tr>
 									<td>Other</td>
-									<td>[[other]]</td>
+									<td>[[ear_other]]</td>
 								  </tr>
 								  <tr>
 									<td>Miscellaneous</td>
-									<td>[[miscellaneous]]</td>
+									<td>[[ear_misc]]</td>
 								  </tr>
 								 
 								  <tr>
@@ -270,24 +270,16 @@
 									<td>[[age]]</td>
 								  </tr>
 								  <tr>
-									<td>Condition</td>
-									<td>[[condition]]</td>
+									<td>General Survey</td>
+									<td>[[general_genito]]</td>
 								  </tr>
 								  <tr>
-									<td>Behavioral Abnormality</td>
-									<td>[[behavioral_abnormality]]</td>
+									<td>Genito Urinary</td>
+									<td>[[genito_genito]]</td>
 								  </tr>
 								  <tr>
-									<td>Sensational Abnormality</td>
-									<td>[[sensational_abnormality]]</td>
-								  </tr>
-								  <tr>
-									<td>Other</td>
-									<td>[[other]]</td>
-								  </tr>
-								  <tr>
-									<td>Miscellaneous</td>
-									<td>[[miscellaneous]]</td>
+									<td>Other Problem</td>
+									<td>[[other_genito]]</td>
 								  </tr>
 								 
 								  <tr>
@@ -297,7 +289,51 @@
 								</tbody>
 							  </table>
 
-							  <table id="dept5" class="table table-hover" style="display: none;">
+
+								<table id="dept5" class="table table-hover" style="display: none;">
+										<tbody>
+											<tr>
+											<td>Title</td>
+											<td>[[title]]</td>
+											</tr>
+											<tr>
+											<td>Name</td>
+											<td>[[full_name]]</td>
+											</tr>
+											<tr>
+											<td>Age</td>
+											<td>[[age]]</td>
+											</tr>
+											<tr>
+												<td>Condition</td>
+												<td>[[neuro_condition]]</td>
+												</tr>
+												<tr>
+													<td>Behavioral Abnormality </td>
+													<td>[[behaviour]]</td>
+													</tr>
+												<tr>
+													<td>Sensational Abnormality</td>
+													<td>[[sensation_abnormality]]</td>
+												</tr>
+												<tr>
+													<td>Other</td>
+													<td>[[neuro_other]]</td>
+													</tr>
+												<tr>
+													<td>Miscellaneous</td>
+													<td>[[neuro_misc]]</td>
+												</tr>
+											<tr>
+											<td>Comment</td>
+											<td>[[comment]]</td>
+											</tr>
+										</tbody>
+										</table>
+
+
+
+							  <table id="dept6" class="table table-hover" style="display: none;">
 								<tbody>
 								  <tr>
 									<td>Title</td>
@@ -325,7 +361,7 @@
 								  </tr>
 								  <tr>
 									<td>Accident and Type</td>
-									<td>[[accident_and_type]]</td>
+									<td>[[accident]]</td>
 								  </tr>
 								  <tr>
 									<td>Emotional Status</td>
@@ -353,30 +389,11 @@
 								  </tr>
 								</tbody>
 							  </table>
-
-							  <table id="dept6" class="table table-hover" style="display: none;">
-								<tbody>
-								  <tr>
-									<td>Title</td>
-									<td>[[title]]</td>
-								  </tr>
-								  <tr>
-									<td>Name</td>
-									<td>[[full_name]]</td>
-								  </tr>
-								  <tr>
-									<td>Age</td>
-									<td>[[age]]</td>
-								  </tr>
-								  <tr>
-									<td>Comment</td>
-									<td>[[comment]]</td>
-								  </tr>
-								</tbody>
-							  </table>
 						</div>
 
-					</div>    
+					</div> 
+					
+					<button id="arrivedBtn" class="btn btn-primary" onclick="arrived()">Arrived</button>
                 
                     <div class="col-md-1 nopadding animate-box">
                     </div>
@@ -469,6 +486,7 @@
 		var book_time;
 		var ap_time;
 		var doc_dept;
+		var patient_gid;
 	var show_apid = sessionStorage.getItem('apid');
 
 	$.ajax({
@@ -483,6 +501,7 @@
 			ap_status = data.status;
 			book_time = data.time;
 			ap_time = data.time_slab;
+			patient_gid = data.patient_gid;
         	$("#appointment_detail").mirandajs(data);
 			show_detail();
 	});
@@ -503,12 +522,12 @@
 
 		$.get("http://192.168.43.193:3000/api/casesheets/"+case_id,function(data){
 		console.log("casesheet",data);
-			
+		$("#dept"+doc_dept).mirandajs(data);
 		});
 	}
 
 	function showCasesheet() {
-		if(doc_dept == "7") {
+		if(doc_dept == "1") {
 			$("#dept1").show();
 		}
 		else if(doc_dept == "2") {
@@ -528,7 +547,22 @@
 		}
 	}
 
+function arrived() {
+	$("#arrivedBtn").attr("disabled", true);
+	$("#arrivedBtn").text("Waiting");
 
+	$.ajax({
+				type        : 'PUT', 
+				url         : 'http://192.168.43.193:3000/api/appointments/status/patient/'+show_apid+'/'+patient_gid,
+				dataType    : 'json',
+				encode      : true
+			})
+			.done(function(data) {
+				console.log(data);
+				// alert("Address added!");
+				// window.location.href = "profile_patient.html";
+		});
+}
 	</script>
 
 	</body>
