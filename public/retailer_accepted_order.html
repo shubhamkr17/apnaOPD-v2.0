@@ -90,9 +90,43 @@
 						<div class="col-md-2 nopadding animate-box">
 						</div>
 						<div class="col-md-8 nopadding animate-box">
-							<div class="desc" style="margin-top:1em;">
-								<h3>John Doe</h3>
-								<p>Quos quia provident consequuntur culpa facere ratione maxime commodi voluptates id repellat velit eaque aspernatur expedita. Possimus itaque adipisci.</p>
+							<div id="acceptedDetailList" class="desc" style="margin-top:1em;">
+								<div class="row">
+									<div class="col-md-12">
+										<img class="img-responsive" src="http://192.168.43.193:3000[[photo_prescription_link]]">
+									</div>
+								</div>
+								<div class="row" style="border: 1px solid #ccc;padding: 10px; margin: 30px;">
+								<table class="table table-striped">
+									<tbody>
+										<tr>
+											<td>Name : </td>
+											<td>[[patient_name]]</td>
+										</tr>
+										<tr>
+											<td>Address : </td>
+											<td>[[patient_addrr]]</td>
+										</tr>
+										<tr>
+											<td>Total Price :</td>
+											<td>[[total_price]]</td>
+										</tr>
+										</tbody>
+									</table>
+								</div>
+								<div class="row text-center">
+									<div class="col-md-12">
+										<div class="form-group">
+											<label for="status">Select Status:</label>
+											<select class="form-control" id="status">
+												<option id="op2" value="2">Packed</option>
+												<option id="op3" value="3">Shipped</option>
+												<option id="op4" value="4">Delivered</option>
+											</select>
+										</div> 
+										<button class="btn btn-primary" onclick="changeStatus()">Change Status</button>
+									</div>
+								</div>
 							</div>
 						</div>
 						<div class="col-md-2 nopadding animate-box">
@@ -174,6 +208,8 @@
 	<script src="js/main.js"></script>
 	<script src="js/login_module.js"></script>
 
+	<script src="js/jquery.miranda.min.js"></script>
+
 	<script>
 		var accepted_order_id = sessionStorage.getItem('accepted_order_id');
 		var retailer_gid = sessionStorage.getItem('retailer_gid');
@@ -184,8 +220,46 @@
 			})
 			.done(function(data) {
 				console.log(data);
+				$.get("http://192.168.43.193:3000/api/users/" + data.patient_gid, function(res){
+					var name = res.name;
+					var address = res.address.house_no + res.address.landmark + res.address.city + res.address.state + res.address.pincode;
+				});
+				data.patient_name = name;
+				data.patient_addrr = address;
+				data.total_price = data.offers[0].total_price;
+				$("#acceptedDetailList").mirandajs(data);
+				if(data.status.type == 2) {
+					$("#status #op2").hide();
+				}
+				else if(data.status.type == 3) {
+					$("#status #op2").hide();
+					$("#status #op3").hide();
+				}
+				else if(data.status.type == 4) {
+					$("#status #op2").hide();
+					$("#status #op3").hide();
+					$("#status #op4").hide();
+				}
 			});
+	
+	function changeStatus() {
+		var status = $("#status :selected").val();
+		
+		$.ajax({
+				type        : 'PUT', 
+				url         : 'http://192.168.43.193:3000/api/orders/update/'+accepted_order_id+'/'+retailer_gid+'/'+status,
+				contentType : "application/json",
+				dataType    : 'json',
+				encode      : true
+			})
+			.done(function(data) {
 
+				console.log(data);
+				alert(data.message);
+				window.location.href = "profile_retailer.html"; 
+
+		});
+	}
 	
 	</script>
 

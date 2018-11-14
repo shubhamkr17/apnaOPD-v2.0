@@ -325,12 +325,50 @@
 			  <div class="col-md-6" style="background : #eee"> 
 				  <div id="profile_body" class="row" style="padding : 25px">
 					  <div class="col-md-3" style="border: 1px solid white">
-						  <img class="img-responsive" src="[[imageUrl]]" alt="">
+						  <img class="img-responsive" id="ret_image" alt="">
 					  </div>
 					  <div class="col-md-9" style="border: 1px solid white;">
 						  <!-- retailer details -->
-						  <h3>[[name]]</h3>
-						  <p>[[email]]</p>
+						  <table class="table table-striped">
+								<tbody>
+									<tr>
+										<td>Name : </td>
+										<td>[[name]]</td>
+									</tr>
+									<tr>
+										<td>Email :</td>
+										<td>[[email]]</td>
+									</tr>
+									<tr>
+										<td>House Number :</td>
+										<td>[[house_no]]</td>
+									</tr>
+									<tr>
+										<td>Landmark :</td>
+										<td>[[landmark]]</td>
+									</tr>
+									<tr>
+										<td>City :</td>
+										<td>[[city]]</td>
+									</tr>
+									<tr>
+										<td>State :</td>
+										<td>[[state]]</td>
+									</tr>
+									<tr>
+										<td>PINCODE :</td>
+										<td>[[pincode]]</td>
+									</tr>
+									<tr>
+										<td>Shop Name :</td>
+										<td>[[shop_name]]</td>
+									</tr>
+									<tr>
+										<td>Shop Contact :</td>
+										<td>[[phone_number]]</td>
+									</tr>
+								</tbody>
+							</table>
 						  <!-- <p>Contact</p> -->
 						  <!-- <button id="add_address" onclick="showAddressForm()" class="btn btn-default">Add Address</button> -->
 	  
@@ -356,6 +394,18 @@
 								  <div class="form-group">
 									  <label for="pwd">PINCODE :</label>
 									  <input type="text" class="form-control" name="pincode">
+								  </div>
+								  <div class="form-group">
+									<label for="pwd">Shop Phone Number :</label>
+									<input type="text" class="form-control" name="phone_number">
+								  </div>
+								  <div class="form-group">
+									<label for="pwd">Personal Phone Number :</label>
+									<input type="text" class="form-control" name="phone_number">
+								  </div>
+								  <div class="form-group">
+									<label for="pwd">Shop Name :</label>
+									<input type="text" class="form-control" name="shop_name">
 								  </div>
 								  <button type="button" onclick="sendRetDetail()" class="btn btn-primary">Update</button>
 								  </form>
@@ -445,19 +495,29 @@
 	<script>
 		// Get the modal
 		var modal = document.getElementById('checkModal');
-
+		// var retailer_gid = sessionStorage.getItem('retailer_gid');
 		// Get the <span> element that closes the modal
 		var span = document.getElementsByClassName("close")[0];
 
 		// When the user clicks the button, open the modal 
-		var gid = sessionStorage.getItem('doctor_gid');
+		var gid = sessionStorage.getItem('retailer_gid');
 		$.get("http://192.168.43.193:3000/api/retailers/"+gid,function(res){
 			if(res.address=='' || res.address == null)
 			{
 				modal.style.display = "block";
+				$("#addRetDetail").show();
+			}
+			else {
+				console.log(res);
+				res.house_no = res.address.house_no;
+				res.landmark = res.address.landmark;
+				res.city = res.address.city;
+				res.state = res.address.state;
+				res.pincode = res.address.pincode;
+				res.phone_number = res.address.phone_number;
+				$("#profile_body").mirandajs(res);
 			}
 		});
-
 		// When the user clicks on <span> (x), close the modal
 		span.onclick = function() {
 			modal.style.display = "none";
@@ -469,6 +529,44 @@
 				modal.style.display = "none";
 			}
 		}
+
+		function sendRetDetail() {
+		var addrr = $("#addRetDetail form").serializeArray();
+		var obj={};
+		var finalObj={};
+		console.log(addrr);
+		for(i=0;i<6;i++)
+		{
+			obj[addrr[i].name] = addrr[i].value;
+			//console.log(addrr[i].name, addrr[i].value);
+		}
+		console.log("Address object",obj);
+		finalObj["address"] = obj;
+		for(i=6;i<addrr.length;i++) {
+			finalObj[addrr[i].name] = addrr[i].value;
+		}
+		console.log("Final object to be sent",finalObj);
+
+		$.ajax({
+				type        : 'PUT', 
+				url         : 'http://192.168.43.193:3000/api/retailers/profile/'+gid,
+				contentType : "application/json",
+				data        : JSON.stringify(finalObj),
+				dataType    : 'json',
+				encode      : true
+			})
+			.done(function(data) {
+				console.log(data);
+				alert("Details updated successfully!");
+				window.location.href = "profile_retailer.html";
+		});
+
+	}
+
+	$.get("http://192.168.43.193:3000/api/users/"+gid,function(res){
+		imageUrl = res.imageUrl;
+		$("#ret_image").attr("src", imageUrl);
+	});
 	
 	</script>
 
@@ -479,11 +577,10 @@
 
 	<script>
 		// get demands
-		var retailer_gid = sessionStorage.getItem('retailer_gid');
 		$.ajax({
 
 		        type        : 'GET', 
-		        url         : 'http://192.168.43.193:3000/api/retailers/orders/'+retailer_gid
+		        url         : 'http://192.168.43.193:3000/api/retailers/orders/'+gid
 		    })
 		    .done(function(data) {
 		    	// console.log(data);
@@ -518,7 +615,7 @@
 		$.ajax({
 
 		        type        : 'GET', 
-		        url         : 'http://192.168.43.193:3000/api/orders/retailer/'+retailer_gid
+		        url         : 'http://192.168.43.193:3000/api/orders/retailer/'+gid
 		        //data        : e_presc,
 		        //dataType    : 'json',
 		        //encode      : true
@@ -535,7 +632,7 @@
 		$.ajax({
 
 				type        : 'GET', 
-				url         : 'http://192.168.43.193:3000/api/retailers/history/'+retailer_gid
+				url         : 'http://192.168.43.193:3000/api/retailers/history/'+gid
 				})
 				.done(function(data) {
 					console.log("Delivered orders",data);
