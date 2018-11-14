@@ -110,6 +110,20 @@
 		.nav-tabs li a {
 			color: #000;
 		}
+
+		.services {
+			xbackground-color: aliceblue;
+			border: 1px solid aliceblue;
+		}
+
+		.services:hover {
+			box-shadow: 2px 2px 8px 1px aliceblue;
+		}
+
+		.services h3 {
+			border-bottom: 1px solid #eee;
+			padding-bottom: 15px;
+		}
 	</style>
 
 	</head>
@@ -204,7 +218,7 @@
     </div>
     <div id="appointments" class="tab-pane fade">
       <div id="fh5co-about">
-		<div class="container">
+		<div class="container-fluid">
 			<div class="row animate-box">
 				<div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
 					<h2>Appointments</h2>
@@ -213,11 +227,11 @@
 			</div>
 			<div class="row">
 				<div class="member">
-					<div class="col-md-1 nopadding animate-box">
+					<div class="col-md-3 nopadding animate-box">
 					</div>
-					<div class="col-md-10 nopadding animate-box" style="border: 1px solid #000;">
+					<div class="col-md-6 nopadding animate-box">
 						<div id="appointmentList" class="desc" style="margin-top:1em;height: 600px;margin-top:0;padding:1em;width:100%; overflow-y: auto;">
-							<div id="appointment_body">
+							<div id="appointment_body" style="border: 1px solid aliceblue;">
 							<div class="row">
 								<div class="col-md-9">
 									<h3>[[patient_name]]</h3>
@@ -231,7 +245,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="col-md-1 nopadding animate-box">
+					<div class="col-md-3 nopadding animate-box">
 					</div>
 				</div>
 			</div>
@@ -240,7 +254,7 @@
     </div>
     <div id="orders" class="tab-pane fade">
       <div id="fh5co-about">
-		<div class="container">
+		<div class="container-fluid">
 			<div class="row animate-box">
 				<div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
 					<h2>Orders</h2>
@@ -249,11 +263,11 @@
 			</div>
 			<div class="row">
 				<div class="member">
-					<div class="col-md-1 nopadding animate-box">
+					<div class="col-md-3 nopadding animate-box">
 					</div>
-					<div class="col-md-10 nopadding animate-box" style="border: 1px solid #000;">
+					<div class="col-md-6 nopadding animate-box">
 						<div id="orderList" class="desc" style="margin-top:1em;height: 600px;margin-top:0;padding:1em;width:100%; overflow-y: auto;">
-							<div id="order_body">
+							<div id="order_body"  style="border: 1px solid white; background : white;">
 							<div class="row">
 								<div class="col-md-12">
 									<!-- <h3>Order id : [[_id]]</h3> -->
@@ -266,7 +280,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="col-md-1 nopadding animate-box">
+					<div class="col-md-3 nopadding animate-box">
 					</div>
 					
 				</div>
@@ -275,8 +289,59 @@
 	</div>
     </div>
     <div id="profile" class="tab-pane fade">
-      <h3>Menu 3</h3>
-      <p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+      <div class="row" style="padding : 50px 0">
+		<div class="col-md-3">
+
+		</div>
+		<div class="col-md-6" style="background : #eee"> 
+			<div id="profile_body" class="row" style="padding : 25px">
+				<div class="col-md-3" style="border: 1px solid white">
+					<img class="img-responsive" src="[[imageUrl]]" alt="">
+				</div>
+				<div class="col-md-9" style="border: 1px solid white;">
+					<!-- patient details -->
+					<h3>[[name]]</h3>
+					<p>[[email]]</p>
+					<p>Contact</p>
+					<button id="add_address" onclick="showAddressForm()" class="btn btn-default">Add Address</button>
+
+					<div class="row"  id="addAddress" style="display : none;">
+						<div class="col-md-12">
+							<form>
+							<div class="form-group">
+								<label for="usr">House Number :</label>
+								<input type="text" class="form-control" name="house_no">
+							</div>
+							<div class="form-group">
+								<label for="pwd">Landmark :</label>
+								<input type="text" class="form-control" name="landmark">
+							</div> 
+							<div class="form-group">
+								<label for="pwd">City :</label>
+								<input type="text" class="form-control" name="city">
+							</div> 
+							<div class="form-group">
+								<label for="pwd">State :</label>
+								<input type="text" class="form-control" name="state">
+							</div> 
+							<div class="form-group">
+								<label for="pwd">PINCODE :</label>
+								<input type="text" class="form-control" name="pincode">
+							</div>
+							<button type="button" onclick="sendNewAddress()" class="btn btn-primary">Add</button>
+							</form>
+						</div>
+					</div>
+
+
+				</div>
+			</div>
+
+		</div>
+		<div class="col-md-3">
+
+		</div>
+	  </div>
     </div>
   </div>
 
@@ -359,7 +424,47 @@
 
 	<script>
 	//console.log("outside");
-		var gid = sessionStorage.getItem('patient_gid');
+	var gid = sessionStorage.getItem('patient_gid');
+
+	function sendNewAddress() {
+		var addrr = $("#addAddress form").serializeArray();
+		var obj={};
+		var finalObj={};
+		console.log(addrr);
+		for(i=0;i<addrr.length;i++)
+		{
+			obj[addrr[i].name] = addrr[i].value;
+			//console.log(addrr[i].name, addrr[i].value);
+		}
+		//console.log(obj);
+		finalObj["address"] = obj;
+		//console.log(finalObj);
+
+		$.ajax({
+				type        : 'PUT', 
+				url         : 'http://192.168.43.193:3000/api/users/address/new'+gid,
+				data        : finalObj,
+				dataType    : 'json',
+				encode      : true
+			})
+			.done(function(data) {
+				console.log(data);
+				alert("Address added!");
+				window.location.href = "profile_patient.html";
+		});
+
+	}
+
+	function showAddressForm() {
+		$("#add_address").hide();
+		$('#addAddress').slideDown("slow");
+	}
+
+		$.get("http://192.168.43.193:3000/api/users/" + gid , function(res) {
+			console.log("user", res);
+			$("#profile_body").mirandajs(res);
+		});
+
 		$.ajax({
 		            type        : 'GET', 
 		            url         : 'http://192.168.43.193:3000/api/appointments/patient/'+gid
