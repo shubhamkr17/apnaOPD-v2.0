@@ -368,9 +368,60 @@
 	</div>
     </div>
     <div id="profile" class="tab-pane fade">
-      <h3>Menu 3</h3>
-      <p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
-    </div>
+			<div class="row" style="padding : 50px 0">
+			  <div class="col-md-3">
+	  
+			  </div>
+			  <div class="col-md-6" style="background : #eee"> 
+				  <div id="profile_body" class="row" style="padding : 25px">
+					  <div class="col-md-3" style="border: 1px solid white">
+						  <img class="img-responsive" src="[[imageUrl]]" alt="">
+					  </div>
+					  <div class="col-md-9" style="border: 1px solid white;">
+						  <!-- patient details -->
+						  <h3>[[name]]</h3>
+						  <p>[[email]]</p>
+						  <!-- <p>Contact</p> -->
+						  <!-- <button id="add_doc_details" onclick="showDoctorForm()" class="btn btn-default">Add Details</button> -->
+	  
+						  <div class="row"  id="addDocDetail" style="display : none;">
+							  <div class="col-md-12">
+								  <form>
+								  <div class="form-group">
+									  <label for="usr">House Number :</label>
+									  <input type="text" class="form-control" name="house_no">
+								  </div>
+								  <div class="form-group">
+									  <label for="pwd">Landmark :</label>
+									  <input type="text" class="form-control" name="landmark">
+								  </div> 
+								  <div class="form-group">
+									  <label for="pwd">City :</label>
+									  <input type="text" class="form-control" name="city">
+								  </div> 
+								  <div class="form-group">
+									  <label for="pwd">State :</label>
+									  <input type="text" class="form-control" name="state">
+								  </div> 
+								  <div class="form-group">
+									  <label for="pwd">PINCODE :</label>
+									  <input type="text" class="form-control" name="pincode">
+								  </div>
+								  <button type="button" onclick="sendDocDetail()" class="btn btn-primary">Update</button>
+								  </form>
+							  </div>
+						  </div>
+	  
+	  
+					  </div>
+				  </div>
+	  
+			  </div>
+			  <div class="col-md-3">
+	  
+			  </div>
+			</div>
+		  </div>
   </div>
 </div> 
 
@@ -450,6 +501,7 @@
 <script>
 
 var docid = sessionStorage.getItem('doctor_gid');
+
 $.ajax({
 
         type        : 'GET', 
