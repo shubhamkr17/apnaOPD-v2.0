@@ -67,7 +67,6 @@
 							<li class="active"><a onclick="patient_login()" href="#">Patient</a></li>
 							<li><a onclick="doctor_login()" href="#">Doctor</a></li>
 							<li><a onclick="retailer_login()" href="#">Retailer</a></li>
-							<li class="btn-cta"><a onclick="login()" href="#"><span>Login</span></a></li>
 						</ul>
 					</div>
 				</div>
@@ -100,7 +99,7 @@
 								  </div>
 								  <div class="form-group">
 								    <label for="inp1">Name</label>
-								    <input type="text" class="form-control" id="inp2" name="name">
+								    <input type="text" class="form-control" id="inp2" name="fullname">
 								  </div>
 								  <div class="form-group">
 								    <label for="inp1">Age</label>
@@ -112,49 +111,49 @@
 								  </div>
 								   <div class="form-group">
 									  <label for="sel1">Rhythm</label>
-									  <select name="rhythm_cardio" class="form-control" id="sel1">
-									    <option value="1">Fast</option>
-									    <option value="2">Slow</option>
-									    <option value="3">Normal</option>
+									  <select name="cardio" class="form-control" id="sel1">
+									    <option value="Fast">Fast</option>
+									    <option value="Slow">Slow</option>
+									    <option value="Normal">Normal</option>
 									  </select>
 									</div> 
 									 <div class="form-group">
 									  <label for="sel1">Neck Veins:</label>
-									  <select name="neck_veins" class="form-control" id="sel1">
-									    <option value="1">Normal</option>
-									    <option value="2">Engorged</option>
+									  <select name="neckveins" class="form-control" id="sel1">
+									    <option value="Normal">Normal</option>
+									    <option value="Engorged">Engorged</option>
 									  </select>
 									</div>
 									 <div class="form-group">
 									  <label for="sel1">Chest Pain:</label>
-									  <select name="chest_pain" class="form-control" id="sel1">
-									    <option value="1">No</option>
-									    <option value="2">Slight</option>
-									    <option value="3">Pulsating</option>
+									  <select name="chestpain" class="form-control" id="sel1">
+									    <option value="No">No</option>
+									    <option value="Slight">Slight</option>
+									    <option value="Pulsating">Pulsating</option>
 									  </select>
 									</div>
 									 <div class="form-group">
 									  <label for="sel1">Respiration:</label>
 									  <select name="respiration" class="form-control" id="sel1">
-									    <option value="1">Normal</option>
-									    <option value="2">Deep Breath</option>
-									    <option value="3">Difficulty/Fast</option>
+									    <option value="Normal">Normal</option>
+									    <option value="Deep Breath">Deep Breath</option>
+									    <option value="Difficulty / Fast">Difficulty/Fast</option>
 									  </select>
 									</div>
 									 <div class="form-group">
 									  <label for="sel1">Bleeding:</label>
 									  <select name="bleeding" class="form-control" id="sel1">
-									    <option value="1">Nose</option>
-									    <option value="2">Mouth</option>
-									    <option value="3">No</option>
+									    <option value="Nose">Nose</option>
+									    <option value="Mouth">Mouth</option>
+									    <option value="No">No</option>
 									  </select>
 									</div>
 									 <div class="form-group">
 									  <label for="sel1">Condition:</label>
-									  <select name="condition" class="form-control" id="sel1">
-									    <option value="1">Normal</option>
-									    <option value="2">Faint</option>
-									    <option value="3">Weakness</option>
+									  <select name="cardio_condition" class="form-control" id="sel1">
+									    <option value="Normal">Normal</option>
+									    <option value="Faint">Faint</option>
+									    <option value="Weakness">Weakness</option>
 									  </select>
 									</div> 
 								   <div class="form-group">
@@ -178,7 +177,7 @@
 								  </div>
 								  <div class="form-group">
 								    <label for="inp1">Name</label>
-								    <input type="text" class="form-control" name="name">
+								    <input type="text" class="form-control" name="fullname">
 								  </div>
 								  <div class="form-group">
 								    <label for="inp1">Age</label>
@@ -186,30 +185,30 @@
 								  </div>
 									 <div class="form-group">
 									  <label for="sel1">Condition:</label>
-									  <select class="form-control" name="condition">
-									    <option value="1">Pain</option>
-									    <option value="2">Burning</option>
-									    <option value="3">Itching</option>
-									    <option value="4">Water Discharge</option>
-									    <option value="5">Normal</option>
+									  <select class="form-control" name="eye_condition">
+									    <option value="Pain">Pain</option>
+									    <option value="Burning">Burning</option>
+									    <option value="Itching">Itching</option>
+									    <option value="Water Discharge">Water Discharge</option>
+									    <option value="Normal">Normal</option>
 									  </select>
 									</div> 
 									<div class="form-group">
 									  <label for="sel1">Other:</label>
-									  <select class="form-control" name="other">
-									    <option value="1">Redness</option>
-									    <option value="2">Injury</option>
-									    <option value="3">Swelling</option>
+									  <select class="form-control" name="eye_other">
+									    <option value="Redness">Redness</option>
+									    <option value="Injury">Injury</option>
+									    <option value="Swelling">Swelling</option>
 									  </select>
 									</div> 
 									<div class="form-group">
 									  <label for="sel1">Miscellaneous:</label>
-									  <select class="form-control" name="miscellaneous">
-									    <option value="1">Blindness</option>
-									    <option value="2">Loss of Peripheral Vision</option>
-									    <option value="3">Dark Spot in Vision</option>
-									    <option value="4">Water Discharge</option>
-									    <option value="5">Normal</option>
+									  <select class="form-control" name="eye_misc">
+									    <option value="Blindness">Blindness</option>
+									    <option value="Loss of Peripheral Vision">Loss of Peripheral Vision</option>
+									    <option value="Dark Spot in Vision">Dark Spot in Vision</option>
+									    <option value="Water Discharge">Water Discharge</option>
+									    <option value="Normal">Normal</option>
 									  </select>
 									</div> 
 								   <div class="form-group">
@@ -234,7 +233,7 @@
 								</div>
 								<div class="form-group">
 									<label for="inp1">Name</label>
-									<input type="text" class="form-control" name="name">
+									<input type="text" class="form-control" name="fullname">
 								</div>
 								<div class="form-group">
 									<label for="inp1">Age</label>
@@ -242,29 +241,29 @@
 								</div>
 									 <div class="form-group">
 									  <label for="sel1">Condition:</label>
-									  <select class="form-control" name="condition">
-									    <option value="1">Pain</option>
-									    <option value="2">Pus Formation</option>
-									    <option value="3">Itching</option>
-									    <option value="4">Water Discharge</option>
-									    <option value="5">Normal</option>
+									  <select class="form-control" name="ear_condition">
+									    <option value="Pain">Pain</option>
+									    <option value="Pus Formation">Pus Formation</option>
+									    <option value="Itching">Itching</option>
+									    <option value="Water Discharge">Water Discharge</option>
+									    <option value="Normal">Normal</option>
 									  </select>
 									</div> 
 									<div class="form-group">
 									  <label for="sel1">Other:</label>
-									  <select class="form-control" name="other">
-									    <option value="1">Buzzing Sounds</option>
-									    <option value="2">Dizziness</option>
-									    <option value="3">Injury</option>
-									    <option value="4">Normal</option>
+									  <select class="form-control" name="ear_other">
+									    <option value="Buzzing Sound">Buzzing Sounds</option>
+									    <option value="Dizziness">Dizziness</option>
+									    <option value="Injury">Injury</option>
+									    <option value="Normal">Normal</option>
 									  </select>
 									</div> 
 									<div class="form-group">
 									  <label for="sel1">Miscellaneous:</label>
-									  <select class="form-control" name="miscellaneous">
-									    <option value="1">Hearing loss</option>
-									    <option value="2">Abnormal Walking</option>
-									    <option value="3">Normal</option>
+									  <select class="form-control" name="ear_misc">
+									    <option value="Hearing loss">Hearing loss</option>
+									    <option value="Abnormal Walking">Abnormal Walking</option>
+									    <option value="Normal">Normal</option>
 									  </select>
 									</div> 
 								   <div class="form-group">
@@ -289,57 +288,38 @@
 								</div>
 								<div class="form-group">
 									<label for="inp1">Name</label>
-									<input type="text" class="form-control" name="name">
+									<input type="text" class="form-control" name="fullname">
 								</div>
 								<div class="form-group">
 									<label for="inp1">Age</label>
 									<input type="text" class="form-control" name="age">
 								</div>
 									 <div class="form-group">
-									  <label for="sel1">Condition:</label>
-									  <select class="form-control" name="condition">
-									    <option value="1">Conscious</option>
-									    <option value="2">Sub Conscious</option>
-									    <option value="3">Normal</option>
+									  <label for="sel1">General Survey:</label>
+									  <select class="form-control" name="general_genito">
+									    <option value="Face Puffiness">Face Puffiness</option>
+									    <option value="Oedema">Oedema</option>
+											<option value="Scabbies">Scabbies</option>
+											<option value="N.A.">Not Available</option>
+									  </select>
+									</div>
+									<div class="form-group">
+									  <label for="sel1">Genito Urinary:</label>
+									  <select class="form-control" name="genito_genito">
+									    <option value="Pain in Testies">Pain in Testies</option>
+									    <option value="Scrotal Oedema">Scrotal Oedema</option>
+											<option value="Pain and Burning in Urination">Pain and Burning in Urination</option>
+											<option value="N.A.">Not Available</option>
+									  </select>
+									</div>
+									<div class="form-group">
+									  <label for="sel1">Other Problem:</label>
+									  <select class="form-control" name="other_genito">
+									    <option value="Fever">Fever</option>
+									    <option value="Tenderness">Tenderness</option>
 									  </select>
 									</div> 
-									<div class="form-group">
-									  <label for="sel1">Behavioral Abnormality:</label>
-									  <select class="form-control" name="behavioral_abnormality">
-									    <option value="1">Speech Deject</option>
-									    <option value="2">Anxiety</option>
-									    <option value="3">Depression</option>
-									  </select>
-									</div> 
-									<div class="form-group">
-									  <label for="sel1">Sensational Abnormality:</label>
-									  <select class="form-control" name="sensational_abnormality">
-									    <option value="1">Abnormal Smell</option>
-									    <option value="2">Visual Abnormality</option>
-									    <option value="3">Deviation of Angle of Mouth</option>
-									    <option value="4">Loss of Taste</option>
-									    <option value="5">Deafness</option>
-									    <option value="6">Hoarseness of Voice</option>
-									    <option value="7">Normal</option>
-									  </select>
-									</div>
-									<div class="form-group">
-									  <label for="sel1">Other:</label>
-									  <select class="form-control" name="other">
-									    <option value="1">Weakness</option>
-									    <option value="2">Pain in Muscle</option>
-									    <option value="3">Swelling of Muscle</option>
-									    <option value="4">Headache</option>
-									    <option value="5">In co-ordination</option>
-									  </select>
-									</div>
-									<div class="form-group">
-									  <label for="sel1">Miscellaneous:</label>
-									  <select class="form-control" name="miscellaneous">
-									    <option value="1">Fever</option>
-									    <option value="2">Pain in Neck</option>
-									  </select>
-									</div>
+									
 								   <div class="form-group">
 									  <label for="comment">Comment:</label>
 									  <textarea class="form-control" rows="5" name="comment"></textarea>
@@ -362,88 +342,57 @@
 								</div>
 								<div class="form-group">
 									<label for="inp1">Name</label>
-									<input type="text" class="form-control" name="name">
+									<input type="text" class="form-control" name="fullname">
 								</div>
 								<div class="form-group">
 									<label for="inp1">Age</label>
 									<input type="text" class="form-control" name="age">
 								</div>
-								  <div class="form-group">
-								    <label for="inp1">Your Current Problem</label>
-								    <input type="text" class="form-control" name="current_problem">
-								  </div>
-								   <div class="form-group">
-									  <label for="sel1">Habit</label>
-									  <select class="form-control" name="habit">
-									    <option value="1">Tobacco Chewing</option>
-									    <option value="2">Alcoholic</option>
-									    <option value="3">Nail Biting</option>
-									    <option value="4">Late Night Sleep</option>
-									    <option value="5">Fast Food Eaters</option>
-									    <option value="6">Smoking</option>
-									  </select>
-									</div> 
-									 <div class="form-group">
-									  <label for="sel1">Habitat:</label>
-									  <select class="form-control" name="habitat">
-									    <option value="1">Hot</option>
-									    <option value="2">Cold</option>
-									    <option value="3">Humid</option>
-									    <option value="4">Dusty</option>
-									    <option value="5">Polluted</option>
-									  </select>
-									</div>
-									<div class="form-group">
-								    <label for="inp1">Accident and type:</label>
-								    <input type="text" class="form-control" name="accident_and_type">
-								  </div>
-									 <div class="form-group">
-									  <label for="sel1">Emotional Status:</label>
-									  <select class="form-control" name="emotional_status">
-									    <option value="1">Happy</option>
-									    <option value="2">Normal</option>
-									    <option value="3">Excited</option>
-									    <option value="4">Depressed</option>
-									  </select>
-									</div>
-									<div class="form-group">
-								    <label for="inp1">Fever:</label>
-								    <input type="text" class="form-control" name="fever">
-								  </div>
-									 <div class="form-group">
-									  <label for="sel1">Pain:</label>
-									  <select class="form-control" name="pain">
-									    <option value="1">Mild</option>
-									    <option value="2">Moderate</option>
-									    <option value="3">Severe</option>
-									    <option value="4">Burning</option>
-									    <option value="5">Pulsating</option>
-									  </select>
-									</div>
-									 <div class="form-group">
-									  <label for="sel1">Site of Problem:</label>
-									  <select class="form-control" name="site_of_problem">
-									    <option value="1">Front Head</option>
-									    <option value="2">Back Head</option>
-									    <option value="3">Left Shoulder</option>
-									    <option value="4">Left Hand Upper</option>
-									    <option value="5">Left Hand Lower</option>
-									    <option value="6">Right Hand Upper</option>
-									    <option value="7">Right Hand Lower</option>
-									    <option value="8">Left Chest</option>
-									    <option value="9">Right Chest</option>
-									    <option value="10">Left Back Chest</option>
-									    <option value="11">Right Back Chest</option>
-									  </select>
-									</div>
-									 <div class="form-group">
-									  <label for="sel1">Vomiting:</label>
-									  <select class="form-control" name="vomiting">
-									    <option value="1">Yes</option>
-									    <option value="2">No</option>
-									    <option value="3">Nausea</option>
-									  </select>
-									</div> 
+								<div class="form-group">
+									<label for="sel1">Condition:</label>
+									<select class="form-control" name="neuro_condition">
+										<option value="Consious">Consious</option>
+										<option value="Sub Consious">Sub Consious</option>
+										<option value="Normal">Normal</option>
+									</select>
+								</div> 
+								<div class="form-group">
+									<label for="behaviour">Behavioral Abnormality:</label>
+									<select class="form-control" name="behaviour">
+										<option value="Speech Deject">Speech Deject</option>
+										<option value="Anxiety">Anxiety</option>
+										<option value="Depression">Depression</option>
+									</select>
+								</div> 
+								<div class="form-group">
+									<label for="sensation_abnormality">Sensational Abnormality:</label>
+									<select class="form-control" name="sensation_abnormality">
+										<option value="Abnormal Smell">Abnormal Smell</option>
+										<option value="Visual Abnormality">Visual Abnormality</option>
+										<option value="Deviation of angle of Mouth">Deviation of Angle of Mouth</option>
+										<option value="Loss of Taste">Loss of Taste</option>
+										<option value="Deafness">Deafness</option>
+										<option value="Hoarseness">Hoarseness of Voice</option>
+										<option value="Normal">Normal</option>
+									</select>
+								</div>
+								<div class="form-group">
+									<label for="sel1">Other:</label>
+									<select class="form-control" name="neuro_other">
+										<option value="Weakness">Weakness</option>
+										<option value="Pain in Muscle">Pain in Muscle</option>
+										<option value="Swelling of Muscle">Swelling of Muscle</option>
+										<option value="Headache">Headache</option>
+										<option value="In co-ordination">In co-ordination</option>
+									</select>
+								</div>
+								<div class="form-group">
+									<label for="sel1">Miscellaneous:</label>
+									<select class="form-control" name="neuro_misc">
+										<option value="Fever">Fever</option>
+										<option value="Pain in Neck">Pain in Neck</option>
+									</select>
+								</div>
 								   <div class="form-group">
 									  <label for="comment">Comment:</label>
 									  <textarea class="form-control" rows="5" name="comment"></textarea>
@@ -459,7 +408,7 @@
 
 
                         <div id="form6" class="desc" style="margin-top:1em;">
-							<h3 class="text-center">Depart 6</h3>
+							<h3 class="text-center">General Department</h3>
 							<form id="Form6">
 								<div class="form-group">
 								<label for="inp1">Title</label>
@@ -467,19 +416,94 @@
 							</div>
 							<div class="form-group">
 								<label for="inp1">Name</label>
-								<input type="text" class="form-control" name="name">
+								<input type="text" class="form-control" name="fullname">
 							</div>
 							<div class="form-group">
 								<label for="inp1">Age</label>
 								<input type="text" class="form-control" name="age">
 							</div>
-								  <div class="form-group">
-									  <label for="comment">Comment:</label>
-									  <textarea class="form-control" rows="5" name="comment"></textarea>
-									</div>
-								  <!-- <div class="checkbox">
-								    <label><input type="checkbox"> Remember me</label>
-								  </div> -->
+							<div class="form-group">
+								<label for="inp1">Current problem : </label>
+								<input type="text" class="form-control" name="problem_string">
+							</div>
+							<div class="form-group">
+								<label for="inp1">Accident and Type:</label>
+								<input type="text" class="form-control" name="accident">
+							</div>
+							<div class="form-group">
+								<label for="sel1">Habit</label>
+								<select class="form-control" name="habit">
+									<option value="Tobacco Chewing">Tobacco Chewing</option>
+									<option value="Alcoholic">Alcoholic</option>
+									<option value="Nail Biting">Nail Biting</option>
+									<option value="Late Night Sleep">Late Night Sleep</option>
+									<option value="Fast Food Eater">Fast Food Eaters</option>
+									<option value="Smoking">Smoking</option>
+								</select>
+							</div> 
+							 <div class="form-group">
+								<label for="sel1">Habitat:</label>
+								<select class="form-control" name="habitat">
+									<option value="Hot">Hot</option>
+									<option value="Cold">Cold</option>
+									<option value="Humid">Humid</option>
+									<option value="Dusty">Dusty</option>
+									<option value="Polluted">Polluted</option>
+								</select>
+							</div>
+							
+							 <div class="form-group">
+								<label for="sel1">Emotional Status:</label>
+								<select class="form-control" name="emotional_status">
+									<option value="Happy">Happy</option>
+									<option value="Normal">Normal</option>
+									<option value="Excited">Excited</option>
+									<option value="Depressed">Depressed</option>
+								</select>
+							</div>
+							<div class="form-group">
+								<label for="inp1">Fever:</label>
+								<input type="text" class="form-control" name="fever">
+							</div>
+							 <div class="form-group">
+								<label for="sel1">Pain:</label>
+								<select class="form-control" name="pain">
+									<option value="Mild">Mild</option>
+									<option value="Moderate">Moderate</option>
+									<option value="Severe">Severe</option>
+									<option value="Burning">Burning</option>
+									<option value="Pulsating">Pulsating</option>
+								</select>
+							</div>
+							 <div class="form-group">
+								<label for="sel1">Site of Problem:</label>
+								<select class="form-control" name="site_of_problem">
+									<option value="Front Head">Front Head</option>
+									<option value="Back Head">Back Head</option>
+									<option value="Left Shoulder">Left Shoulder</option>
+									<option value="Left hand Upper">Left Hand Upper</option>
+									<option value="Left Hand Lower">Left Hand Lower</option>
+									<option value="Right Hand Upper">Right Hand Upper</option>
+									<option value="Right Hand Lower">Right Hand Lower</option>
+									<option value="Left Chest">Left Chest</option>
+									<option value="Right Chest">Right Chest</option>
+									<option value="Left Back Chest">Left Back Chest</option>
+									<option value="Right Back Chest">Right Back Chest</option>
+									<option value="Other">Other</option>
+								</select>
+							</div>
+							 <div class="form-group">
+								<label for="sel1">Vomiting:</label>
+								<select class="form-control" name="vomiting">
+									<option value="Yes">Yes</option>
+									<option value="No">No</option>
+									<option value="Nausea">Nausea</option>
+								</select>
+							</div> 
+								<div class="form-group">
+									<label for="comment">Comment:</label>
+									<textarea class="form-control" rows="5" name="comment"></textarea>
+								</div>
 								  <button type="button" class="btn btn-default" onclick="submitForm()">Submit</button>
 							</form>
 
@@ -590,10 +614,18 @@
 						console.log(z,formData[i].value);
 						fx[z] = formData[i].value;
 					}
+					fx.department = dept;
 					console.log('value', fx);
 					$.post("http://192.168.43.193:3000/api/casesheets/"+patient_gid, fx ,function(res) {
+						if(res==null)
+						{
+							document.write('Request Failed !');
+						}
+						else{
 						console.log(res);
+						sessionStorage.setItem("cid",res._id);
 						window.location.href = "show_doctors.html";
+						}
 					});
 				}
 

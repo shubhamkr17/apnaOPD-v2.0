@@ -1,59 +1,94 @@
-var isRetailer = true;
-var isDoctor = true;
+
+var gid = sessionStorage.getItem("gid");
 function patient_login () {
-    if(gid=isLoggedIn())
+    if(gid !=''|| gid != null)
     {
-        sessionStorage.setItem('patient_gid',"113519856592556213328");
+        sessionStorage.setItem('patient_gid',gid);
         window.location.href="profile_patient.html";
     }
     else
-        login();
+        alert("Please sign in !");
 }
 function retailer_login () {
-    if(gid=isLoggedIn())
+    if(gid)
     {
-        
-        if(isRetailer==true)
-        {
-            sessionStorage.setItem('retailer_gid',gid);
-            window.location.href="profile_retailer.html";
-        }
-        else
-        window.location.href="become_retailer.html";
+        $.get("http://192.168.43.193:3000/api/users/"+gid,function(res){
+
+            if(res.isRetailer == true)
+            {
+                sessionStorage.setItem('retailer_gid',gid);
+                window.location.href="profile_retailer.html";
+            }
+            else
+                window.location.href="become_retailer.html";
+
+        });
     }
     else
-        login();
+        alert("Please sign in !");
 }
 function doctor_login () {
-    if(gid=isLoggedIn())
+    if(gid)
     {
-        if(isDoctor==true)
-        {
-            sessionStorage.setItem('doctor_gid',"113519856592513328");
-            window.location.href="profile_doctor.html";
-        }
-        else
-        window.location.href="become_doctor.html";
+        $.get("http://192.168.43.193:3000/api/users/"+gid,function(res){
+
+            if(res.isDoctor == true)
+            {
+                sessionStorage.setItem('doctor_gid',gid);
+                window.location.href="profile_doctor.html";
+            }
+            else
+                window.location.href="become_doctor.html";
+
+        });
     }
     else
-        login();
+        alert("Please sign in !");
 }
 
 
 
-function isLoggedIn() {
-    //sessionStorage.setItem('gid', '12345');
-    //gid from google 
-    var gid = "1";
-    sessionStorage.setItem('user_image_url',"/files/prescriptions/1/index.jpeg");
-    return gid;
-}
+function onSignIn(googleUser) {
+    // Useful data for your client-side scripts:
+    var profile = googleUser.getBasicProfile();
+    //console.log("ID: " + profile.getId()); // Don't send this directly to your server!
+    //console.log('Full Name: ' + profile.getName());
+    //console.log('Given Name: ' + profile.getGivenName());
+    //console.log('Family Name: ' + profile.getFamilyName());
+    //console.log("Image URL: " + profile.getImageUrl());
+    //console.log("Email: " + profile.getEmail());
+    var user_id = profile.getId();
+    var name = profile.getName();
+    var imageUrl = profile.getImageUrl();
+    var email = profile.getEmail();
+    sessionStorage.setItem("gid",user_id);
 
+    // The ID token you need to pass to your backend:
+    //var id_token = googleUser.getAuthResponse().id_token;
 
+    var user = {
+        name : name,
+        email : email,
+        imageUrl : imageUrl,
+        gid : user_id
+    }
+    $.get("http://192.168.43.193:3000/api/users/"+user_id,function(res){
+        if(!res || res==null)
+        {
+            $.post("http://192.168.43.193:3000/api/users",user,function(res){
+                if(res)
+                {
+                    //console.log(res);
+                    console.log("user registered !");
+                    //alert("you are registered !");
+                }
+                else
+                {
+                    alert("Request Failed!");
+                }
 
-
-function login()
-{
-    alert("Please log in first !");
-    // google login
-}
+            });
+        }
+    });
+    
+  }

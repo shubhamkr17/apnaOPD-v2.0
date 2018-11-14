@@ -9,6 +9,7 @@
 	<meta name="keywords" content="free website templates, free html5, free template, free bootstrap, free website template, html5, css3, mobile first, responsive" />
 	<meta name="author" content="freehtml5.co" />
 
+
   	<!-- Facebook and Twitter integration -->
 	<meta property="og:title" content=""/>
 	<meta property="og:image" content=""/>
@@ -20,6 +21,7 @@
 	<meta name="twitter:url" content="" />
 	<meta name="twitter:card" content="" />
 
+	
 	<!-- <link href="https://fonts.googleapis.com/css?family=Work+Sans:300,400,500,700,800" rel="stylesheet">	 -->
 	<link href="https://fonts.googleapis.com/css?family=Space+Mono" rel="stylesheet">
 	
@@ -45,6 +47,16 @@
 	<!--[if lt IE 9]>
 	<script src="js/respond.min.js"></script>
 	<![endif]-->
+
+	<script>
+		var GID =sessionStorage.getItem("gid");
+		if(GID == null || GID == '' || GID == undefined )
+		{
+			window.location.href = "index.html";
+		}
+	
+	
+	</script>
 
 	<style>
 		#appointmentList::-webkit-scrollbar {
@@ -111,6 +123,41 @@
 			color: #000;
 		}
 	</style>
+	<!-- <script>
+		function signOut() {
+		var auth2 = gapi.auth2.getAuthInstance();
+
+		var profile = auth2.currentUser.get().getBasicProfile();
+			console.log('ID: ' + profile.getId());
+			gid = profile.getId();
+			console.log('Full Name: ' + profile.getName());
+			console.log('Given Name: ' + profile.getGivenName());
+			console.log('Family Name: ' + profile.getFamilyName());
+			console.log('Image URL: ' + profile.getImageUrl());
+			console.log('Email: ' + profile.getEmail());
+
+			auth2.signOut().then(function () {
+				console.log('User signed out.');
+			});
+		}
+
+		function onLoad() {
+		gapi.load('auth2', function() {
+			auth2 = gapi.auth2.init({
+				client_id: '107539492045-0nisvu97nie1525hget5baddnfufbhb8.apps.googleusercontent.com',
+				fetch_basic_profile: true,
+				scope: 'profile'
+			});
+
+			// Sign the user in, and then retrieve their ID.
+				auth2.signIn().then(function() {
+					console.log(auth2.currentUser.get().getId());
+				});
+			});
+
+		}
+	
+	</script> -->
 
 	</head>
 	<body>
@@ -132,7 +179,7 @@
 							<li  class="active"><a onclick="patient_login()" href="#" >Patient</a></li>
 							<li><a onclick="doctor_login()" href="#">Doctor</a></li>
 							<li><a onclick="retailer_login()" href="#">Retailer</a></li>
-							<li class="btn-cta"><a onclick="login()" href="#"><span>Login</span></a></li>
+							
 						</ul>
 					</div>
 				</div>
@@ -350,6 +397,9 @@
 	<!-- Magnific Popup -->
 	<script src="js/jquery.magnific-popup.min.js"></script>
 	<script src="js/magnific-popup-options.js"></script>
+
+	<!-- <script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script> -->
+
 	<!-- Main -->
 	<script src="js/main.js"></script>
 	<script src="js/login_module.js"></script>
@@ -359,6 +409,7 @@
 
 	<script>
 	//console.log("outside");
+	
 		var gid = sessionStorage.getItem('patient_gid');
 		$.ajax({
 		            type        : 'GET', 
