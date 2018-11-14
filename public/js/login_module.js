@@ -1,7 +1,8 @@
 
-var gid = sessionStorage.getItem("gid");
+
 function patient_login () {
-    if(gid !=''|| gid != null)
+    var gid = sessionStorage.getItem("gid");
+    if(gid !='' && gid != null)
     {
         sessionStorage.setItem('patient_gid',gid);
         window.location.href="profile_patient.html";
@@ -10,6 +11,7 @@ function patient_login () {
         alert("Please sign in !");
 }
 function retailer_login () {
+    var gid = sessionStorage.getItem("gid");
     if(gid)
     {
         $.get("http://192.168.43.193:3000/api/users/"+gid,function(res){
@@ -28,6 +30,7 @@ function retailer_login () {
         alert("Please sign in !");
 }
 function doctor_login () {
+    var gid = sessionStorage.getItem("gid");
     if(gid)
     {
         $.get("http://192.168.43.193:3000/api/users/"+gid,function(res){

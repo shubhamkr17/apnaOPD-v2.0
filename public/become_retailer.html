@@ -46,6 +46,8 @@
 	<script src="js/respond.min.js"></script>
 	<![endif]-->
 
+	
+
 	</head>
 	<body>
 		
@@ -73,6 +75,8 @@
 			</div>
 		</div>
 	</nav>
+
+	
 
 
 
@@ -182,17 +186,23 @@
 	<script src="js/main.js"></script>
 	<script src="js/login_module.js"></script>
 
+	
+
 
 	<script>
-
-		var retailer_gid = sessionStorage.getItem('retailer_gid');
+		var ret_email;
+		//var retailer_gid = sessionStorage.getItem('retailer_gid');
+		var gid = sessionStorage.getItem('gid');
+		$.get("http://192.168.43.193:3000/api/users/"+gid,function(res){
+			ret_email = res.email;
+		});
 
 		$("form#retailerForm").submit(function(e) {
 		    e.preventDefault();    
 			console.log("Initiating !");
 			var formData = new FormData(this);
 			console.log("formdata",formData);
-		    formData.append('gid', retailer_gid);
+		    formData.append('gid', gid);
 			//formData.append('address', addr);
 			var link;
 			console.log("uploading !");
@@ -208,8 +218,8 @@
 
 					var retailer = {
 					name : $("#ret_name").val(),
-					email : "abc@example.com",
-					gid : retailer_gid,
+					email : ret_email,
+					gid : gid,
 					becomeRetailer : true,
 					verifyId : $("#ret_id").val(),
 					verifyCerti : link 
@@ -217,8 +227,10 @@
 					
 					console.log(retailer);
 					$.post("http://192.168.43.193:3000/api/becomes",retailer,function(res){
-						console.log("response",res);
-						console.log("Registered !");
+						//console.log("response",res);
+						//console.log("Registered !");
+
+						alert("Request sent !");
 
 					});
 		        },

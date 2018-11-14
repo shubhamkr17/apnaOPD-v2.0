@@ -183,14 +183,19 @@
 	<script src="js/login_module.js"></script>
 
 	<script>
-	var doctor_gid = sessionStorage.getItem('doctor_gid');
+	//var doctor_gid = sessionStorage.getItem('doctor_gid');
+	var doc_email;
+	var gid = sessionStorage.getItem('gid');
+	$.get("http://192.168.43.193:3000/api/users/"+gid,function(res){
+		doc_email = res.email;
+	});
 
 	$("form#doctorForm").submit(function(e) {
 		e.preventDefault();    
 		console.log("Initiating !");
 		var formData = new FormData(this);
 		console.log("formdata",formData);
-		formData.append('gid', doctor_gid);
+		formData.append('gid', gid);
 		//formData.append('address', addr);
 		var link;
 		console.log("uploading !");
@@ -206,8 +211,8 @@
 
 				var doctor = {
 				name : $("#doc_name").val(),
-				email : "abc@example.com",
-				gid : doctor_gid,
+				email : doc_email,
+				gid : gid,
 				becomeDoctor : true,
 				verifyId : $("#doc_id").val(),
 				verifyCerti : link 
@@ -215,8 +220,9 @@
 				
 				console.log(doctor);
 				$.post("http://192.168.43.193:3000/api/becomes",doctor,function(res){
-					console.log("response",res);
-					console.log("Registered !");
+					//console.log("response",res);
+					//console.log("Registered !");
+					alert("Request sent !");
 
 				});
 			},
