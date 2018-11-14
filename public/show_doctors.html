@@ -129,8 +129,126 @@
 								<h3>[[name]]</h3>
 								<p>[[addr]]</p>
 								<p>[[fee]]</p>
+								<div class="row">
+									<div class="col-md-4">
+										<div class="form-group">
+											<label for="day">Select day:</label>
+											<select class="form-control" id="day">
+												<option value="1" selected>monday</option>
+												<option value="2">tuesday</option>
+												<option value="3">wednesday</option>
+												<option value="4">thursday</option>
+												<option value="5">friday</option>
+												<option value="6">saturday</option>
+												<option value="7">sunday</option>
+											</select>
+										</div> 
+									</div>
+									<div class="col-md-4">
+										<div class="form-group">
+											<label for="period">Select period:</label>
+											<select class="form-control" id="period">
+												<option value="1" selected>morning</option>
+												<option value="2">afternoon</option>
+												<option value="3">evening</option>
+												<option value="4">night</option>
+											</select>
+										</div> 
+									</div>
+									<div class="col-md-4">
+										<button class="btn btn-primary" style="margin-top : 35px;" onclick="getTimeSlab(this.id)" id="[[_id]]">Get Time Slab</button>
+									</div>
+								</div>
+
+								<div class="row">
+									<div class="col-md-12">
+										<form id="morning" style="display : none;">
+											<label class="radio-inline">
+												<input type="radio" id="m0" name="select" value="1">6 AM
+											</label>
+											<label class="radio-inline">
+												<input type="radio" id="m1" name="select" value="2">7 AM
+											</label>
+											<label class="radio-inline">
+												<input type="radio" id="m2" name="select" value="3">8 AM
+											</label>
+											<label class="radio-inline">
+												<input type="radio" id="m3" name="select" value="4">9 AM
+											</label>
+											<label class="radio-inline">
+												<input type="radio" id="m4" name="select" value="5">10 AM
+											</label>
+											<label class="radio-inline">
+												<input type="radio" id="m5" name="select" value="6">11 AM
+											</label>
+										</form>
+									
+										<form id="afternoon" style="display: none;">
+											<label class="radio-inline">
+												<input type="radio" id="a0" name="select" value="1">12 PM
+											</label>
+											<label class="radio-inline">
+												<input type="radio" id="a1" name="select" value="2">1 PM
+											</label>
+											<label class="radio-inline">
+												<input type="radio" id="a2" name="select" value="3">2 PM
+											</label>
+											<label class="radio-inline">
+												<input type="radio" id="a3" name="select" value="4">3 PM
+											</label>
+											<label class="radio-inline">
+												<input type="radio" id="a4" name="select" value="5">4 PM
+											</label>
+											<label class="radio-inline">
+												<input type="radio" id="a5" name="select" value="6">5 PM
+											</label>
+										</form>
+						
+										<form id="evening" style="display: none;">
+											<label class="radio-inline">
+												<input type="radio" id="e0" name="select" value="1">6 PM
+											</label>
+											<label class="radio-inline">
+												<input type="radio" id="e1" name="select" value="2">7 PM
+											</label>
+											<label class="radio-inline">
+												<input type="radio" id="e2" name="select" value="3">8 PM
+											</label>
+											<label class="radio-inline">
+												<input type="radio" id="e3" name="select" value="4">9 PM
+											</label>
+											<label class="radio-inline">
+												<input type="radio" id="e4" name="select" value="5">10 PM
+											</label>
+											<label class="radio-inline">
+												<input type="radio" id="e5" name="select" value="6">11 PM
+											</label>
+										</form>
+					
+										<form id="night" style="display: none;">
+											<label class="radio-inline">
+												<input type="radio" id="n0" name="select" value="1">12 AM
+											</label>
+											<label class="radio-inline">
+												<input type="radio" id="n1" name="select" value="2">1 AM
+											</label>
+											<label class="radio-inline">
+												<input type="radio" id="n2" name="select" value="3">2 AM
+											</label>
+											<label class="radio-inline">
+												<input type="radio" id="n3" name="select" value="4">3 AM
+											</label>
+											<label class="radio-inline">
+												<input type="radio" id="n4" name="select" value="5">4 AM
+											</label>
+											<label class="radio-inline">
+												<input type="radio" id="n5" name="select" value="6">5 AM
+											</label>
+										</form>
+									</div>
+								</div>
 								<!-- <p id="doctor_id" hidden="true"></p> -->
-								<button onclick="book_appointment(this.id)" id="[[gid]]" class="btn btn-primary" data-toggle="modal" data-target="#booking_info">Book</button>
+								<button onclick="book_appointment(this.id)" id="[[gid]]" class="btn btn-primary">Book</button>
 							</div>
                         </div>
                         
@@ -242,12 +360,15 @@
 	<script src="js/login_module.js"></script>
 
 	<script src="js/jquery.miranda.min.js"></script>
+	<script src="js/manage_time_slot.js"></script>
 
 
 	<script>
+		
+		$("input[type=radio]").attr("disabled", true);
 		var dept = sessionStorage.getItem('department');
 
-		$(document).ready(function() {
+		$('#booking_info').modal({ show : false });
 
 		        $.ajax({
 		            type        : 'GET', 
@@ -275,7 +396,89 @@
 		        });
 
 		        //event.preventDefault();
-		    });
+			
+			
+
+		function getTimeSlab(id) {
+			$.get("http://192.168.43.193:3000/api/doctors/"+id, function(res) {
+				//get doctor's time slab
+				var slab = ["3110000","3120000","3130000","3210000"];
+				var day = $("#day option:selected").text();
+				var period = $("#period option:selected").text();
+				console.log(period);
+				var decoded_time_slab = select_time_slot(day, period, slab);
+				console.log("Decode",decoded_time_slab);
+				if(period == "morning") {
+					$("#afternoon").hide();
+					$("#morning").show();
+					$("#evening").hide();
+					$("#night").hide();
+					for(i=0;i<decoded_time_slab.length;i++)
+					{
+						if(decoded_time_slab[i]==1)
+						{
+							$("#m"+i).attr("disabled", false);
+						}
+						else
+						{
+							$("#m"+i).attr("disabled", true);
+						}
+					}
+				}
+				else if(period == "afternoon") {
+					$("#afternoon").show();
+					$("#morning").hide();
+					$("#evening").hide();
+					$("#night").hide();
+					for(i=0;i<decoded_time_slab.length;i++)
+					{
+						if(decoded_time_slab[i]==1)
+						{
+							$("#a"+i).attr("disabled", false);
+						}
+						else
+						{
+							$("#a"+i).attr("disabled", true);
+						}
+					}
+				}
+				else if(period == "evening") {
+					$("#afternoon").hide();
+					$("#morning").hide();
+					$("#evening").show();
+					$("#night").hide();
+					for(i=0;i<decoded_time_slab.length;i++)
+					{
+						if(decoded_time_slab[i]==1)
+						{
+							$("#e"+i).attr("disabled", false);
+						}
+						else{
+							$("#e"+i).attr("disabled", true);
+						}
+					}
+				}
+				else if(period == "night") {
+					$("#afternoon").hide();
+					$("#morning").hide();
+					$("#evening").hide();
+					$("#night").show();
+					for(i=0;i<decoded_time_slab.length;i++)
+					{
+						if(decoded_time_slab[i]==1)
+						{
+							$("#n"+i).attr("disabled", false);
+						}
+						else
+						{
+							$("#n"+i).attr("disabled", true);
+						}
+					}
+				}
+			});
+			
+		}
+		
 
 		function book_appointment(selected_docid) {
 			//alert("Appointment booked!");
@@ -287,6 +490,10 @@
 				doctor_gid : selected_docid,
 				time_slab : "1100110"
 			}
+
+			var selected_radio = $("input[name=select]:checked").val();
+			console.log("radio", selected_radio);
+			if(selected_radio!=undefined) {
 			console.log(formData);
 
 			$.ajax({
@@ -297,11 +504,16 @@
 		            encode      : true
 		        })
 		        .done(function(data) {
-		        	console.log(data);
+					console.log(data);
+					$('#booking_info').modal('show');
  					$("#m_body").mirandajs(data);
 
-		        });
+				});
 			//window.location.href = "profile_patient.html";
+			}
+			else {
+				alert("Please select a time slab!!!");
+			}
 		}
 	</script>
 	</body>

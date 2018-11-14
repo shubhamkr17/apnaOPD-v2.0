@@ -46,6 +46,19 @@
 	<script src="js/respond.min.js"></script>
 	<![endif]-->
 
+		<style>
+			select {
+				display:inline;
+				cursor:pointer;
+			}
+			.meal-time {
+				display:inline-block;
+			} 
+			form {
+				display:inline-block;
+			}
+		</style>
+
 	</head>
 	<body>
 		
@@ -91,12 +104,252 @@
 					</div>
 					<div class="col-md-10 nopadding animate-box">
 						<div class="desc" style="margin-top:1em;">
-							<h3>John Doe</h3>
-							<p>Quos quia provident consequuntur culpa facere ratione maxime commodi voluptates 
-                                id repellat velit eaque aspernatur expedita. Possimus itaque adipisci.</p>
+							
 
 
-                            <a href="patient_detail.html"><button class="btn btn-primary">Give prescription</button></a>
+								<div id="casesheet" style="margin-top: 8em;">
+										<h3 class="text-center lead">Casesheet</h3>
+										<table id="dept1" class="table table-hover" style="display: none;">
+											<tbody>
+											  <tr>
+												<td>Title</td>
+												<td>[[title]]</td>
+											  </tr>
+											  <tr>
+												<td>Name</td>
+												<td>[[full_name]]</td>
+											  </tr>
+											  <tr>
+												<td>Age</td>
+												<td>[[age]]</td>
+											  </tr>
+											  <tr>
+												<td>Pulse</td>
+												<td>[[pulse]]</td>
+											  </tr>
+											  <tr>
+												<td>Rhythm</td>
+												<td>[[rhythm]]</td>
+											  </tr>
+											  <tr>
+												<td>Neck Veins</td>
+												<td>[[neck_veins]]</td>
+											  </tr>
+											  <tr>
+												<td>Chest Pain</td>
+												<td>[[chest_pain]]</td>
+											  </tr>
+											  <tr>
+												<td>Respiration</td>
+												<td>[[respiration]]</td>
+											  </tr>
+											  <tr>
+												<td>Bleeding</td>
+												<td>[[bleeding]]</td>
+											  </tr>
+											  <tr>
+												<td>Condition</td>
+												<td>[[condition]]</td>
+											  </tr>
+											  <tr>
+												<td>Comment</td>
+												<td>[[comment]]</td>
+											  </tr>
+											</tbody>
+										  </table>
+			
+										  <table id="dept2" class="table table-hover" style="display: none;">
+											<tbody>
+											  <tr>
+												<td>Title</td>
+												<td>[[title]]</td>
+											  </tr>
+											  <tr>
+												<td>Name</td>
+												<td>[[full_name]]</td>
+											  </tr>
+											  <tr>
+												<td>Age</td>
+												<td>[[age]]</td>
+											  </tr>
+											  <tr>
+												<td>Condition</td>
+												<td>[[condition]]</td>
+											  </tr>
+											  <tr>
+												<td>Other</td>
+												<td>[[other]]</td>
+											  </tr>
+											  <tr>
+												<td>Miscellaneous</td>
+												<td>[[miscellaneous]]</td>
+											  </tr>
+											  <tr>
+												<td>Comment</td>
+												<td>[[comment]]</td>
+											  </tr>
+											</tbody>
+										  </table>
+			
+			
+										  <table id="dept3" class="table table-hover" style="display: none;">
+											<tbody>
+											  <tr>
+												<td>Title</td>
+												<td>[[title]]</td>
+											  </tr>
+											  <tr>
+												<td>Name</td>
+												<td>[[full_name]]</td>
+											  </tr>
+											  <tr>
+												<td>Age</td>
+												<td>[[age]]</td>
+											  </tr>
+											  <tr>
+												<td>Condition</td>
+												<td>[[condition]]</td>
+											  </tr>
+											  <tr>
+												<td>Other</td>
+												<td>[[other]]</td>
+											  </tr>
+											  <tr>
+												<td>Miscellaneous</td>
+												<td>[[miscellaneous]]</td>
+											  </tr>
+											 
+											  <tr>
+												<td>Comment</td>
+												<td>[[comment]]</td>
+											  </tr>
+											</tbody>
+			
+										  </table>
+			
+										  <table id="dept4" class="table table-hover" style="display: none;">
+											<tbody>
+											  <tr>
+												<td>Title</td>
+												<td>[[title]]</td>
+											  </tr>
+											  <tr>
+												<td>Name</td>
+												<td>[[full_name]]</td>
+											  </tr>
+											  <tr>
+												<td>Age</td>
+												<td>[[age]]</td>
+											  </tr>
+											  <tr>
+												<td>Condition</td>
+												<td>[[condition]]</td>
+											  </tr>
+											  <tr>
+												<td>Behavioral Abnormality</td>
+												<td>[[behavioral_abnormality]]</td>
+											  </tr>
+											  <tr>
+												<td>Sensational Abnormality</td>
+												<td>[[sensational_abnormality]]</td>
+											  </tr>
+											  <tr>
+												<td>Other</td>
+												<td>[[other]]</td>
+											  </tr>
+											  <tr>
+												<td>Miscellaneous</td>
+												<td>[[miscellaneous]]</td>
+											  </tr>
+											 
+											  <tr>
+												<td>Comment</td>
+												<td>[[comment]]</td>
+											  </tr>
+											</tbody>
+										  </table>
+			
+										  <table id="dept5" class="table table-hover" style="display: none;">
+											<tbody>
+											  <tr>
+												<td>Title</td>
+												<td>[[title]]</td>
+											  </tr>
+											  <tr>
+												<td>Name</td>
+												<td>[[full_name]]</td>
+											  </tr>
+											  <tr>
+												<td>Age</td>
+												<td>[[age]]</td>
+											  </tr>
+											  <tr>
+												<td>Current Problem</td>
+												<td>[[current_problem]]</td>
+											  </tr>
+											  <tr>
+												<td>Habit</td>
+												<td>[[habit]]</td>
+											  </tr>
+											  <tr>
+												<td>Habitat</td>
+												<td>[[habitat]]</td>
+											  </tr>
+											  <tr>
+												<td>Accident and Type</td>
+												<td>[[accident_and_type]]</td>
+											  </tr>
+											  <tr>
+												<td>Emotional Status</td>
+												<td>[[emotional_status]]</td>
+											  </tr>
+											  <tr>
+												<td>Fever</td>
+												<td>[[fever]]</td>
+											  </tr>
+											  <tr>
+												<td>Pain</td>
+												<td>[[pain]]</td>
+											  </tr>
+											  <tr>
+												<td>Site of Problem</td>
+												<td>[[site_of_problem]]</td>
+											  </tr>
+											  <tr>
+												<td>Vomiting</td>
+												<td>[[vomiting]]</td>
+											  </tr>
+											  <tr>
+												<td>Comment</td>
+												<td>[[comment]]</td>
+											  </tr>
+											</tbody>
+										  </table>
+			
+										  <table id="dept6" class="table table-hover" style="display: none;">
+											<tbody>
+											  <tr>
+												<td>Title</td>
+												<td>[[title]]</td>
+											  </tr>
+											  <tr>
+												<td>Name</td>
+												<td>[[full_name]]</td>
+											  </tr>
+											  <tr>
+												<td>Age</td>
+												<td>[[age]]</td>
+											  </tr>
+											  <tr>
+												<td>Comment</td>
+												<td>[[comment]]</td>
+											  </tr>
+											</tbody>
+										  </table>
+									</div>
+
+
+                            <button class="btn btn-primary" onclick="showPrescriptionForm()">Give prescription</button>
                             <a href="patient_detail.html"><button class="btn btn-primary" style="float: right">DIAGNOSED</button></a>
                         </div>
                         
@@ -115,7 +368,51 @@
 	</div>
 
 
+	<!-- Prescription Box -->
 
+	<div id="prescriptionBox" class="container" style="display: none;">
+			<div class="text-center" style="margin-top: 30px;"><p class="lead">Fill Prescription Details :</p></div>
+	
+	
+			<div class="multi-field-wrapper">
+				<div class="multi-fields">
+					<div class="multi-field" style="margin-bottom: 15px;">
+						<input class="form-control" type="text" placeholder="Medicine Name" name="drug_name" style="display: inline; width: 30%;">
+						<input class="form-control" type="text" placeholder="Dosage/Day" name="dosage" style="display: inline; width: 30%;">
+						<input class="form-control" type="text" placeholder="Days" name="duration" style="display: inline; width: 30%;">
+						<div class="col-md-3">
+								<div class="form-group">
+									<label for="medicine_type">Select type:</label>
+									<select class="form-control" id="medicine_type">
+										<option selected>Tablet</option>
+										<option value="Syrup">Syrup</option>
+										<option value="Powder">Powder</option>
+										<option value="Capsule">Capsule</option>
+										<option value="Injection">Injection</option>
+									</select>
+								</div>
+						</div>
+						<form class="meal-time">
+							<div class="form-group">
+								<label for="boa">Select :</label>
+								<select class="form-control" id="boa">
+									<option value="0">Before meal</option>
+									<option value="1">After meal</option>
+								</select>
+							</div>
+						</form> 
+						<button class="remove-field" type="button" style="margin-top: 4px; width: 5%;">-</button>
+					</div>
+				</div>
+				<button type="button" class="add-field">+</button>
+				<div class="form-group">
+					<label for="comment" style="display : block">Comment:</label>
+					<textarea rows="5" cols="50" name="comment" id="comment"></textarea>
+				</div>
+				<button type="button" class="btn btn-lg btn-primary pull-right" onclick="sendPrescription()">OK</button>
+			</div>
+	
+		</div>
 
 
 
@@ -190,7 +487,16 @@
 
 	<script>
 		var show_pid = sessionStorage.getItem('show_pid');
-
+		var doctor_gid = sessionStorage.getItem('doctor_gid');
+		var dept=4;
+		var doc_name="Suraj Khanna";
+		var casesheet_uid = "123456";
+		$.get("http://192.168.43.193:3000/api/doctors/" + doctor_gid, function(res){
+			// dept = res.department;
+			// doc_name = res.name;
+			console.log(dept);
+		});
+		$("#dept"+dept).show();
 		$.ajax({
 		            type        : 'GET', 
 		            url         : 'http://192.168.43.193:3000/api/casesheets/'+show_pid,
@@ -199,10 +505,81 @@
 		            //encode      : true
 		        })
 		        .done(function(data) {
-		        	console.log(data);
+					console.log(data);
+					//casesheet_uid = data._id;
+					//$("#dept"+dept).show();
 		        	//$('#visitorList').mirandajs(data);
 		        	
-		        });
+				});
+		
+		function showPrescriptionForm(){
+			$("#prescriptionBox").slideDown("slow");
+		}
+
+		$(function() {
+            $('.multi-field-wrapper').each(function() {
+                var $wrapper = $('.multi-fields', this);
+                $(".add-field", $(this)).click(function(e) {
+                    $('.multi-field:first-child', $wrapper).clone(true).appendTo($wrapper).find('input').val('');
+
+                });
+                $('.multi-field .remove-field', $wrapper).click(function() {
+                    if ($('.multi-field', $wrapper).length > 1)
+                        $(this).parent('.multi-field').remove();
+                });
+            });
+		});
+		
+		function sendPrescription() {
+			var nameList = $('.multi-field input[name=drug_name]');
+			var dosageList = $('.multi-field input[name=dosage]');
+			var durationList = $('.multi-field input[name=duration]');
+			var typeList = $('.multi-field #medicine_type :selected');
+			var boaList = $('.multi-field #boa :selected');
+			// console.log("type", typeList);
+			// console.log("boa", boaList);
+			var prescriptionArray=new Array();
+			for(var i = 0; i < nameList.length; i++) {
+				var obj = {
+					'types' : typeList[i].value,
+					'medicine_name' : nameList[i].value,
+					'dosage_per' : dosageList[i].value,
+					'dosage_day' : durationList[i].value,
+					'before_after_meal' : boaList[i].value
+				};
+				prescriptionArray.push(obj);
+			}
+			
+			var comment = $("#comment").val();
+			var prescription = {
+				patient_gid : show_pid,
+				casesheet_uid : casesheet_uid,
+				doctor_gid :doctor_gid,
+				doctor_name : doc_name,
+				medicines : prescriptionArray,
+				comment : comment
+			};
+
+			console.log("prescription", prescription);
+			// $.post("http://192.168.43.193:3000/api/eprescriptions", prescription, function(res){
+			// 	console.log(res);
+			// });
+			$.ajax({
+		            type        : 'POST', 
+		            url         : 'http://192.168.43.193:3000/api/eprescriptions',
+					contentType : 'application/json',
+					data        : JSON.stringify(prescription),
+		            dataType    : 'json',
+		            encode      : true
+		        })
+		        .done(function(data) {
+					console.log(data);
+					//casesheet_uid = data._id;
+					//$("#dept"+dept).show();
+		        	//$('#visitorList').mirandajs(data);
+		        	
+				});
+		}
 	</script>
 
 	</body>

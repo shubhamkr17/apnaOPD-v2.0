@@ -81,7 +81,7 @@
 		<div class="container">
 			<div class="row animate-box">
 				<div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
-					<h2>Provide details to become doctor</h2>
+					<h2>Provide details to register as a doctor</h2>
 					<!-- <p>Dignissimos asperiores vitae velit veniam totam fuga molestias accusamus alias autem provident. Odit ab aliquam dolor eius.</p> -->
 				</div>
 			</div>
@@ -91,29 +91,21 @@
 					</div>
 					<div class="col-md-10 nopadding animate-box">
 						<div class="desc" style="margin-top:1em;">
-                            <form>
-                                <div class="form-group">
-                                <label for="inp1">input 1:</label>
-                                <input type="text" class="form-control" id="inp1">
-                                </div>
-                                <div class="form-group">
-                                <label for="inp1">input 1:</label>
-                                <input type="text" class="form-control" id="inp1">
-                                </div>
-                                <div class="form-group">
-                                <label for="inp1">input 1:</label>
-                                <input type="text" class="form-control" id="inp1">
-                                </div>
-                                <div class="form-group">
-                                <label for="inp1">input 1:</label>
-                                <input type="text" class="form-control" id="inp1">
-                                </div>
-                                <div class="form-group">
-                                <label for="inp2">input 2:</label>
-                                <input type="text" class="form-control" id="inp2">
-                                </div>
-                                <button type="submit" class="btn btn-default">Submit</button>
-                            </form>
+							<form id="doctorForm" method="post" enctype="multipart/form-data">
+								<div class="form-group">
+								<label for="ret_name">Name:</label>
+								<input type="text" class="form-control" id="doc_name">
+								</div>
+								<div class="form-group">
+								<label for="ret_id">Verify Id:</label>
+								<input type="text" class="form-control" id="doc_id">
+								</div>
+								<div class="form-group">
+									<label for="uploadCertificate">Upload your certificate:</label>
+									<input class="form-control" type="file" name="certificate" id="uploadCertificate">
+								</div>
+								<button type="submit" class="btn btn-default">Submit</button>
+							</form>
 
 						</div>
 					</div>
@@ -190,6 +182,56 @@
 	<!-- Main -->
 	<script src="js/main.js"></script>
 	<script src="js/login_module.js"></script>
+
+	<script>
+	var doctor_gid = sessionStorage.getItem('doctor_gid');
+
+	$("form#doctorForm").submit(function(e) {
+		e.preventDefault();    
+		console.log("Initiating !");
+		var formData = new FormData(this);
+		console.log("formdata",formData);
+		formData.append('gid', doctor_gid);
+		//formData.append('address', addr);
+		var link;
+		console.log("uploading !");
+		$.ajax({
+			url: "http://192.168.43.193:3000/api/uploadCerti",
+			type: 'POST',
+			data: formData,
+			success: function (data) {
+				console.log("uploaded", data);
+				link = data;
+
+				console.log("Registering doctor !");
+
+				var doctor = {
+				name : $("#doc_name").val(),
+				email : "abc@example.com",
+				gid : doctor_gid,
+				becomeDoctor : true,
+				verifyId : $("#doc_id").val(),
+				verifyCerti : link 
+				}
+				
+				console.log(doctor);
+				$.post("http://192.168.43.193:3000/api/becomes",doctor,function(res){
+					console.log("response",res);
+					console.log("Registered !");
+
+				});
+			},
+			cache: false,
+			contentType: false,
+			processData: false
+		});
+
+		
+	});
+	
+	
+	
+	</script>
 
 	</body>
 </html>

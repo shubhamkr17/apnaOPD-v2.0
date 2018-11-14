@@ -237,7 +237,129 @@
 			</div>
 			<div class="row">
 				<div class="member">
-					
+					<div class="row">
+						<div class="form-group">
+							<label for="days">Select day:</label>
+							<select class="form-control" id="days" onchange="timeUpdate(this.value)">
+								<option value="1" selected>Monday</option>
+								<option value="2">Tuesday</option>
+								<option value="3">Wednesday</option>
+								<option value="4">Thursday</option>
+								<option value="5">Friday</option>
+								<option value="6">Saturday</option>
+								<option value="7">Sunday</option>
+							</select>
+						</div> 
+					</div>
+					<div class="row" style="margin-top : 30px">
+						<div class="col-md-2">
+							<h4>Morning : </h4>
+						</div>
+						<div class="col-md-10">
+							<form id="morning">
+								<label class="checkbox-inline">
+									<input type="checkbox" id="m0" name="m0" value="1">6:00 AM
+								</label>
+								<label class="checkbox-inline">
+									<input type="checkbox" id="m1" name="m1" value="2">7:00 AM
+								</label>
+								<label class="checkbox-inline">
+									<input type="checkbox" id="m2" name="m2" value="3">8:00 AM
+								</label>
+								<label class="checkbox-inline">
+									<input type="checkbox" id="m3" name="m3" value="4">9:00 AM
+								</label>
+								<label class="checkbox-inline">
+									<input type="checkbox" id="m4" name="m4" value="5">10:00 AM
+								</label>
+								<label class="checkbox-inline">
+									<input type="checkbox" id="m5" name="m5" value="6">11:00 AM
+								</label>
+							</form>
+						</div>
+					</div>
+					<div class="row" style="margin-top : 30px">
+						<div class="col-md-2">
+							<h4>Afternoon : </h4>
+						</div>
+						<div class="col-md-10">
+							<form id="afternoon">
+								<label class="checkbox-inline">
+									<input type="checkbox" id="a0" value="1">12:00 PM
+								</label>
+								<label class="checkbox-inline">
+									<input type="checkbox" id="a1" value="2">1:00 PM
+								</label>
+								<label class="checkbox-inline">
+									<input type="checkbox" id="a2" value="3">2:00 PM
+								</label>
+								<label class="checkbox-inline">
+									<input type="checkbox" id="a3" value="4">3:00 PM
+								</label>
+								<label class="checkbox-inline">
+									<input type="checkbox" id="a4" value="5">4:00 PM
+								</label>
+								<label class="checkbox-inline">
+									<input type="checkbox" id="a5" value="6">5:00 PM
+								</label>
+							</form>
+						</div>
+					</div>
+					<div class="row" style="margin-top : 30px">
+							<div class="col-md-2">
+									<h4>Evening : </h4>
+								</div>
+								<div class="col-md-10">
+									<form id="evening">
+										<label class="checkbox-inline">
+											<input type="checkbox" id="e0" value="1">6:00 PM
+										</label>
+										<label class="checkbox-inline">
+											<input type="checkbox" id="e1" value="2">7:00 PM
+										</label>
+										<label class="checkbox-inline">
+											<input type="checkbox" id="e2" value="3">8:00 PM
+										</label>
+										<label class="checkbox-inline">
+											<input type="checkbox" id="e3" value="4">9:00 PM
+										</label>
+										<label class="checkbox-inline">
+											<input type="checkbox" id="e4" value="5">10:00 PM
+										</label>
+										<label class="checkbox-inline">
+											<input type="checkbox" id="e5" value="6">11:00 PM
+										</label>
+									</form>
+								</div>
+					</div>
+					<div class="row" style="margin-top : 30px">
+							<div class="col-md-2">
+									<h4>Night : </h4>
+								</div>
+								<div class="col-md-10">
+									<form id="night">
+										<label class="checkbox-inline">
+											<input type="checkbox" id="n0" value="1">12:00 AM
+										</label>
+										<label class="checkbox-inline">
+											<input type="checkbox" id="n1" value="2">1:00 AM
+										</label>
+										<label class="checkbox-inline">
+											<input type="checkbox" id="n2" value="3">2:00 AM
+										</label>
+										<label class="checkbox-inline">
+											<input type="checkbox" id="n3" value="4">3:00 AM
+										</label>
+										<label class="checkbox-inline">
+											<input type="checkbox" id="n4" value="5">4:00 AM
+										</label>
+										<label class="checkbox-inline">
+											<input type="checkbox" id="n5"value="6">5:00 AM
+										</label>
+									</form>
+								</div>
+					</div>
+					<!-- <div class="text-right"><button class="btn btn-primary" onclick="updateTime()">Update Time </button></div> -->
 				</div>
 				
 				
@@ -322,6 +444,7 @@
 
 	<script src="js/jquery.miranda.min.js"></script>
 	<script src="js/enc_dec_time.js"></script>
+	<script src="js/manage_time_slot.js"></script>
 
 
 <script>
@@ -333,13 +456,14 @@ $.ajax({
         url         : 'http://192.168.43.193:3000/api/appointments/doctor/visiting/'+docid
     })
     .done(function(data) {
-    	console.log(data);
+    	
 		for(i=0;i<data.length;i++)
 		{
 			
 			data[i].visitingTime = get_time(data[i].time_slab);
-			console.log(i,data[i]);
+			//console.log(i,data[i]);
 		}
+		console.log('visitor list', data);
     	$('#visitorList').mirandajs(data);
     	
 });
@@ -357,10 +481,209 @@ $.ajax({
     //encode      : true
 })
 .done(function(data) {
-	console.log(data);
+	//console.log(data);
 	$('#historyList').mirandajs(data);
 	
 });
+
+//var decoded_time;
+
+timeUpdate($("#days").val());
+
+function timeUpdate(selected_day) {
+	//console.log("day", selected_day);
+	var time_slab;
+	$.get("http://192.168.43.193:3000/api/doctors/" + docid , function(res){
+	//console.log("doctor", res);
+	time_slab = res.time_slab;
+	});
+	var timeSlab = ["1110000","1220000","2220000","2230000"];
+	var decoded_time = get_time_slot(timeSlab);
+	if(selected_day == 1) {
+		for(i=0;i<6;i++)
+		{
+			$("#m"+i).prop('checked',parseInt(decoded_time.monday.morning[i]));
+		}
+		for(i=0;i<6;i++)
+		{
+			$("#a"+i).prop('checked',parseInt(decoded_time.monday.afternoon[i]));
+		}
+		for(i=0;i<6;i++)
+		{
+			$("#e"+i).prop('checked',parseInt(decoded_time.monday.evening[i]));
+		}
+		for(i=0;i<6;i++)
+		{
+			$("#n"+i).prop('checked',parseInt(decoded_time.monday.night[i]));
+		}
+	}
+	else if(selected_day == 2) {
+		for(i=0;i<6;i++)
+		{
+			$("#m"+i).prop('checked',parseInt(decoded_time.tuesday.morning[i]));
+		}
+		for(i=0;i<6;i++)
+		{
+			$("#a"+i).prop('checked',parseInt(decoded_time.tuesday.afternoon[i]));
+		}
+		for(i=0;i<6;i++)
+		{
+			$("#e"+i).prop('checked',parseInt(decoded_time.tuesday.evening[i]));
+		}
+		for(i=0;i<6;i++)
+		{
+			$("#n"+i).prop('checked',parseInt(decoded_time.tuesday.night[i]));
+		}
+	}
+	else if(selected_day == 3) {
+		for(i=0;i<6;i++)
+		{
+			$("#m"+i).prop('checked',parseInt(decoded_time.wednesday.morning[i]));
+		}
+		for(i=0;i<6;i++)
+		{
+			$("#a"+i).prop('checked',parseInt(decoded_time.wednesday.afternoon[i]));
+		}
+		for(i=0;i<6;i++)
+		{
+			$("#e"+i).prop('checked',parseInt(decoded_time.wednesday.evening[i]));
+		}
+		for(i=0;i<6;i++)
+		{
+			$("#n"+i).prop('checked',parseInt(decoded_time.wednesday.night[i]));
+		}
+	}
+	else if(selected_day == 4) {
+		for(i=0;i<6;i++)
+		{
+			$("#m"+i).prop('checked',parseInt(decoded_time.thursday.morning[i]));
+		}
+		for(i=0;i<6;i++)
+		{
+			$("#a"+i).prop('checked',parseInt(decoded_time.thursday.afternoon[i]));
+		}
+		for(i=0;i<6;i++)
+		{
+			$("#e"+i).prop('checked',parseInt(decoded_time.thursday.evening[i]));
+		}
+		for(i=0;i<6;i++)
+		{
+			$("#n"+i).prop('checked',parseInt(decoded_time.thursday.night[i]));
+		}
+	}
+	else if(selected_day == 5) {
+		for(i=0;i<6;i++)
+		{
+			$("#m"+i).prop('checked',parseInt(decoded_time.friday.morning[i]));
+		}
+		for(i=0;i<6;i++)
+		{
+			$("#a"+i).prop('checked',parseInt(decoded_time.friday.afternoon[i]));
+		}
+		for(i=0;i<6;i++)
+		{
+			$("#e"+i).prop('checked',parseInt(decoded_time.friday.evening[i]));
+		}
+		for(i=0;i<6;i++)
+		{
+			$("#n"+i).prop('checked',parseInt(decoded_time.friday.night[i]));
+		}
+	}
+	else if(selected_day == 6) {
+		for(i=0;i<6;i++)
+		{
+			$("#m"+i).prop('checked',parseInt(decoded_time.saturday.morning[i]));
+		}
+		for(i=0;i<6;i++)
+		{
+			$("#a"+i).prop('checked',parseInt(decoded_time.saturday.afternoon[i]));
+		}
+		for(i=0;i<6;i++)
+		{
+			$("#e"+i).prop('checked',parseInt(decoded_time.saturday.evening[i]));
+		}
+		for(i=0;i<6;i++)
+		{
+			$("#n"+i).prop('checked',parseInt(decoded_time.saturday.night[i]));
+		}
+	}
+	else if(selected_day == 7) {
+		for(i=0;i<6;i++)
+		{
+			$("#m"+i).prop('checked',parseInt(decoded_time.sunday.morning[i]));
+		}
+		for(i=0;i<6;i++)
+		{
+			$("#a"+i).prop('checked',parseInt(decoded_time.sunday.afternoon[i]));
+		}
+		for(i=0;i<6;i++)
+		{
+			$("#e"+i).prop('checked',parseInt(decoded_time.sunday.evening[i]));
+		}
+		for(i=0;i<6;i++)
+		{
+			$("#n"+i).prop('checked',parseInt(decoded_time.sunday.night[i]));
+		}
+	}
+}
+
+function updateTime() {
+	var time_slab = [];
+	var day = $("#days").val();
+	var morning = "1", afternoon = "2", evening = "3", night = "4";
+	var val_morning = $("#morning").serializeArray();
+	console.log(val_morning);
+	var x
+	var index=0;
+	for(i=0;i<6;i++)
+	{
+		x=day+morning;
+		if($("#m"+i+":checked"))
+		{
+			x+=$("#m"+i).val();
+			//console.log(i,$("#m"+i).val());
+			time_slab[index].push(x);
+		}
+		
+	}
+	index++;
+	for(i=0;i<6;i++)
+	{
+		x=day+afternoon;
+		if($("#a"+i+":checked"))
+		{
+			x+=$("#a"+i).val();
+			//console.log(i,$("#a"+i).val());
+			time_slab[index].push(x);
+		}
+		
+	}
+	index++;
+	for(i=0;i<6;i++)
+	{
+		x=day+evening;
+		if($("#e"+i+":checked"))
+		{
+			x+=$("#e"+i).val();
+			//console.log(i,$("#e"+i).val());
+			time_slab[index].push(x);
+		}
+		
+	}
+	index++;
+	for(i=0;i<6;i++)
+	{
+		x=day+night;
+		if($("#n"+i+":checked"))
+		{
+			x+=$("#n"+i).val();
+			//console.log(i,$("#n"+i).val());
+			time_slab[index].push(x);
+		}
+		
+	}
+	console.log(time_slab);
+}
 
 </script>
 </body>

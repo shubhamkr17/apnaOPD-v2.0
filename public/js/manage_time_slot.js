@@ -1,4 +1,10 @@
-var slot = ["1110000","1230000"];
+function select_time_slot(day,period,slot)
+{
+    var timeSlot = get_time_slot(slot);
+    var x = timeSlot[day];
+    return x[period];
+}
+
 
 function get_time_slot(slot)
 {
@@ -185,7 +191,12 @@ function get_time_slot(slot)
         }
             
     }
-console.log(timeSlot);
+//console.log(timeSlot);
 
 return timeSlot;
 }
+
+
+
+
+
