@@ -102,7 +102,7 @@
 						<div id="demandDetailList" class="desc" style="margin-top:1em; margin-top:0;padding:1em; width:100%;">
 							<div class="row">
 								<div class="col-md-12">
-									<img class="img-responsive" src="http://192.168.43.193:3000[[photo_prescription_link]]">
+									<img class="img-responsive" src="http://13.229.113.41:3000[[photo_prescription_link]]">
 								</div>
 							</div>
 							<div class="row" style="border: 1px solid #ccc;padding: 10px; margin: 30px;">
@@ -288,7 +288,7 @@
 	        console.log(offers);
 	        $.ajax({
 		            type        : 'PUT', 
-		            url         : 'http://192.168.43.193:3000/api/orders/'+did,
+		            url         : 'http://13.229.113.41:3000/api/orders/'+did,
 		            contentType : "application/json",
 		            data        : JSON.stringify(offers),
 		            dataType    : 'json',
@@ -307,7 +307,7 @@
 		function deleteOffer(){
 			$.ajax({
 		            type        : 'DELETE', 
-		            url         : 'http://192.168.43.193:3000/api/retailers/orders/'+ret_gid+"/"+did
+		            url         : 'http://13.229.113.41:3000/api/retailers/orders/'+ret_gid+"/"+did
 		        })
 		        .done(function(data) {
 
@@ -321,7 +321,7 @@
 		$.ajax({
 
 		        type        : 'GET', 
-		        url         : 'http://192.168.43.193:3000/api/orders/'+did,
+		        url         : 'http://13.229.113.41:3000/api/orders/'+did,
 		    })
 		    .done(function(data) {
 		    	console.log(data);
@@ -329,7 +329,7 @@
 				$.ajax({
 
 				type        : 'GET', 
-				url         : 'http://192.168.43.193:3000/api/users/'+data.patient_gid,
+				url         : 'http://13.229.113.41:3000/api/users/'+data.patient_gid,
 				})
 				.done(function(data) {
 					console.log(data);

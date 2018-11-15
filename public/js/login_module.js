@@ -14,7 +14,7 @@ function retailer_login () {
     var gid = sessionStorage.getItem("gid");
     if(gid)
     {
-        $.get("http://192.168.43.193:3000/api/users/"+gid,function(res){
+        $.get("http://13.229.113.41:3000/api/users/"+gid,function(res){
 
             if(res.isRetailer == true)
             {
@@ -33,7 +33,7 @@ function doctor_login () {
     var gid = sessionStorage.getItem("gid");
     if(gid)
     {
-        $.get("http://192.168.43.193:3000/api/users/"+gid,function(res){
+        $.get("http://13.229.113.41:3000/api/users/"+gid,function(res){
 
             if(res.isDoctor == true)
             {
@@ -75,10 +75,10 @@ function onSignIn(googleUser) {
         imageUrl : imageUrl,
         gid : user_id
     }
-    $.get("http://192.168.43.193:3000/api/users/"+user_id,function(res){
+    $.get("http://13.229.113.41:3000/api/users/"+user_id,function(res){
         if(!res || res==null)
         {
-            $.post("http://192.168.43.193:3000/api/users",user,function(res){
+            $.post("http://13.229.113.41:3000/api/users",user,function(res){
                 if(res)
                 {
                     //console.log(res);

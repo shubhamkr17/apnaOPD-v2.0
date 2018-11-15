@@ -491,7 +491,7 @@
 
 	$.ajax({
             type        : 'GET', 
-            url         : 'http://192.168.43.193:3000/api/appointments/'+show_apid
+            url         : 'http://13.229.113.41:3000/api/appointments/'+show_apid
         })
         .done(function(data) {
         	console.log(data);
@@ -508,7 +508,7 @@
 
 	function show_detail()
 	{
-		$.get("http://192.168.43.193:3000/api/doctors/"+doc_id,function(data){
+		$.get("http://13.229.113.41:3000/api/doctors/"+doc_id,function(data){
 			$("#doctor_name").text(data.name);
 			$("#doctor_email").text(data.email);
 			doc_dept = data.department;
@@ -520,7 +520,7 @@
 		$("#ap_time").text(get_time(ap_time));
 		$("#book_time").text(book_time);
 
-		$.get("http://192.168.43.193:3000/api/casesheets/"+case_id,function(data){
+		$.get("http://13.229.113.41:3000/api/casesheets/"+case_id,function(data){
 		console.log("casesheet",data);
 		$("#dept"+doc_dept).mirandajs(data);
 		});
@@ -553,7 +553,7 @@ function arrived() {
 
 	$.ajax({
 				type        : 'PUT', 
-				url         : 'http://192.168.43.193:3000/api/appointments/status/patient/'+show_apid+'/'+patient_gid,
+				url         : 'http://13.229.113.41:3000/api/appointments/status/patient/'+show_apid+'/'+patient_gid,
 				dataType    : 'json',
 				encode      : true
 			})

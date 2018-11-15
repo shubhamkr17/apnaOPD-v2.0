@@ -93,7 +93,7 @@
 						<div id="orderDetail" class="desc" style="margin-top:1em; margin-top:0;padding:1em; width:100%;">
 							<div class="row">
 								<div class="col-md-12">
-									<img class="img-responsive" src="http://192.168.43.193:3000[[photo_prescription_link]]" style="margin: auto;">
+									<img class="img-responsive" src="http://13.229.113.41:3000[[photo_prescription_link]]" style="margin: auto;">
 								</div>
 							</div>
 							<div class="row" style="border: 1px solid #ccc;padding: 10px; margin: 30px;">
@@ -199,10 +199,10 @@
 		var order_id = sessionStorage.getItem('order_id');
 		console.log("order_id",order_id);
 
-		$.get("http://192.168.43.193:3000/api/orders/"+order_id,function(data){
+		$.get("http://13.229.113.41:3000/api/orders/"+order_id,function(data){
 			console.log(data);
 			$("#orderDetail").mirandajs(data);
-			//$('#prescription_image').attr("src","http://192.168.43.193:3000/"+data.photo_prescription_link);
+			//$('#prescription_image').attr("src","http://13.229.113.41:3000/"+data.photo_prescription_link);
 
 		});
 	

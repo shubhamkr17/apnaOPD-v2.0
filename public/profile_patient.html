@@ -492,7 +492,7 @@
 
 		$.ajax({
 				type        : 'PUT', 
-				url         : 'http://192.168.43.193:3000/api/users/address/new'+gid,
+				url         : 'http://13.229.113.41:3000/api/users/address/new'+gid,
 				data        : finalObj,
 				dataType    : 'json',
 				encode      : true
@@ -510,14 +510,14 @@
 		$('#addAddress').slideDown("slow");
 	}
 
-		$.get("http://192.168.43.193:3000/api/users/" + gid , function(res) {
+		$.get("http://13.229.113.41:3000/api/users/" + gid , function(res) {
 			console.log("user", res);
 			$("#profile_body").mirandajs(res);
 		});
 
 		$.ajax({
 		            type        : 'GET', 
-		            url         : 'http://192.168.43.193:3000/api/appointments/patient/'+gid
+		            url         : 'http://13.229.113.41:3000/api/appointments/patient/'+gid
 		            //data        : e_presc,
 		            //dataType    : 'json',
 		            //encode      : true
@@ -527,7 +527,7 @@
 					//console.log("inside");
 					// for(i=0;i<data.length;i++) {
 					// 	var cid = data[i].casesheet_uid;
-					// 	$.get("http://192.168.43.193:3000/api/casesheets/"+cid, function(res) {
+					// 	$.get("http://13.229.113.41:3000/api/casesheets/"+cid, function(res) {
 					// 		console.log("casesheet", res);
 					// 		data[i].patient_name = res.full_name;
 					// 		data[i].patient_age = res.age;
@@ -544,7 +544,7 @@
 		var orders;		
 		$.ajax({
 			type        : 'GET', 
-			url         : 'http://192.168.43.193:3000/api/orders/patient/'+gid
+			url         : 'http://13.229.113.41:3000/api/orders/patient/'+gid
 			//data        : e_presc,
 			//dataType    : 'json',
 			//encode      : true

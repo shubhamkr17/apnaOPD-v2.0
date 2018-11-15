@@ -186,7 +186,7 @@
 	//var doctor_gid = sessionStorage.getItem('doctor_gid');
 	var doc_email;
 	var gid = sessionStorage.getItem('gid');
-	$.get("http://192.168.43.193:3000/api/users/"+gid,function(res){
+	$.get("http://13.229.113.41:3000/api/users/"+gid,function(res){
 		doc_email = res.email;
 	});
 
@@ -200,7 +200,7 @@
 		var link;
 		console.log("uploading !");
 		$.ajax({
-			url: "http://192.168.43.193:3000/api/uploadCerti",
+			url: "http://13.229.113.41:3000/api/uploadCerti",
 			type: 'POST',
 			data: formData,
 			success: function (data) {
@@ -219,7 +219,7 @@
 				}
 				
 				console.log(doctor);
-				$.post("http://192.168.43.193:3000/api/becomes",doctor,function(res){
+				$.post("http://13.229.113.41:3000/api/becomes",doctor,function(res){
 					//console.log("response",res);
 					//console.log("Registered !");
 					alert("Request sent !");

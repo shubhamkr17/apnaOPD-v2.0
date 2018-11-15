@@ -213,10 +213,10 @@
 
 	<script>
 		var addressList;
-		
+		var patient_gid = sessionStorage.getItem("patient_gid");
 		$.ajax({
 		            type        : 'GET', 
-		            url         : 'http://192.168.43.193:3000/api/users/address/1',
+		            url         : 'http://13.229.113.41:3000/api/users/address/'+patient_gid,
 		            // data        : e_presc,
 		            // dataType    : 'json',
 		            // encode      : true
@@ -243,7 +243,7 @@
 		    formData.append('gid', gid);
 		    //formData.append('address', addr);
 		    $.ajax({
-		        url: "http://192.168.43.193:3000/api/uploadPrescription",
+		        url: "http://13.229.113.41:3000/api/uploadPrescription",
 		        type: 'POST',
 		        data: formData,
 		        success: function (data) {
@@ -291,7 +291,7 @@
 
 			$.ajax({
 		            type        : 'POST', 
-					url         : 'http://192.168.43.193:3000/api/orders/'+filter,
+					url         : 'http://13.229.113.41:3000/api/orders/'+filter,
 					contentType : 'application/json',
 					data        : JSON.stringify(orderData),
 		            dataType    : 'json',

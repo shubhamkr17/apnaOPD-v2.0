@@ -491,7 +491,7 @@
 		var dept;
 		var doc_name;
 		var casesheet_uid;
-		$.get("http://192.168.43.193:3000/api/doctors/" + doctor_gid, function(res){
+		$.get("http://13.229.113.41:3000/api/doctors/" + doctor_gid, function(res){
 			dept = res.department;
 			doc_name = res.name;
 			console.log("doctor", res);
@@ -500,7 +500,7 @@
 		
 		$.ajax({
 		            type        : 'GET', 
-		            url         : 'http://192.168.43.193:3000/api/casesheets/'+show_pid,
+		            url         : 'http://13.229.113.41:3000/api/casesheets/'+show_pid,
 		            //data        : e_presc,
 		            //dataType    : 'json',
 		            //encode      : true
@@ -562,12 +562,12 @@
 			};
 
 			console.log("prescription", prescription);
-			// $.post("http://192.168.43.193:3000/api/eprescriptions", prescription, function(res){
+			// $.post("http://13.229.113.41:3000/api/eprescriptions", prescription, function(res){
 			// 	console.log(res);
 			// });
 			$.ajax({
 		            type        : 'POST', 
-		            url         : 'http://192.168.43.193:3000/api/eprescriptions',
+		            url         : 'http://13.229.113.41:3000/api/eprescriptions',
 					contentType : 'application/json',
 					data        : JSON.stringify(prescription),
 		            dataType    : 'json',

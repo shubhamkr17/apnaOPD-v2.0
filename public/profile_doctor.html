@@ -634,7 +634,7 @@
 		var full_name;
 		var imageUrl;
 		var address;
-		$.get("http://192.168.43.193:3000/api/doctors/"+gid,function(res){
+		$.get("http://13.229.113.41:3000/api/doctors/"+gid,function(res){
 			full_name = res.full_name;
 			if(res.department=='' || res.department == null)
 			{
@@ -652,7 +652,7 @@
 			}
 		});
 
-		$.get("http://192.168.43.193:3000/api/users/"+gid,function(res){
+		$.get("http://13.229.113.41:3000/api/users/"+gid,function(res){
 			full_name = res.name;
 			imageUrl = res.imageUrl;
 			$("#doc_image").attr("src", imageUrl);
@@ -678,7 +678,7 @@
 
 		$.ajax({
 				type        : 'PUT', 
-				url         : 'http://192.168.43.193:3000/api/doctors/'+docid,
+				url         : 'http://13.229.113.41:3000/api/doctors/'+docid,
 				contentType : "application/json",
 				data        : JSON.stringify(finalObj),
 				dataType    : 'json',
@@ -716,7 +716,7 @@ var docid = sessionStorage.getItem('doctor_gid');
 $.ajax({
 
         type        : 'GET', 
-        url         : 'http://192.168.43.193:3000/api/appointments/doctor/visiting/'+docid
+        url         : 'http://13.229.113.41:3000/api/appointments/doctor/visiting/'+docid
     })
     .done(function(data) {
     	
@@ -738,7 +738,7 @@ function showPatient(pid) {
 
 $.ajax({
     type        : 'GET', 
-    url         : 'http://192.168.43.193:3000/api/appointments/doctor/history/'+docid
+    url         : 'http://13.229.113.41:3000/api/appointments/doctor/history/'+docid
     //data        : e_presc,
     //dataType    : 'json',
     //encode      : true
@@ -756,7 +756,7 @@ timeUpdate($("#days").val());
 function timeUpdate(selected_day) {
 	//console.log("day", selected_day);
 	//var time_slab;
-	$.get("http://192.168.43.193:3000/api/doctors/" + docid , function(res){
+	$.get("http://13.229.113.41:3000/api/doctors/" + docid , function(res){
 	//console.log("doctor", res);
 	var time_slab = res.time_slab;
 	
@@ -947,7 +947,7 @@ function updateTime() {
 
 	$.ajax({
 				type        : 'PUT', 
-				url         : 'http://192.168.43.193:3000/api/doctors/time_slab/'+docid,
+				url         : 'http://13.229.113.41:3000/api/doctors/time_slab/'+docid,
 				contentType : "application/json",
 				data        : JSON.stringify(time_slab),
 				dataType    : 'json',

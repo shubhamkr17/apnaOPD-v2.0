@@ -501,7 +501,7 @@
 
 		// When the user clicks the button, open the modal 
 		var gid = sessionStorage.getItem('retailer_gid');
-		$.get("http://192.168.43.193:3000/api/retailers/"+gid,function(res){
+		$.get("http://13.229.113.41:3000/api/retailers/"+gid,function(res){
 			if(res.address=='' || res.address == null)
 			{
 				modal.style.display = "block";
@@ -549,7 +549,7 @@
 
 		$.ajax({
 				type        : 'PUT', 
-				url         : 'http://192.168.43.193:3000/api/retailers/profile/'+gid,
+				url         : 'http://13.229.113.41:3000/api/retailers/profile/'+gid,
 				contentType : "application/json",
 				data        : JSON.stringify(finalObj),
 				dataType    : 'json',
@@ -563,7 +563,7 @@
 
 	}
 
-	$.get("http://192.168.43.193:3000/api/users/"+gid,function(res){
+	$.get("http://13.229.113.41:3000/api/users/"+gid,function(res){
 		imageUrl = res.imageUrl;
 		$("#ret_image").attr("src", imageUrl);
 	});
@@ -580,7 +580,7 @@
 		$.ajax({
 
 		        type        : 'GET', 
-		        url         : 'http://192.168.43.193:3000/api/retailers/orders/'+gid
+		        url         : 'http://13.229.113.41:3000/api/retailers/orders/'+gid
 		    })
 		    .done(function(data) {
 		    	// console.log(data);
@@ -615,7 +615,7 @@
 		$.ajax({
 
 		        type        : 'GET', 
-		        url         : 'http://192.168.43.193:3000/api/orders/retailer/'+gid
+		        url         : 'http://13.229.113.41:3000/api/orders/retailer/'+gid
 		        //data        : e_presc,
 		        //dataType    : 'json',
 		        //encode      : true
@@ -632,7 +632,7 @@
 		$.ajax({
 
 				type        : 'GET', 
-				url         : 'http://192.168.43.193:3000/api/retailers/history/'+gid
+				url         : 'http://13.229.113.41:3000/api/retailers/history/'+gid
 				})
 				.done(function(data) {
 					console.log("Delivered orders",data);

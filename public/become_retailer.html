@@ -193,7 +193,7 @@
 		var ret_email;
 		//var retailer_gid = sessionStorage.getItem('retailer_gid');
 		var gid = sessionStorage.getItem('gid');
-		$.get("http://192.168.43.193:3000/api/users/"+gid,function(res){
+		$.get("http://13.229.113.41:3000/api/users/"+gid,function(res){
 			ret_email = res.email;
 		});
 
@@ -207,7 +207,7 @@
 			var link;
 			console.log("uploading !");
 		    $.ajax({
-		        url: "http://192.168.43.193:3000/api/uploadCerti",
+		        url: "http://13.229.113.41:3000/api/uploadCerti",
 		        type: 'POST',
 		        data: formData,
 		        success: function (data) {
@@ -226,7 +226,7 @@
 					}
 					
 					console.log(retailer);
-					$.post("http://192.168.43.193:3000/api/becomes",retailer,function(res){
+					$.post("http://13.229.113.41:3000/api/becomes",retailer,function(res){
 						//console.log("response",res);
 						//console.log("Registered !");
 

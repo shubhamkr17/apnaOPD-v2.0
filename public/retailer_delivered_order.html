@@ -93,7 +93,7 @@
 								<div id="deliveredDetailList" class="desc" style="margin-top:1em;">
 								<div class="row">
 									<div class="col-md-12">
-										<img class="img-responsive" src="http://192.168.43.193:3000[[photo_prescription_link]]">
+										<img class="img-responsive" src="http://13.229.113.41:3000[[photo_prescription_link]]">
 									</div>
 								</div>
 								<div class="row" style="border: 1px solid #ccc;padding: 10px; margin: 30px;">
@@ -201,11 +201,11 @@
 			$.ajax({
 	
 				type        : 'GET', 
-				url         : 'http://192.168.43.193:3000/api/orders/'+delivered_order_id
+				url         : 'http://13.229.113.41:3000/api/orders/'+delivered_order_id
 				})
 				.done(function(data) {
 					console.log(data);
-					$.get("http://192.168.43.193:3000/api/users/" + data.patient_gid, function(res){
+					$.get("http://13.229.113.41:3000/api/users/" + data.patient_gid, function(res){
 						var name = res.name;
 						var address = res.address.house_no + res.address.landmark + res.address.city + res.address.state + res.address.pincode;
 					});
